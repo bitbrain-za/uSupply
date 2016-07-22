@@ -28,6 +28,7 @@ TIMER2 - System Timer
 #include "HAL/tc2.h"
 #include "HAL/pin.h"
 #include "HAL/twi.h"
+#include "HAL/adc.h"
 #include "HAL/hal.h"
 
 #include "Timers/delay.h"

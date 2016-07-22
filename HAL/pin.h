@@ -40,7 +40,7 @@ public:
       set_input();
     }
   };
-	~pin();
+	~pin() {;}
 
   void set_input()  { (_port->ddr &= ~(1<<_pin)); _output = false; }
   void set_output() { (_port->ddr |= (1<<_pin)); _output = true; }
@@ -57,7 +57,7 @@ public:
     else 
       Set(); 
   }
-  bool Value() { if(_output) return state; return read_pin(); }
+  bool Value() { return read_pin(); }
 
 protected:
 private:

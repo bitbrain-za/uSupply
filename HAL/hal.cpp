@@ -16,6 +16,10 @@ port hal::portE(PORTE, DDRE, PINE);
 port hal::portF(PORTG, DDRG, PINF);
 port hal::portG(PORTG, DDRG, PING);
 
+ADC_CHANNEL_MUX hal::VoltageChannel = ADC0;
+ADC_CHANNEL_MUX hal::TemperatureChannel = ADC1;
+
+
 void hal::board_init(void)
 {
   portA.SetInputs(0xFF);

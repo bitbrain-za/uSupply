@@ -14,11 +14,6 @@
  / /_/ /  __/ __/ / / / /  __(__  )
 /_____/\___/_/ /_/_/ /_/\___/____/
 */
-#define PIN_SDA   PE5
-#define PIN_SCL   PE4
-#define PORT_TWI  PORTE
-#define DDR_TWI   DDRE
-#define PIN_TWI   PINE
 
 #define TWI_READ_BIT  0       // Bit position for R/W bit in "address byte".
 #define TWI_ADR_BITS  1       // Bit position for LSB of the slave address bits in the init byte.
@@ -33,16 +28,6 @@
 */
 #define T2_TWI (((SYS_CLOCK / 1000) * 4700) / 1000000) + 1 // >4,7us
 #define T4_TWI (((SYS_CLOCK / 1000) * 4000) / 1000000) + 1 // >4,0us
-
-#define SDA_AS_INPUT()  (DDR_TWI &= ~(1<<PIN_SDA))
-#define SDA_AS_OUTPUT() (DDR_TWI |= (1<<PIN_SDA))
-
-#define PULL_SDA_LOW()  (PORT_TWI &= ~(1<<PIN_SDA))
-#define RELEASE_SDA()   (PORT_TWI |= (1<<PIN_SDA))
-
-#define IS_SCL_HIGH()   (PIN_TWI & (1<<PIN_SCL))
-#define PULL_SCL_LOW()  (PORT_TWI &= ~(1<<PIN_SCL))
-#define RELEASE_SCL()   (PORT_TWI |= (1<<PIN_SCL))
 
 /*
     ____            __                 __  _
@@ -66,8 +51,10 @@ pin twi::SDA(&hal::portE, PE5, true, true);
 */
 void twi::inititalise(void)
 {
-  PORT_TWI |= ((1 << PIN_SDA) | (1 << PIN_SCL));
-  DDR_TWI  |= ((1 << PIN_SDA) | (1 << PIN_SCL));
+  SCL.Set();
+  SDA.Set();
+  SCL.set_output();
+  SDA.set_output();
 
   USIDR = 0xFF;
 
@@ -138,8 +125,8 @@ U8 twi::Transceive(U8 *message, U8 length)
   }
 
   /* Release SCL to ensure that (repeated) Start can be performed */
-  RELEASE_SCL();
-  while(!IS_SCL_HIGH());
+  SCL.Set();
+  while(!SCL.Value());
   delay::delay_us( T2_TWI/4 );
 
   if(!SendStart())
@@ -154,13 +141,13 @@ U8 twi::Transceive(U8 *message, U8 length)
     if (_address_mode || _master_write_data_mode)
     {
       /* Write a byte */
-      PULL_SCL_LOW();
+      SCL.Clear();
       USIDR     = *(message++);                   // Setup data.
       MasterTransfer(tempUSISR_8bit);             // Send 8 bits on bus.
       
       /* Clock and verify (N)ACK from slave */
-      SDA_AS_INPUT();
-      if( MasterTransfer(tempUSISR_1bit) & (1<<TWI_NACK_BIT) ) 
+      SDA.set_input();
+      if(MasterTransfer(tempUSISR_1bit) & (1<<TWI_NACK_BIT)) 
       {
         if (_address_mode)
           _error_state = USI_TWI_NO_ACK_ON_ADDRESS;
@@ -174,7 +161,7 @@ U8 twi::Transceive(U8 *message, U8 length)
     else
     {
       /* Read a data byte */
-      SDA_AS_INPUT();
+      SDA.set_input();
       *(message++) = MasterTransfer(tempUSISR_8bit);
 
       /* Prepare to generate ACK (or NACK in case of End Of Transmission) */
@@ -223,7 +210,7 @@ U8 twi::MasterTransfer(U8 temp)
   {
     delay::delay_us(T2_TWI/4);              
     USICR = temp;                           // Generate positive SCL edge.
-    while(!IS_SCL_HIGH());                  // Wait for SCL to go high.
+    while(!SCL.Value());                  // Wait for SCL to go high.
     delay::delay_us(T4_TWI/4);              
     USICR = temp;                           // Generate negative SCL edge.
   }while(!CheckFlag(TWI_FLAG_COUNTER_OVERFLOW));
@@ -231,7 +218,7 @@ U8 twi::MasterTransfer(U8 temp)
   delay::delay_us(T2_TWI/4);                
   temp  = USIDR;                            // Read out data.
   USIDR = 0xFF;                             // Release SDA.
-  SDA_AS_OUTPUT();
+  SDA.set_output();
 
   return temp;                              // Return the data from the USIDR
 }
@@ -242,11 +229,11 @@ U8 twi::MasterTransfer(U8 temp)
 ---------------------------------------------------------------*/
 bool twi::SendStop(void)
 {
-  PULL_SDA_LOW();
-  RELEASE_SCL();
-  while(!IS_SCL_HIGH());  // Wait for SCL to go high.
+  SDA.Clear();
+  SCL.Set();
+  while(!SCL.Value());  // Wait for SCL to go high.
   delay::delay_us( T4_TWI/4 );               
-  RELEASE_SDA();
+  SDA.Set();
   delay::delay_us( T2_TWI/4 );                
   
   if(!CheckFlag(TWI_FLAG_STOP_DETECTED))
@@ -261,10 +248,10 @@ bool twi::SendStop(void)
 /* Generate Start Condition */
 bool twi::SendStart(void)
 {
-  PULL_SDA_LOW();
+  SDA.Clear();
   delay::delay_us( T4_TWI/4 );                         
-  PULL_SCL_LOW();
-  RELEASE_SDA();
+  SCL.Clear();
+  SDA.Set();
 
   if(!CheckFlag(TWI_FLAG_START_DETECTED))
   {

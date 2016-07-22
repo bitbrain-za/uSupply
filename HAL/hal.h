@@ -20,6 +20,9 @@ public:
   static port portE;
   static port portF;
   static port portG;
+
+  static ADC_CHANNEL_MUX VoltageChannel;
+  static ADC_CHANNEL_MUX TemperatureChannel;
 protected:
 private:
 
