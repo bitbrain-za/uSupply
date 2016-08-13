@@ -9,44 +9,55 @@
 #ifndef __TC2_H__
 #define __TC2_H__
 
-class tc2 : Timer8Bit
+class tc2
 {
 //variables
 public:
-  U8 Count() { return TCNT2; }
-  U8 CompareVal() { return OCR2A; }
+  static U8 Count() { return TCNT2; }
+  static U8 CompareVal() { return OCR2A; }
 
-  bool OverflowInterruptActive() {return ((TIFR2 & 0x02) == 0x02); }
-  bool OutputCompareInterruptActive() {return ((TIFR2 & 0x01) == 0x01); }
+  static bool OverflowInterruptActive() {return ((TIFR2 & 0x02) == 0x02); }
+  static bool OutputCompareInterruptActive() {return ((TIFR2 & 0x01) == 0x01); }
 protected:
 private:
+  static bool ocrCallbackSet;
+  static void (*ocrCallBack)(void);
+
 
 //functions
 public:
-	tc2(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select);
-	~tc2();
+  static void init(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select);
 
-  void SelectClock(TC_CS clock_select);
-  void SetWGM(TC_WGM mode);
-  void SetCOM(TC_COM mode);
+  static void SelectClock(TC_CS clock_select);
+  static void SetWGM(TC_WGM mode);
+  static void SetCOM(TC_COM mode);
 
-  void SetCount(U8 count) { TCNT2 = count; }
-  void SetOutputCompareA(U8 val) { OCR2A = val; }
+  static void SetCount(U8 count) { TCNT2 = count; }
+  static void SetOutputCompareA(U8 val) { OCR2A = val; }
 
-  void ExternalClockMode(bool enable, bool xtal);
+  static void ExternalClockMode(bool enable, bool xtal);
 
-  void EnableOutputCompareInterrupt() { TIMSK2 |= 0x02; }
-  void DisableOutputCompareInterrupt() { TIMSK2 &= ~0x02; }
-  void ClearOutputCompareInterrupt() { TIFR2 &= ~0x02; }
+  static void EnableOutputCompareInterrupt() { TIMSK2 |= 0x02; }
+  static void DisableOutputCompareInterrupt() { TIMSK2 &= ~0x02; }
+  static void ClearOutputCompareInterrupt() { TIFR2 &= ~0x02; }
 
-  void EnableOverflowInterrupt() { TIMSK2 |= 0x01; }
-  void DisableOverflowInterrupt() { TIMSK2 &= ~0x01; }
-  void ClearOverflowInterrupt() { TIFR2 &= ~0x01; }
+  static void EnableOverflowInterrupt() { TIMSK2 |= 0x01; }
+  static void DisableOverflowInterrupt() { TIMSK2 &= ~0x01; }
+  static void ClearOverflowInterrupt() { TIFR2 &= ~0x01; }
+
+  static void SetOutputCompareCallback(void (*fp)(void)) { ocrCallbackSet = true; ocrCallBack = fp; }
+  static void ClearOutputCompareCallback(void) { ocrCallbackSet = false; }
+
+  static void TriggerCompareMatchCallback(void)
+  {
+    if(ocrCallbackSet)
+    {
+      ocrCallBack();
+    }
+  }
 
 protected:
 private:
-	tc2( const tc2 &c );
-	tc2& operator=( const tc2 &c );
 
 }; //tc2
 

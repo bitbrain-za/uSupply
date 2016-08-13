@@ -35,6 +35,8 @@ public:
   void SetCount(U8 count) { TCNT0 = count; }
   void SetOutputCompareA(U8 val) { OCR0A = val; }
 
+  void SetDutyCycle(U8 duty);
+
   void ExternalClockMode(bool enable, bool xtal);
 
   void EnableOutputCompareInterrupt() { TIMSK0 |= 0x02; }

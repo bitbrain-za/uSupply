@@ -8,19 +8,15 @@
 
 #include "../system.h"
 
-// default constructor
-tc2::tc2(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select)
+bool tc2::ocrCallbackSet = false;
+void (*tc2::ocrCallBack)(void);
+
+void tc2::init(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select)
 {
   SetWGM(waveform_mode);
   SetCOM(compare_mode);
   SelectClock(clock_select);
 }
-
-// default destructor
-tc2::~tc2()
-{
-} //~tc2
-
 
 void tc2::SetWGM(TC_WGM mode)
 {
@@ -50,4 +46,9 @@ void tc2::ExternalClockMode(bool enable, bool xtal)
     ASSR |= (1 << EXCLK);
   if(xtal)
     ASSR |= (1 << AS2);
+}
+
+ISR(TIMER2_COMP_vect)
+{
+  tc2::TriggerCompareMatchCallback();
 }

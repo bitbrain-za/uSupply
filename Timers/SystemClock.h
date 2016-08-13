@@ -16,11 +16,11 @@ class SystemClock
 public:
 protected:
 private:
-  static tc2 _sys_clock;
 
 //functions
 public:
   static void init(void);
+  static void tick(void);
 protected:
 private:
 

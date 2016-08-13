@@ -15,6 +15,8 @@ typedef uint16_t                U16;  //!< 16-bit unsigned integer.
 typedef uint32_t                U32;  //!< 32-bit unsigned integer.
 typedef unsigned long long int  U64;  //!< 64-bit unsigned integer.
 
-
+typedef int8_t                 S8 ;  //!< 8-bit unsigned integer.
+typedef int16_t                S16;  //!< 16-bit unsigned integer.
+typedef int32_t                S32;  //!< 32-bit unsigned integer.
 
 #endif /* TYPEDEF_H_ */

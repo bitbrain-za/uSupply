@@ -42,8 +42,8 @@ public:
   };
 	~pin() {;}
 
-  void set_input()  { (_port->ddr &= ~(1<<_pin)); _output = false; }
-  void set_output() { (_port->ddr |= (1<<_pin)); _output = true; }
+  void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
+  void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
 
   void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
   void Clear() { if(!_output) return; _port->ClearPin(_pin); state = false; }
@@ -58,13 +58,24 @@ public:
       Set(); 
   }
   bool Value() { return read_pin(); }
+  void SetValue(bool val) 
+  { 
+    if(val)
+    {
+      Set();
+    }
+    else
+    {
+      Clear();
+    }
+  }
 
 protected:
 private:
 	pin( const pin &c );
 	pin& operator=( const pin &c );
 
-  bool read_pin() { return (_port->PIN & (1<<_pin)); }
+  bool read_pin() { return (*_port->PIN & (1<<_pin)); }
 };
 
 #endif //__PIN_H__

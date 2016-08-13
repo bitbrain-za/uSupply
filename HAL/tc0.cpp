@@ -46,3 +46,21 @@ void tc0::ExternalClockMode(bool enable, bool xtal)
 {
 
 }
+
+void tc0::SetDutyCycle(U8 duty)
+{
+  /* scale duty cycle */
+  if(duty >= 100)
+  {
+    SetOutputCompareA(0xFF);
+    return;
+  }
+
+  double scale = duty;
+  scale *= 0xFF;
+  scale /= 100;
+
+  duty = (U8)(scale);
+
+  SetOutputCompareA(duty);
+}

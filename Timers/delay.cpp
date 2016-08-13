@@ -7,3 +7,15 @@
 
 #include "../system.h"
 #include "delay.h"
+
+void delay::init(void)
+{
+  
+}
+
+void delay::delay_us(U16 us)
+{
+  
+  /* 8MHz clock - 0.125us */
+  asm("nop");
+}

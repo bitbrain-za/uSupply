@@ -14,17 +14,17 @@ class port
 {
 //variables
 public:
-  U8 Port() {return port_address; }
-  U8 ddr;
-  U8 PIN;
+  volatile U8* Port() {return port_address; }
+  volatile U8* ddr;
+  volatile U8* PIN;
 
 protected:
 private:
-  U8 port_address;
+  volatile U8 *port_address;
 
 //functions
 public:
-	port(U8 addr, U8 ddr_addr, U8 pin);
+	port(volatile U8 *addr, volatile U8 *ddr_addr, volatile U8 *pin);
 	~port();
 
   void SetInputs(U8 pins);

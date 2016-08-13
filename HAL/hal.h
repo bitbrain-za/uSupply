@@ -21,6 +21,8 @@ public:
   static port portF;
   static port portG;
 
+  static pin climitLed;
+
   static ADC_CHANNEL_MUX VoltageChannel;
   static ADC_CHANNEL_MUX TemperatureChannel;
 protected:

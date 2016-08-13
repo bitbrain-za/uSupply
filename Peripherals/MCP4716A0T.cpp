@@ -6,7 +6,7 @@
 */
 
 
-#include "MCP4716A0T.h"
+#include "../system.h"
 
 // default constructor
 MCP4716A0T::MCP4716A0T()

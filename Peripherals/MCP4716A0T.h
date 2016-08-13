@@ -16,6 +16,7 @@ class MCP4716A0T
 public:
 protected:
 private:
+  const static U8 address = 0xC0;
 
 //functions
 public:

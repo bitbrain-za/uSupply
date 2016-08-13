@@ -39,23 +39,24 @@ public:
 protected:
 private:
   static TWI_STATE _error_state;
-  static bool _address_mode;
-  static bool _master_write_data_mode;
   static pin SDA;
   static pin SCL;
 
 //functions
 public:
   static void inititalise(void);
-  static U8 Transceive(U8 slave, U8 *message, U8 length);
-  static U8 Transceive(U8 *message, U8 length);
   static U8 GetState(void);
+
+  static bool WriteBytes(U8 slave_address, U8 length, U8 *bytes);
+  static bool WriteBytesToRegister(U8 slave_address, U8 reg, U8 length, U8 *bytes);
+  static bool ReadBytes(U8 slave_address, U8 length, U8 *bytes);
+  static bool ReadBytesFromRegister(U8 slave_address, U8 reg, U8 length, U8 *bytes);
 
 protected:
 private:
-  static U8 MasterTransfer(U8 temp);
   static bool SendStop(void);
   static bool SendStart(void);  
+  static bool SetAddress(U8 slave_address, bool ReadNotWrite);
 
   static void start_condition_interrupt_enable(void) { USICR |= (1 << USISIE); }
   static void start_condition_interrupt_disable(void) { USICR &= ~(1 << USISIE); }
@@ -67,6 +68,19 @@ private:
   static void ClearFlag(U8 flags) { USISR |= (flags & 0xF0); }
   static void ClearFlag(TWI_FLAGS flag) { USISR |= (1 << flag); }
   static bool CheckAndClearFlag(TWI_FLAGS flag);
+
+  static void toggleClockPort() { USICR |= (1 << USITC); }
+  static void one_bit_mode() { USISR = (1<<USISIF)|(1<<USIOIF)|(1<<USIPF)|(1<<USIDC)|(0xE<<USICNT0); }
+  static void eight_bit_mode() { USISR = (1<<USISIF)|(1<<USIOIF)|(1<<USIPF)|(1<<USIDC)|(0x0<<USICNT0); }
+
+
+  static U8 TransferByte(U8 b);
+  static U8 TransferBit(U8 b);
+  static void SendACK();
+  static void SendNACK();
+  static bool ACK_received(void);
+
+  static bool CheckForBusErrors();
 }; //twi
 
 #endif //__TWI_H__

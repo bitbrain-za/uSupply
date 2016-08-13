@@ -1,0 +1,2096 @@
+
+uSupply.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         000000cc  00800100  00000bae  00000c42  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000bae  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000042  008001cc  008001cc  00000d0e  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000d0e  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000d40  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000350  00000000  00000000  00000d80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00007818  00000000  00000000  000010d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00001e4b  00000000  00000000  000088e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00001cd5  00000000  00000000  0000a733  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000007c4  00000000  00000000  0000c408  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00002321  00000000  00000000  0000cbcc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000197e  00000000  00000000  0000eeed  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000348  00000000  00000000  0001086b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 ae 01 	jmp	0x35c	; 0x35c <__dtors_end>
+   4:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+   8:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+   c:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  10:	0c 94 a9 04 	jmp	0x952	; 0x952 <__vector_4>
+  14:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  18:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  1c:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  20:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  24:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  28:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  2c:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  30:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  34:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  38:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  3c:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  40:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  44:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  48:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  4c:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  50:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  54:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+  58:	0c 94 d6 01 	jmp	0x3ac	; 0x3ac <__bad_interrupt>
+
+0000005c <__trampolines_end>:
+  5c:	06 20       	and	r0, r6
+  5e:	10 10       	cpse	r1, r0
+  60:	20 20       	and	r2, r0
+  62:	10 03       	Address 0x00000062 is out of bounds.
+.word	0xffff	; ????
+
+00000063 <_ZL15ascii_char_0x7d>:
+  63:	03 41 36 08                                         .A6.
+
+00000067 <_ZL15ascii_char_0x7c>:
+  67:	01 7f                                               ..
+
+00000069 <_ZL15ascii_char_0x7b>:
+  69:	03 08 36 41                                         ..6A
+
+0000006d <_ZL15ascii_char_0x7a>:
+  6d:	05 44 64 54 4c 44                                   .DdTLD
+
+00000073 <_ZL15ascii_char_0x79>:
+  73:	05 1c a0 a0 a0 7c                                   .....|
+
+00000079 <_ZL15ascii_char_0x78>:
+  79:	05 44 28 10 28 44                                   .D(.(D
+
+0000007f <_ZL15ascii_char_0x77>:
+  7f:	05 3c 40 30 40 3c                                   .<@0@<
+
+00000085 <_ZL15ascii_char_0x76>:
+  85:	05 1c 20 40 20 1c                                   .. @ .
+
+0000008b <_ZL15ascii_char_0x75>:
+  8b:	05 3c 40 40 40 7c                                   .<@@@|
+
+00000091 <_ZL15ascii_char_0x74>:
+  91:	04 04 3f 44 44                                      ..?DD
+
+00000096 <_ZL15ascii_char_0x73>:
+  96:	05 48 54 54 54 24                                   .HTTT$
+
+0000009c <_ZL15ascii_char_0x72>:
+  9c:	05 7c 08 04 04 08                                   .|....
+
+000000a2 <_ZL15ascii_char_0x71>:
+  a2:	05 18 24 24 24 fc                                   ..$$$.
+
+000000a8 <_ZL15ascii_char_0x70>:
+  a8:	05 fc 24 24 24 18                                   ..$$$.
+
+000000ae <_ZL15ascii_char_0x6f>:
+  ae:	05 38 44 44 44 38                                   .8DDD8
+
+000000b4 <_ZL15ascii_char_0x6e>:
+  b4:	05 7c 04 04 04 78                                   .|...x
+
+000000ba <_ZL15ascii_char_0x6d>:
+  ba:	05 78 04 18 04 78                                   .x...x
+
+000000c0 <_ZL15ascii_char_0x6c>:
+  c0:	01 7f                                               ..
+
+000000c2 <_ZL15ascii_char_0x6b>:
+  c2:	05 7f 10 10 28 44                                   ....(D
+
+000000c8 <_ZL15ascii_char_0x6a>:
+  c8:	02 80 7d                                            ..}
+
+000000cb <_ZL15ascii_char_0x69>:
+  cb:	01 7d                                               .}
+
+000000cd <_ZL15ascii_char_0x68>:
+  cd:	05 7f 04 04 04 78                                   .....x
+
+000000d3 <_ZL15ascii_char_0x67>:
+  d3:	05 18 a4 a4 a4 7c                                   .....|
+
+000000d9 <_ZL15ascii_char_0x66>:
+  d9:	04 08 7e 09 09                                      ..~..
+
+000000de <_ZL15ascii_char_0x65>:
+  de:	05 38 54 54 54 18                                   .8TTT.
+
+000000e4 <_ZL15ascii_char_0x64>:
+  e4:	05 38 44 44 44 7f                                   .8DDD.
+
+000000ea <_ZL15ascii_char_0x63>:
+  ea:	05 38 44 44 44 28                                   .8DDD(
+
+000000f0 <_ZL15ascii_char_0x62>:
+  f0:	05 7f 44 44 44 38                                   ..DDD8
+
+000000f6 <_ZL15ascii_char_0x61>:
+  f6:	05 20 54 54 54 78                                   . TTTx
+
+000000fc <_ZL15ascii_char_0x60>:
+  fc:	03 07 05 07                                         ....
+
+00000100 <_ZL15ascii_char_0x5f>:
+ 100:	04 40 40 40 40                                      .@@@@
+
+00000105 <_ZL15ascii_char_0x5e>:
+ 105:	03 04 02 04                                         ....
+
+00000109 <_ZL15ascii_char_0x5d>:
+ 109:	02 81 ff                                            ...
+
+0000010c <_ZL15ascii_char_0x5c>:
+ 10c:	04 03 0c 30 c0                                      ...0.
+
+00000111 <_ZL15ascii_char_0x5b>:
+ 111:	02 ff 81                                            ...
+
+00000114 <_ZL15ascii_char_0x5a>:
+ 114:	05 61 51 49 45 43                                   .aQIEC
+
+0000011a <_ZL15ascii_char_0x59>:
+ 11a:	05 07 08 78 08 07                                   ...x..
+
+00000120 <_ZL15ascii_char_0x58>:
+ 120:	05 63 14 08 14 63                                   .c...c
+
+00000126 <_ZL15ascii_char_0x57>:
+ 126:	05 3f 40 38 40 3f                                   .?@8@?
+
+0000012c <_ZL15ascii_char_0x56>:
+ 12c:	05 07 18 60 18 07                                   ...`..
+
+00000132 <_ZL15ascii_char_0x55>:
+ 132:	05 3f 40 40 40 3f                                   .?@@@?
+
+00000138 <_ZL15ascii_char_0x54>:
+ 138:	05 01 01 7f 01 01                                   ......
+
+0000013e <_ZL15ascii_char_0x53>:
+ 13e:	05 26 49 49 49 32                                   .&III2
+
+00000144 <_ZL15ascii_char_0x52>:
+ 144:	05 7f 09 09 19 66                                   .....f
+
+0000014a <_ZL15ascii_char_0x51>:
+ 14a:	05 3e 41 41 31 4e                                   .>AA1N
+
+00000150 <_ZL15ascii_char_0x50>:
+ 150:	05 7f 09 09 09 06                                   ......
+
+00000156 <_ZL15ascii_char_0x4f>:
+ 156:	05 3e 41 41 41 3e                                   .>AAA>
+
+0000015c <_ZL15ascii_char_0x4e>:
+ 15c:	05 7f 04 08 10 7f                                   ......
+
+00000162 <_ZL15ascii_char_0x4d>:
+ 162:	05 7f 02 1c 02 7f                                   ......
+
+00000168 <_ZL15ascii_char_0x4c>:
+ 168:	05 7f 40 40 40 40                                   ..@@@@
+
+0000016e <_ZL15ascii_char_0x4b>:
+ 16e:	05 7f 08 14 22 41                                   ...."A
+
+00000174 <_ZL15ascii_char_0x4a>:
+ 174:	05 20 41 41 3f 01                                   . AA?.
+
+0000017a <_ZL15ascii_char_0x49>:
+ 17a:	03 41 7f 41                                         .A.A
+
+0000017e <_ZL15ascii_char_0x48>:
+ 17e:	05 7f 08 08 08 7f                                   ......
+
+00000184 <_ZL15ascii_char_0x47>:
+ 184:	05 3e 41 41 49 3a                                   .>AAI:
+
+0000018a <_ZL15ascii_char_0x46>:
+ 18a:	05 7f 09 09 09 01                                   ......
+
+00000190 <_ZL15ascii_char_0x45>:
+ 190:	05 7f 49 49 49 41                                   ..IIIA
+
+00000196 <_ZL15ascii_char_0x44>:
+ 196:	05 7f 41 41 22 1c                                   ..AA".
+
+0000019c <_ZL15ascii_char_0x43>:
+ 19c:	05 3e 41 41 41 22                                   .>AAA"
+
+000001a2 <_ZL15ascii_char_0x42>:
+ 1a2:	05 7f 49 49 49 36                                   ..III6
+
+000001a8 <_ZL15ascii_char_0x41>:
+ 1a8:	05 7e 09 09 09 7e                                   .~...~
+
+000001ae <_ZL15ascii_char_0x40>:
+ 1ae:	06 3c 42 99 a5 a5 be                                .<B....
+
+000001b5 <_ZL15ascii_char_0x3f>:
+ 1b5:	05 02 01 b1 09 06                                   ......
+
+000001bb <_ZL15ascii_char_0x3e>:
+ 1bb:	03 22 14 08                                         ."..
+
+000001bf <_ZL15ascii_char_0x3d>:
+ 1bf:	05 14 14 14 14 14                                   ......
+
+000001c5 <_ZL15ascii_char_0x3c>:
+ 1c5:	03 08 14 22                                         ..."
+
+000001c9 <_ZL15ascii_char_0x3b>:
+ 1c9:	01 68                                               .h
+
+000001cb <_ZL15ascii_char_0x3a>:
+ 1cb:	01 24                                               .$
+
+000001cd <_ZL15ascii_char_0x39>:
+ 1cd:	05 06 49 49 29 1e                                   ..II).
+
+000001d3 <_ZL15ascii_char_0x38>:
+ 1d3:	05 36 49 49 49 36                                   .6III6
+
+000001d9 <_ZL15ascii_char_0x37>:
+ 1d9:	05 01 71 09 05 03                                   ..q...
+
+000001df <_ZL15ascii_char_0x36>:
+ 1df:	05 3c 4a 49 49 30                                   .<JII0
+
+000001e5 <_ZL15ascii_char_0x35>:
+ 1e5:	05 27 45 45 45 39                                   .'EEE9
+
+000001eb <_ZL15ascii_char_0x34>:
+ 1eb:	05 18 14 12 7f 10                                   ......
+
+000001f1 <_ZL15ascii_char_0x33>:
+ 1f1:	05 22 41 49 49 36                                   ."AII6
+
+000001f7 <_ZL15ascii_char_0x32>:
+ 1f7:	05 42 61 51 49 46                                   .BaQIF
+
+000001fd <_ZL15ascii_char_0x31>:
+ 1fd:	03 42 7f 40                                         .B.@
+
+00000201 <_ZL15ascii_char_0x30>:
+ 201:	05 3e 41 41 41 3e                                   .>AAA>
+
+00000207 <_ZL15ascii_char_0x2f>:
+ 207:	04 c0 30 0c 03                                      ..0..
+
+0000020c <_ZL15ascii_char_0x2e>:
+ 20c:	01 40                                               .@
+
+0000020e <_ZL15ascii_char_0x2d>:
+ 20e:	05 08 08 08 08 08                                   ......
+
+00000214 <_ZL15ascii_char_0x2c>:
+ 214:	02 80 40                                            ..@
+
+00000217 <_ZL15ascii_char_0x2b>:
+ 217:	05 08 08 3e 08 08                                   ...>..
+
+0000021d <_ZL15ascii_char_0x2a>:
+ 21d:	05 12 0c 1e 0c 12                                   ......
+
+00000223 <_ZL15ascii_char_0x29>:
+ 223:	03 81 42 3c                                         ..B<
+
+00000227 <_ZL15ascii_char_0x28>:
+ 227:	03 3c 42 81                                         .<B.
+
+0000022b <_ZL15ascii_char_0x27>:
+ 22b:	01 06                                               ..
+
+0000022d <_ZL15ascii_char_0x26>:
+ 22d:	06 60 96 89 b5 42 a0                                .`...B.
+
+00000234 <_ZL15ascii_char_0x25>:
+ 234:	07 42 25 12 08 24 52 21                             .B%..$R!
+
+0000023c <_ZL15ascii_char_0x24>:
+ 23c:	05 24 2a 7f 2a 12                                   .$*.*.
+
+00000242 <_ZL15ascii_char_0x23>:
+ 242:	05 28 7c 28 7c 28                                   .(|(|(
+
+00000248 <_ZL15ascii_char_0x22>:
+ 248:	03 03 00 03                                         ....
+
+0000024c <_ZL15ascii_char_0x21>:
+ 24c:	03 00 5f 00                                         .._.
+
+00000250 <_ZL15ascii_char_0x20>:
+ 250:	01 00                                               ..
+
+00000252 <_ZL18BitReverseTable256>:
+ 252:	00 80 40 c0 20 a0 60 e0 10 90 50 d0 30 b0 70 f0     ..@. .`...P.0.p.
+ 262:	08 88 48 c8 28 a8 68 e8 18 98 58 d8 38 b8 78 f8     ..H.(.h...X.8.x.
+ 272:	04 84 44 c4 24 a4 64 e4 14 94 54 d4 34 b4 74 f4     ..D.$.d...T.4.t.
+ 282:	0c 8c 4c cc 2c ac 6c ec 1c 9c 5c dc 3c bc 7c fc     ..L.,.l...\.<.|.
+ 292:	02 82 42 c2 22 a2 62 e2 12 92 52 d2 32 b2 72 f2     ..B.".b...R.2.r.
+ 2a2:	0a 8a 4a ca 2a aa 6a ea 1a 9a 5a da 3a ba 7a fa     ..J.*.j...Z.:.z.
+ 2b2:	06 86 46 c6 26 a6 66 e6 16 96 56 d6 36 b6 76 f6     ..F.&.f...V.6.v.
+ 2c2:	0e 8e 4e ce 2e ae 6e ee 1e 9e 5e de 3e be 7e fe     ..N...n...^.>.~.
+ 2d2:	01 81 41 c1 21 a1 61 e1 11 91 51 d1 31 b1 71 f1     ..A.!.a...Q.1.q.
+ 2e2:	09 89 49 c9 29 a9 69 e9 19 99 59 d9 39 b9 79 f9     ..I.).i...Y.9.y.
+ 2f2:	05 85 45 c5 25 a5 65 e5 15 95 55 d5 35 b5 75 f5     ..E.%.e...U.5.u.
+ 302:	0d 8d 4d cd 2d ad 6d ed 1d 9d 5d dd 3d bd 7d fd     ..M.-.m...].=.}.
+ 312:	03 83 43 c3 23 a3 63 e3 13 93 53 d3 33 b3 73 f3     ..C.#.c...S.3.s.
+ 322:	0b 8b 4b cb 2b ab 6b eb 1b 9b 5b db 3b bb 7b fb     ..K.+.k...[.;.{.
+ 332:	07 87 47 c7 27 a7 67 e7 17 97 57 d7 37 b7 77 f7     ..G.'.g...W.7.w.
+ 342:	0f 8f 4f cf 2f af 6f ef 1f 9f 5f df 3f bf 7f ff     ..O./.o..._.?...
+
+00000352 <__ctors_start>:
+ 352:	8e 02       	muls	r24, r30
+ 354:	a4 03       	fmuls	r18, r20
+ 356:	d4 04       	cpc	r13, r4
+
+00000358 <__ctors_end>:
+ 358:	93 02       	muls	r25, r19
+ 35a:	07 04       	cpc	r0, r7
+
+0000035c <__dtors_end>:
+ 35c:	11 24       	eor	r1, r1
+ 35e:	1f be       	out	0x3f, r1	; 63
+ 360:	cf ef       	ldi	r28, 0xFF	; 255
+ 362:	d4 e0       	ldi	r29, 0x04	; 4
+ 364:	de bf       	out	0x3e, r29	; 62
+ 366:	cd bf       	out	0x3d, r28	; 61
+
+00000368 <__do_copy_data>:
+ 368:	11 e0       	ldi	r17, 0x01	; 1
+ 36a:	a0 e0       	ldi	r26, 0x00	; 0
+ 36c:	b1 e0       	ldi	r27, 0x01	; 1
+ 36e:	ee ea       	ldi	r30, 0xAE	; 174
+ 370:	fb e0       	ldi	r31, 0x0B	; 11
+ 372:	02 c0       	rjmp	.+4      	; 0x378 <__do_copy_data+0x10>
+ 374:	05 90       	lpm	r0, Z+
+ 376:	0d 92       	st	X+, r0
+ 378:	ac 3c       	cpi	r26, 0xCC	; 204
+ 37a:	b1 07       	cpc	r27, r17
+ 37c:	d9 f7       	brne	.-10     	; 0x374 <__do_copy_data+0xc>
+
+0000037e <__do_clear_bss>:
+ 37e:	22 e0       	ldi	r18, 0x02	; 2
+ 380:	ac ec       	ldi	r26, 0xCC	; 204
+ 382:	b1 e0       	ldi	r27, 0x01	; 1
+ 384:	01 c0       	rjmp	.+2      	; 0x388 <.do_clear_bss_start>
+
+00000386 <.do_clear_bss_loop>:
+ 386:	1d 92       	st	X+, r1
+
+00000388 <.do_clear_bss_start>:
+ 388:	ae 30       	cpi	r26, 0x0E	; 14
+ 38a:	b2 07       	cpc	r27, r18
+ 38c:	e1 f7       	brne	.-8      	; 0x386 <.do_clear_bss_loop>
+
+0000038e <__do_global_ctors>:
+ 38e:	11 e0       	ldi	r17, 0x01	; 1
+ 390:	cc ea       	ldi	r28, 0xAC	; 172
+ 392:	d1 e0       	ldi	r29, 0x01	; 1
+ 394:	04 c0       	rjmp	.+8      	; 0x39e <__do_global_ctors+0x10>
+ 396:	21 97       	sbiw	r28, 0x01	; 1
+ 398:	fe 01       	movw	r30, r28
+ 39a:	0e 94 c4 05 	call	0xb88	; 0xb88 <__tablejump2__>
+ 39e:	c9 3a       	cpi	r28, 0xA9	; 169
+ 3a0:	d1 07       	cpc	r29, r17
+ 3a2:	c9 f7       	brne	.-14     	; 0x396 <__do_global_ctors+0x8>
+ 3a4:	0e 94 0c 05 	call	0xa18	; 0xa18 <main>
+ 3a8:	0c 94 ca 05 	jmp	0xb94	; 0xb94 <__do_global_dtors>
+
+000003ac <__bad_interrupt>:
+ 3ac:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000003b0 <_ZN4fontC1Ev>:
+
+#include "../system.h"
+
+
+// default constructor
+font::font()
+ 3b0:	08 95       	ret
+
+000003b2 <_ZN4fontD1Ev>:
+{
+} //font
+
+// default destructor
+font::~font()
+ 3b2:	08 95       	ret
+
+000003b4 <_ZN4font9FetchCharEc>:
+{
+} //~font
+
+const U8* font::FetchChar(char c)
+{
+  return (map[(U8)c - 0x20]);
+ 3b4:	e6 2f       	mov	r30, r22
+ 3b6:	f0 e0       	ldi	r31, 0x00	; 0
+ 3b8:	e0 52       	subi	r30, 0x20	; 32
+ 3ba:	f0 48       	sbci	r31, 0x80	; 128
+ 3bc:	ee 0f       	add	r30, r30
+ 3be:	ff 1f       	adc	r31, r31
+ 3c0:	dc 01       	movw	r26, r24
+ 3c2:	6d 91       	ld	r22, X+
+ 3c4:	7c 91       	ld	r23, X
+ 3c6:	e6 0f       	add	r30, r22
+ 3c8:	f7 1f       	adc	r31, r23
+ 3ca:	80 81       	ld	r24, Z
+ 3cc:	91 81       	ldd	r25, Z+1	; 0x01
+ 3ce:	08 95       	ret
+
+000003d0 <_ZN9LM6029ACWC1Ev>:
+    v = ~v;
+
+  LCD_HW::DataMode();
+  LCD_HW::SetData(v);
+  LCD_HW::TriggerWrite();
+ 3d0:	cf 93       	push	r28
+ 3d2:	df 93       	push	r29
+ 3d4:	ec 01       	movw	r28, r24
+ 3d6:	0e 94 98 02 	call	0x530	; 0x530 <_ZN7ST7565RC1Ev>
+ 3da:	19 82       	std	Y+1, r1	; 0x01
+ 3dc:	1a 82       	std	Y+2, r1	; 0x02
+ 3de:	df 91       	pop	r29
+ 3e0:	cf 91       	pop	r28
+ 3e2:	08 95       	ret
+
+000003e4 <_ZN9LM6029ACW4initEv>:
+ 3e4:	cf 93       	push	r28
+ 3e6:	df 93       	push	r29
+ 3e8:	ec 01       	movw	r28, r24
+ 3ea:	0e 94 f6 02 	call	0x5ec	; 0x5ec <_ZN7ST7565R4initEv>
+ 3ee:	60 e0       	ldi	r22, 0x00	; 0
+ 3f0:	ce 01       	movw	r24, r28
+ 3f2:	0e 94 42 03 	call	0x684	; 0x684 <_ZN7ST7565R5ClearEb>
+ 3f6:	80 e0       	ldi	r24, 0x00	; 0
+ 3f8:	91 e0       	ldi	r25, 0x01	; 1
+ 3fa:	90 93 cd 01 	sts	0x01CD, r25	; 0x8001cd <__data_end+0x1>
+ 3fe:	80 93 cc 01 	sts	0x01CC, r24	; 0x8001cc <__data_end>
+ 402:	df 91       	pop	r29
+ 404:	cf 91       	pop	r28
+ 406:	08 95       	ret
+
+00000408 <_ZN9LM6029ACW11ClearScreenEb>:
+ 408:	0e 94 42 03 	call	0x684	; 0x684 <_ZN7ST7565R5ClearEb>
+ 40c:	08 95       	ret
+
+0000040e <_ZN9LM6029ACW6GotoXYEhh>:
+ 40e:	65 31       	cpi	r22, 0x15	; 21
+ 410:	18 f4       	brcc	.+6      	; 0x418 <_ZN9LM6029ACW6GotoXYEhh+0xa>
+ 412:	fc 01       	movw	r30, r24
+ 414:	61 83       	std	Z+1, r22	; 0x01
+ 416:	02 c0       	rjmp	.+4      	; 0x41c <_ZN9LM6029ACW6GotoXYEhh+0xe>
+ 418:	fc 01       	movw	r30, r24
+ 41a:	11 82       	std	Z+1, r1	; 0x01
+ 41c:	48 30       	cpi	r20, 0x08	; 8
+ 41e:	18 f4       	brcc	.+6      	; 0x426 <_ZN9LM6029ACW6GotoXYEhh+0x18>
+ 420:	fc 01       	movw	r30, r24
+ 422:	42 83       	std	Z+2, r20	; 0x02
+ 424:	08 95       	ret
+ 426:	fc 01       	movw	r30, r24
+ 428:	12 82       	std	Z+2, r1	; 0x02
+ 42a:	08 95       	ret
+
+0000042c <_ZN9LM6029ACW7PutCharEhb>:
+ 42c:	af 92       	push	r10
+ 42e:	bf 92       	push	r11
+ 430:	cf 92       	push	r12
+ 432:	df 92       	push	r13
+ 434:	ef 92       	push	r14
+ 436:	ff 92       	push	r15
+ 438:	0f 93       	push	r16
+ 43a:	1f 93       	push	r17
+ 43c:	cf 93       	push	r28
+ 43e:	df 93       	push	r29
+ 440:	7c 01       	movw	r14, r24
+ 442:	d4 2e       	mov	r13, r20
+ 444:	8c ec       	ldi	r24, 0xCC	; 204
+ 446:	91 e0       	ldi	r25, 0x01	; 1
+ 448:	0e 94 da 01 	call	0x3b4	; 0x3b4 <_ZN4font9FetchCharEc>
+ 44c:	5c 01       	movw	r10, r24
+ 44e:	ec 01       	movw	r28, r24
+ 450:	21 96       	adiw	r28, 0x01	; 1
+ 452:	fc 01       	movw	r30, r24
+ 454:	c4 90       	lpm	r12, Z
+ 456:	f7 01       	movw	r30, r14
+ 458:	81 81       	ldd	r24, Z+1	; 0x01
+ 45a:	0c 2d       	mov	r16, r12
+ 45c:	10 e0       	ldi	r17, 0x00	; 0
+ 45e:	98 01       	movw	r18, r16
+ 460:	28 0f       	add	r18, r24
+ 462:	31 1d       	adc	r19, r1
+ 464:	20 38       	cpi	r18, 0x80	; 128
+ 466:	31 05       	cpc	r19, r1
+ 468:	54 f0       	brlt	.+20     	; 0x47e <_ZN9LM6029ACW7PutCharEhb+0x52>
+ 46a:	11 82       	std	Z+1, r1	; 0x01
+ 46c:	82 81       	ldd	r24, Z+2	; 0x02
+ 46e:	87 30       	cpi	r24, 0x07	; 7
+ 470:	11 f4       	brne	.+4      	; 0x476 <_ZN9LM6029ACW7PutCharEhb+0x4a>
+ 472:	12 82       	std	Z+2, r1	; 0x02
+ 474:	07 c0       	rjmp	.+14     	; 0x484 <_ZN9LM6029ACW7PutCharEhb+0x58>
+ 476:	8f 5f       	subi	r24, 0xFF	; 255
+ 478:	f7 01       	movw	r30, r14
+ 47a:	82 83       	std	Z+2, r24	; 0x02
+ 47c:	03 c0       	rjmp	.+6      	; 0x484 <_ZN9LM6029ACW7PutCharEhb+0x58>
+ 47e:	8f 5f       	subi	r24, 0xFF	; 255
+ 480:	f7 01       	movw	r30, r14
+ 482:	81 83       	std	Z+1, r24	; 0x01
+ 484:	f7 01       	movw	r30, r14
+ 486:	61 81       	ldd	r22, Z+1	; 0x01
+ 488:	c7 01       	movw	r24, r14
+ 48a:	0e 94 ba 02 	call	0x574	; 0x574 <_ZN7ST7565R16SetColumnAddressEh>
+ 48e:	f7 01       	movw	r30, r14
+ 490:	62 81       	ldd	r22, Z+2	; 0x02
+ 492:	c7 01       	movw	r24, r14
+ 494:	0e 94 af 02 	call	0x55e	; 0x55e <_ZN7ST7565R14SetPageAddressEh>
+ 498:	42 98       	cbi	0x08, 2	; 8
+ 49a:	40 9a       	sbi	0x08, 0	; 8
+ 49c:	10 16       	cp	r1, r16
+ 49e:	11 06       	cpc	r1, r17
+ 4a0:	b4 f4       	brge	.+44     	; 0x4ce <_ZN9LM6029ACW7PutCharEhb+0xa2>
+ 4a2:	0c 2d       	mov	r16, r12
+ 4a4:	10 e0       	ldi	r17, 0x00	; 0
+ 4a6:	0f 5f       	subi	r16, 0xFF	; 255
+ 4a8:	1f 4f       	sbci	r17, 0xFF	; 255
+ 4aa:	0a 0d       	add	r16, r10
+ 4ac:	1b 1d       	adc	r17, r11
+ 4ae:	fe 01       	movw	r30, r28
+ 4b0:	84 91       	lpm	r24, Z
+ 4b2:	d1 10       	cpse	r13, r1
+ 4b4:	80 95       	com	r24
+ 4b6:	0e 94 24 04 	call	0x848	; 0x848 <_ZN6LCD_HW7SetDataEh>
+ 4ba:	a1 98       	cbi	0x14, 1	; 20
+ 4bc:	f2 e0       	ldi	r31, 0x02	; 2
+ 4be:	fa 95       	dec	r31
+ 4c0:	f1 f7       	brne	.-4      	; 0x4be <_ZN9LM6029ACW7PutCharEhb+0x92>
+ 4c2:	00 c0       	rjmp	.+0      	; 0x4c4 <_ZN9LM6029ACW7PutCharEhb+0x98>
+ 4c4:	a1 9a       	sbi	0x14, 1	; 20
+ 4c6:	21 96       	adiw	r28, 0x01	; 1
+ 4c8:	c0 17       	cp	r28, r16
+ 4ca:	d1 07       	cpc	r29, r17
+ 4cc:	81 f7       	brne	.-32     	; 0x4ae <_ZN9LM6029ACW7PutCharEhb+0x82>
+ 4ce:	42 9a       	sbi	0x08, 2	; 8
+ 4d0:	f7 01       	movw	r30, r14
+ 4d2:	81 81       	ldd	r24, Z+1	; 0x01
+ 4d4:	c8 0e       	add	r12, r24
+ 4d6:	c1 82       	std	Z+1, r12	; 0x01
+ 4d8:	df 91       	pop	r29
+ 4da:	cf 91       	pop	r28
+ 4dc:	1f 91       	pop	r17
+ 4de:	0f 91       	pop	r16
+ 4e0:	ff 90       	pop	r15
+ 4e2:	ef 90       	pop	r14
+ 4e4:	df 90       	pop	r13
+ 4e6:	cf 90       	pop	r12
+ 4e8:	bf 90       	pop	r11
+ 4ea:	af 90       	pop	r10
+ 4ec:	08 95       	ret
+
+000004ee <_ZN9LM6029ACW6PutStrEPcb>:
+ 4ee:	ef 92       	push	r14
+ 4f0:	ff 92       	push	r15
+ 4f2:	1f 93       	push	r17
+ 4f4:	cf 93       	push	r28
+ 4f6:	df 93       	push	r29
+ 4f8:	7c 01       	movw	r14, r24
+ 4fa:	14 2f       	mov	r17, r20
+ 4fc:	c6 2f       	mov	r28, r22
+ 4fe:	d7 2f       	mov	r29, r23
+ 500:	69 91       	ld	r22, Y+
+ 502:	41 2f       	mov	r20, r17
+ 504:	c7 01       	movw	r24, r14
+ 506:	0e 94 16 02 	call	0x42c	; 0x42c <_ZN9LM6029ACW7PutCharEhb>
+ 50a:	98 81       	ld	r25, Y
+ 50c:	91 11       	cpse	r25, r1
+ 50e:	f8 cf       	rjmp	.-16     	; 0x500 <__stack+0x1>
+ 510:	df 91       	pop	r29
+ 512:	cf 91       	pop	r28
+ 514:	1f 91       	pop	r17
+ 516:	ff 90       	pop	r15
+ 518:	ef 90       	pop	r14
+ 51a:	08 95       	ret
+
+0000051c <_GLOBAL__sub_I_small_font>:
+* Author: Philip
+*/
+#include "../system.h"
+#include "fonts/small.h"
+
+font LM6029ACW::SmallFont;
+ 51c:	8c ec       	ldi	r24, 0xCC	; 204
+ 51e:	91 e0       	ldi	r25, 0x01	; 1
+ 520:	0e 94 d8 01 	call	0x3b0	; 0x3b0 <_ZN4fontC1Ev>
+ 524:	08 95       	ret
+
+00000526 <_GLOBAL__sub_D_small_font>:
+ 526:	8c ec       	ldi	r24, 0xCC	; 204
+ 528:	91 e0       	ldi	r25, 0x01	; 1
+ 52a:	0e 94 d9 01 	call	0x3b2	; 0x3b2 <_ZN4fontD1Ev>
+ 52e:	08 95       	ret
+
+00000530 <_ZN7ST7565RC1Ev>:
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+
+  static void CommandMode() { PORTC &= ~(0x01 << 0); }
+  static void DataMode() { PORTC |= (0x01 << 0); }
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+ 530:	08 95       	ret
+
+00000532 <_ZN7ST7565R11SendCommandEh>:
+  LCD_HW::SetData(val);
+  LCD_HW::TriggerWrite();
+}
+
+void ST7565R::SendCommand(U8 val)
+{
+ 532:	86 2f       	mov	r24, r22
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+
+  static void CommandMode() { PORTC &= ~(0x01 << 0); }
+ 534:	40 98       	cbi	0x08, 0	; 8
+  LCD_HW::CommandMode();
+  LCD_HW::SetData(val);
+ 536:	0e 94 24 04 	call	0x848	; 0x848 <_ZN6LCD_HW7SetDataEh>
+  static void DataMode() { PORTC |= (0x01 << 0); }
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+  static void WRPinClear() { PORTG &= ~(0x01 << 1); }
+ 53a:	a1 98       	cbi	0x14, 1	; 20
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 53c:	82 e0       	ldi	r24, 0x02	; 2
+ 53e:	8a 95       	dec	r24
+ 540:	f1 f7       	brne	.-4      	; 0x53e <_ZN7ST7565R11SendCommandEh+0xc>
+ 542:	00 c0       	rjmp	.+0      	; 0x544 <_ZN7ST7565R11SendCommandEh+0x12>
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+
+  static void CommandMode() { PORTC &= ~(0x01 << 0); }
+  static void DataMode() { PORTC |= (0x01 << 0); }
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+ 544:	a1 9a       	sbi	0x14, 1	; 20
+ 546:	08 95       	ret
+
+00000548 <_ZN7ST7565R12SetStartLineEh>:
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 548:	42 98       	cbi	0x08, 2	; 8
+}
+
+bool ST7565R::SetStartLine(U8 line)
+{
+  LCD_HW::ChipSelect();
+  if(line > 0x3F)
+ 54a:	60 34       	cpi	r22, 0x40	; 64
+ 54c:	30 f4       	brcc	.+12     	; 0x55a <_ZN7ST7565R12SetStartLineEh+0x12>
+    return false;
+
+  SendCommand(DISP_START_LINE_SET | line);
+ 54e:	60 64       	ori	r22, 0x40	; 64
+ 550:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 554:	42 9a       	sbi	0x08, 2	; 8
+  LCD_HW::ChipDeselect();
+  return true;
+ 556:	81 e0       	ldi	r24, 0x01	; 1
+ 558:	08 95       	ret
+
+bool ST7565R::SetStartLine(U8 line)
+{
+  LCD_HW::ChipSelect();
+  if(line > 0x3F)
+    return false;
+ 55a:	80 e0       	ldi	r24, 0x00	; 0
+
+  SendCommand(DISP_START_LINE_SET | line);
+  LCD_HW::ChipDeselect();
+  return true;
+}
+ 55c:	08 95       	ret
+
+0000055e <_ZN7ST7565R14SetPageAddressEh>:
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 55e:	42 98       	cbi	0x08, 2	; 8
+
+bool ST7565R::SetPageAddress(U8 page_address)
+{
+  LCD_HW::ChipSelect();
+  if(page_address > 0x0F)
+ 560:	60 31       	cpi	r22, 0x10	; 16
+ 562:	30 f4       	brcc	.+12     	; 0x570 <_ZN7ST7565R14SetPageAddressEh+0x12>
+    return false;
+
+  SendCommand(DISP_SET_PAGE_ADDRESS | page_address);
+ 564:	60 6b       	ori	r22, 0xB0	; 176
+ 566:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 56a:	42 9a       	sbi	0x08, 2	; 8
+  LCD_HW::ChipDeselect();
+  return true;
+ 56c:	81 e0       	ldi	r24, 0x01	; 1
+ 56e:	08 95       	ret
+
+bool ST7565R::SetPageAddress(U8 page_address)
+{
+  LCD_HW::ChipSelect();
+  if(page_address > 0x0F)
+    return false;
+ 570:	80 e0       	ldi	r24, 0x00	; 0
+
+  SendCommand(DISP_SET_PAGE_ADDRESS | page_address);
+  LCD_HW::ChipDeselect();
+  return true;
+}
+ 572:	08 95       	ret
+
+00000574 <_ZN7ST7565R16SetColumnAddressEh>:
+
+bool ST7565R::SetColumnAddress(U8 column_address)
+{
+ 574:	0f 93       	push	r16
+ 576:	1f 93       	push	r17
+ 578:	cf 93       	push	r28
+ 57a:	8c 01       	movw	r16, r24
+ 57c:	c6 2f       	mov	r28, r22
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 57e:	42 98       	cbi	0x08, 2	; 8
+  LCD_HW::ChipSelect();
+  U8 upper = (column_address >> 4) & 0x0F;
+ 580:	62 95       	swap	r22
+ 582:	6f 70       	andi	r22, 0x0F	; 15
+  U8 lower = column_address & 0x0F;
+
+  SendCommand(DISP_SET_COLUMN_ADDRESS_UPPER | upper);
+ 584:	60 61       	ori	r22, 0x10	; 16
+ 586:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+
+bool ST7565R::SetColumnAddress(U8 column_address)
+{
+  LCD_HW::ChipSelect();
+  U8 upper = (column_address >> 4) & 0x0F;
+  U8 lower = column_address & 0x0F;
+ 58a:	6c 2f       	mov	r22, r28
+ 58c:	6f 70       	andi	r22, 0x0F	; 15
+
+  SendCommand(DISP_SET_COLUMN_ADDRESS_UPPER | upper);
+  SendCommand(DISP_SET_COLUMN_ADDRESS_LOWER | lower);
+ 58e:	c8 01       	movw	r24, r16
+ 590:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 594:	42 9a       	sbi	0x08, 2	; 8
+
+  LCD_HW::ChipDeselect();
+  return true;
+}
+ 596:	81 e0       	ldi	r24, 0x01	; 1
+ 598:	cf 91       	pop	r28
+ 59a:	1f 91       	pop	r17
+ 59c:	0f 91       	pop	r16
+ 59e:	08 95       	ret
+
+000005a0 <_ZN7ST7565R11SetContrastEh>:
+
+bool ST7565R::SetContrast(U8 val)
+{
+ 5a0:	0f 93       	push	r16
+ 5a2:	1f 93       	push	r17
+ 5a4:	cf 93       	push	r28
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 5a6:	42 98       	cbi	0x08, 2	; 8
+  LCD_HW::ChipSelect();
+  if(val > 0x3F)
+ 5a8:	60 34       	cpi	r22, 0x40	; 64
+ 5aa:	60 f4       	brcc	.+24     	; 0x5c4 <_ZN7ST7565R11SetContrastEh+0x24>
+ 5ac:	c6 2f       	mov	r28, r22
+ 5ae:	8c 01       	movw	r16, r24
+    return false;
+  
+  SendCommand(DISP_ELECTRONIC_VOLUME_MODE_SET);
+ 5b0:	61 e8       	ldi	r22, 0x81	; 129
+ 5b2:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+  SendCommand(val);
+ 5b6:	6c 2f       	mov	r22, r28
+ 5b8:	c8 01       	movw	r24, r16
+ 5ba:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 5be:	42 9a       	sbi	0x08, 2	; 8
+ 
+  LCD_HW::ChipDeselect();
+  return true;
+ 5c0:	81 e0       	ldi	r24, 0x01	; 1
+ 5c2:	01 c0       	rjmp	.+2      	; 0x5c6 <_ZN7ST7565R11SetContrastEh+0x26>
+
+bool ST7565R::SetContrast(U8 val)
+{
+  LCD_HW::ChipSelect();
+  if(val > 0x3F)
+    return false;
+ 5c4:	80 e0       	ldi	r24, 0x00	; 0
+  SendCommand(DISP_ELECTRONIC_VOLUME_MODE_SET);
+  SendCommand(val);
+ 
+  LCD_HW::ChipDeselect();
+  return true;
+}
+ 5c6:	cf 91       	pop	r28
+ 5c8:	1f 91       	pop	r17
+ 5ca:	0f 91       	pop	r16
+ 5cc:	08 95       	ret
+
+000005ce <_ZN7ST7565R12SetPowerModeEbbb>:
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 5ce:	42 98       	cbi	0x08, 2	; 8
+{
+  LCD_HW::ChipSelect();
+  U8 val = 0x00;
+
+  val += (VoltageFollower) ? 0x01 : 0x00;
+  val += (VoltageRegulator) ? 0x02 : 0x00;
+ 5d0:	41 11       	cpse	r20, r1
+ 5d2:	02 c0       	rjmp	.+4      	; 0x5d8 <_ZN7ST7565R12SetPowerModeEbbb+0xa>
+ 5d4:	30 e0       	ldi	r19, 0x00	; 0
+ 5d6:	01 c0       	rjmp	.+2      	; 0x5da <_ZN7ST7565R12SetPowerModeEbbb+0xc>
+ 5d8:	32 e0       	ldi	r19, 0x02	; 2
+ 5da:	63 0f       	add	r22, r19
+  val += (VoltageConverter) ? 0x04 : 0x00;
+ 5dc:	21 11       	cpse	r18, r1
+ 5de:	24 e0       	ldi	r18, 0x04	; 4
+ 5e0:	62 0f       	add	r22, r18
+
+  SendCommand(DISP_SET_POWER_MODE | val);
+ 5e2:	68 62       	ori	r22, 0x28	; 40
+ 5e4:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 5e8:	42 9a       	sbi	0x08, 2	; 8
+ 5ea:	08 95       	ret
+
+000005ec <_ZN7ST7565R4initEv>:
+ST7565R::~ST7565R()
+{
+} //~ST7565R
+
+void ST7565R::init()
+{
+ 5ec:	cf 93       	push	r28
+ 5ee:	df 93       	push	r29
+ 5f0:	ec 01       	movw	r28, r24
+  static void DataMode() { PORTC |= (0x01 << 0); }
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+  static void WRPinClear() { PORTG &= ~(0x01 << 1); }
+
+  static void RDPinSet() { PORTG |= (0x01 << 0); }
+ 5f2:	a0 9a       	sbi	0x14, 0	; 20
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 5f4:	42 98       	cbi	0x08, 2	; 8
+//functions
+public:
+
+  static void Reset() 
+  {
+	  PORTC &= ~(0x01 << 1); 
+ 5f6:	41 98       	cbi	0x08, 1	; 8
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 5f8:	2f ef       	ldi	r18, 0xFF	; 255
+ 5fa:	80 e7       	ldi	r24, 0x70	; 112
+ 5fc:	92 e0       	ldi	r25, 0x02	; 2
+ 5fe:	21 50       	subi	r18, 0x01	; 1
+ 600:	80 40       	sbci	r24, 0x00	; 0
+ 602:	90 40       	sbci	r25, 0x00	; 0
+ 604:	e1 f7       	brne	.-8      	; 0x5fe <_ZN7ST7565R4initEv+0x12>
+ 606:	00 c0       	rjmp	.+0      	; 0x608 <_ZN7ST7565R4initEv+0x1c>
+ 608:	00 00       	nop
+	  _delay_ms(100); 
+    PORTC |= (0x01 << 1); 
+ 60a:	41 9a       	sbi	0x08, 1	; 8
+ 60c:	2f ef       	ldi	r18, 0xFF	; 255
+ 60e:	84 e3       	ldi	r24, 0x34	; 52
+ 610:	9c e0       	ldi	r25, 0x0C	; 12
+ 612:	21 50       	subi	r18, 0x01	; 1
+ 614:	80 40       	sbci	r24, 0x00	; 0
+ 616:	90 40       	sbci	r25, 0x00	; 0
+ 618:	e1 f7       	brne	.-8      	; 0x612 <_ZN7ST7565R4initEv+0x26>
+ 61a:	00 c0       	rjmp	.+0      	; 0x61c <_ZN7ST7565R4initEv+0x30>
+ 61c:	00 00       	nop
+
+  LCD_HW::Reset();
+ 
+  _delay_ms(500);
+
+  SendCommand(DISP_LCD_BIAS_DIV9);
+ 61e:	62 ea       	ldi	r22, 0xA2	; 162
+ 620:	ce 01       	movw	r24, r28
+ 622:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+  SendCommand(DISP_ADC_NORMAL);
+ 626:	60 ea       	ldi	r22, 0xA0	; 160
+ 628:	ce 01       	movw	r24, r28
+ 62a:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+  SendCommand(DISP_SHL_FLIPPED);
+ 62e:	68 ec       	ldi	r22, 0xC8	; 200
+ 630:	ce 01       	movw	r24, r28
+ 632:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+  SetContrast(0x20);
+ 636:	60 e2       	ldi	r22, 0x20	; 32
+ 638:	ce 01       	movw	r24, r28
+ 63a:	0e 94 d0 02 	call	0x5a0	; 0x5a0 <_ZN7ST7565R11SetContrastEh>
+
+  SetPowerMode(true, true, true);
+ 63e:	21 e0       	ldi	r18, 0x01	; 1
+ 640:	41 e0       	ldi	r20, 0x01	; 1
+ 642:	61 e0       	ldi	r22, 0x01	; 1
+ 644:	ce 01       	movw	r24, r28
+ 646:	0e 94 e7 02 	call	0x5ce	; 0x5ce <_ZN7ST7565R12SetPowerModeEbbb>
+  SetStartLine(0);
+ 64a:	60 e0       	ldi	r22, 0x00	; 0
+ 64c:	ce 01       	movw	r24, r28
+ 64e:	0e 94 a4 02 	call	0x548	; 0x548 <_ZN7ST7565R12SetStartLineEh>
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 652:	42 98       	cbi	0x08, 2	; 8
+
+  LCD_HW::ChipSelect();
+  SendCommand(DISP_ENTIRE_DISP_NORMAL);
+ 654:	64 ea       	ldi	r22, 0xA4	; 164
+ 656:	ce 01       	movw	r24, r28
+ 658:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+
+  SendCommand(DISP_NORMAL);
+ 65c:	66 ea       	ldi	r22, 0xA6	; 166
+ 65e:	ce 01       	movw	r24, r28
+ 660:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+  SendCommand(DISP_ON);
+ 664:	6f ea       	ldi	r22, 0xAF	; 175
+ 666:	ce 01       	movw	r24, r28
+ 668:	0e 94 99 02 	call	0x532	; 0x532 <_ZN7ST7565R11SendCommandEh>
+
+  SetPageAddress(0x00);
+ 66c:	60 e0       	ldi	r22, 0x00	; 0
+ 66e:	ce 01       	movw	r24, r28
+ 670:	0e 94 af 02 	call	0x55e	; 0x55e <_ZN7ST7565R14SetPageAddressEh>
+  SetColumnAddress(0x00);
+ 674:	60 e0       	ldi	r22, 0x00	; 0
+ 676:	ce 01       	movw	r24, r28
+ 678:	0e 94 ba 02 	call	0x574	; 0x574 <_ZN7ST7565R16SetColumnAddressEh>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 67c:	42 9a       	sbi	0x08, 2	; 8
+  
+  LCD_HW::ChipDeselect();
+}
+ 67e:	df 91       	pop	r29
+ 680:	cf 91       	pop	r28
+ 682:	08 95       	ret
+
+00000684 <_ZN7ST7565R5ClearEb>:
+  LCD_HW::SetData(val);
+  LCD_HW::TriggerWrite();
+}
+
+void ST7565R::Clear(bool Invert)
+{
+ 684:	ef 92       	push	r14
+ 686:	ff 92       	push	r15
+ 688:	1f 93       	push	r17
+ 68a:	cf 93       	push	r28
+ 68c:	df 93       	push	r29
+ 68e:	7c 01       	movw	r14, r24
+ 690:	d6 2f       	mov	r29, r22
+	unsigned char i, j;
+	
+	for(i=0 ; i < LCD_HW::PAGES ; i++)
+ 692:	10 e0       	ldi	r17, 0x00	; 0
+	{
+    SetColumnAddress(0);
+ 694:	60 e0       	ldi	r22, 0x00	; 0
+ 696:	c7 01       	movw	r24, r14
+ 698:	0e 94 ba 02 	call	0x574	; 0x574 <_ZN7ST7565R16SetColumnAddressEh>
+    SetPageAddress(i);
+ 69c:	61 2f       	mov	r22, r17
+ 69e:	c7 01       	movw	r24, r14
+ 6a0:	0e 94 af 02 	call	0x55e	; 0x55e <_ZN7ST7565R14SetPageAddressEh>
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+ 6a4:	42 98       	cbi	0x08, 2	; 8
+
+  static void CommandMode() { PORTC &= ~(0x01 << 0); }
+  static void DataMode() { PORTC |= (0x01 << 0); }
+ 6a6:	40 9a       	sbi	0x08, 0	; 8
+ 6a8:	c0 e0       	ldi	r28, 0x00	; 0
+    LCD_HW::ChipSelect();
+    LCD_HW::DataMode();
+
+    for(j = 0 ; (j < LCD_HW::COLUMNS) ; j++)
+    {
+      if(!Invert)
+ 6aa:	d1 11       	cpse	r29, r1
+ 6ac:	04 c0       	rjmp	.+8      	; 0x6b6 <_ZN7ST7565R5ClearEb+0x32>
+      {
+        LCD_HW::SetData(0x00);
+ 6ae:	80 e0       	ldi	r24, 0x00	; 0
+ 6b0:	0e 94 24 04 	call	0x848	; 0x848 <_ZN6LCD_HW7SetDataEh>
+ 6b4:	03 c0       	rjmp	.+6      	; 0x6bc <_ZN7ST7565R5ClearEb+0x38>
+      }
+      else
+      {
+        LCD_HW::SetData(0xFF);
+ 6b6:	8f ef       	ldi	r24, 0xFF	; 255
+ 6b8:	0e 94 24 04 	call	0x848	; 0x848 <_ZN6LCD_HW7SetDataEh>
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+  static void WRPinClear() { PORTG &= ~(0x01 << 1); }
+ 6bc:	a1 98       	cbi	0x14, 1	; 20
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 6be:	82 e0       	ldi	r24, 0x02	; 2
+ 6c0:	8a 95       	dec	r24
+ 6c2:	f1 f7       	brne	.-4      	; 0x6c0 <_ZN7ST7565R5ClearEb+0x3c>
+ 6c4:	00 c0       	rjmp	.+0      	; 0x6c6 <_ZN7ST7565R5ClearEb+0x42>
+  static void ChipSelect() { PORTC &= ~(0x01 << 2); }
+
+  static void CommandMode() { PORTC &= ~(0x01 << 0); }
+  static void DataMode() { PORTC |= (0x01 << 0); }
+
+  static void WRPinSet() { PORTG |= (0x01 << 1); }
+ 6c6:	a1 9a       	sbi	0x14, 1	; 20
+    SetPageAddress(i);
+
+    LCD_HW::ChipSelect();
+    LCD_HW::DataMode();
+
+    for(j = 0 ; (j < LCD_HW::COLUMNS) ; j++)
+ 6c8:	cf 5f       	subi	r28, 0xFF	; 255
+ 6ca:	c0 38       	cpi	r28, 0x80	; 128
+ 6cc:	71 f7       	brne	.-36     	; 0x6aa <_ZN7ST7565R5ClearEb+0x26>
+    PORTG |= 0x03;
+	}
+  */
+  static void SetData(U8 val);
+
+  static void ChipDeselect() { PORTC |= (0x01 << 2); }
+ 6ce:	42 9a       	sbi	0x08, 2	; 8
+
+void ST7565R::Clear(bool Invert)
+{
+	unsigned char i, j;
+	
+	for(i=0 ; i < LCD_HW::PAGES ; i++)
+ 6d0:	1f 5f       	subi	r17, 0xFF	; 255
+ 6d2:	18 30       	cpi	r17, 0x08	; 8
+ 6d4:	f9 f6       	brne	.-66     	; 0x694 <_ZN7ST7565R5ClearEb+0x10>
+      }
+      LCD_HW::TriggerWrite();
+    }
+    LCD_HW::ChipDeselect();
+  }
+}
+ 6d6:	df 91       	pop	r29
+ 6d8:	cf 91       	pop	r28
+ 6da:	1f 91       	pop	r17
+ 6dc:	ff 90       	pop	r15
+ 6de:	ef 90       	pop	r14
+ 6e0:	08 95       	ret
+
+000006e2 <_ZN3hal10board_initEv>:
+ADC_CHANNEL_MUX hal::TemperatureChannel = ADC1;
+
+
+void hal::board_init(void)
+{
+  portA.SetInputs(0xFF);
+ 6e2:	6f ef       	ldi	r22, 0xFF	; 255
+ 6e4:	87 ef       	ldi	r24, 0xF7	; 247
+ 6e6:	91 e0       	ldi	r25, 0x01	; 1
+ 6e8:	0e 94 34 04 	call	0x868	; 0x868 <_ZN4port9SetInputsEh>
+  
+  portB.SetOutputs((1 << PB4) | (1 << PB5)); 
+ 6ec:	60 e3       	ldi	r22, 0x30	; 48
+ 6ee:	81 ef       	ldi	r24, 0xF1	; 241
+ 6f0:	91 e0       	ldi	r25, 0x01	; 1
+ 6f2:	0e 94 3c 04 	call	0x878	; 0x878 <_ZN4port10SetOutputsEh>
+  portB.SetInputs(1 << PB6);
+ 6f6:	60 e4       	ldi	r22, 0x40	; 64
+ 6f8:	81 ef       	ldi	r24, 0xF1	; 241
+ 6fa:	91 e0       	ldi	r25, 0x01	; 1
+ 6fc:	0e 94 34 04 	call	0x868	; 0x868 <_ZN4port9SetInputsEh>
+
+  portC.SetOutputs(0x3F);
+ 700:	6f e3       	ldi	r22, 0x3F	; 63
+ 702:	8b ee       	ldi	r24, 0xEB	; 235
+ 704:	91 e0       	ldi	r25, 0x01	; 1
+ 706:	0e 94 3c 04 	call	0x878	; 0x878 <_ZN4port10SetOutputsEh>
+  portC.SetInputs(0xC0);
+ 70a:	60 ec       	ldi	r22, 0xC0	; 192
+ 70c:	8b ee       	ldi	r24, 0xEB	; 235
+ 70e:	91 e0       	ldi	r25, 0x01	; 1
+ 710:	0e 94 34 04 	call	0x868	; 0x868 <_ZN4port9SetInputsEh>
+
+  portD.SetOutputs(0xFF);
+ 714:	6f ef       	ldi	r22, 0xFF	; 255
+ 716:	85 ee       	ldi	r24, 0xE5	; 229
+ 718:	91 e0       	ldi	r25, 0x01	; 1
+ 71a:	0e 94 3c 04 	call	0x878	; 0x878 <_ZN4port10SetOutputsEh>
+  portD.SetInputs(0x00);
+ 71e:	60 e0       	ldi	r22, 0x00	; 0
+ 720:	85 ee       	ldi	r24, 0xE5	; 229
+ 722:	91 e0       	ldi	r25, 0x01	; 1
+ 724:	0e 94 34 04 	call	0x868	; 0x868 <_ZN4port9SetInputsEh>
+
+  portE.SetOutputs((1 << PE3));
+ 728:	68 e0       	ldi	r22, 0x08	; 8
+ 72a:	8f ed       	ldi	r24, 0xDF	; 223
+ 72c:	91 e0       	ldi	r25, 0x01	; 1
+ 72e:	0e 94 3c 04 	call	0x878	; 0x878 <_ZN4port10SetOutputsEh>
+
+  /* Programming pins? */
+  portF.SetInputs((1 << PF0) | (1 << PF1) | (1 << PF2));
+ 732:	67 e0       	ldi	r22, 0x07	; 7
+ 734:	89 ed       	ldi	r24, 0xD9	; 217
+ 736:	91 e0       	ldi	r25, 0x01	; 1
+ 738:	0e 94 34 04 	call	0x868	; 0x868 <_ZN4port9SetInputsEh>
+  
+  portG.SetOutputs((1 << PG0) | (1 << PG1));
+ 73c:	63 e0       	ldi	r22, 0x03	; 3
+ 73e:	83 ed       	ldi	r24, 0xD3	; 211
+ 740:	91 e0       	ldi	r25, 0x01	; 1
+ 742:	0e 94 3c 04 	call	0x878	; 0x878 <_ZN4port10SetOutputsEh>
+ 746:	08 95       	ret
+
+00000748 <_GLOBAL__sub_I__ZN3hal5portAE>:
+}
+ 748:	1f 93       	push	r17
+ 74a:	cf 93       	push	r28
+ 74c:	df 93       	push	r29
+*/
+
+
+#include "../system.h"
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+ 74e:	20 e2       	ldi	r18, 0x20	; 32
+ 750:	30 e0       	ldi	r19, 0x00	; 0
+ 752:	41 e2       	ldi	r20, 0x21	; 33
+ 754:	50 e0       	ldi	r21, 0x00	; 0
+ 756:	62 e2       	ldi	r22, 0x22	; 34
+ 758:	70 e0       	ldi	r23, 0x00	; 0
+ 75a:	87 ef       	ldi	r24, 0xF7	; 247
+ 75c:	91 e0       	ldi	r25, 0x01	; 1
+ 75e:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portB(&PORTB, &DDRB, &PINB);
+ 762:	23 e2       	ldi	r18, 0x23	; 35
+ 764:	30 e0       	ldi	r19, 0x00	; 0
+ 766:	44 e2       	ldi	r20, 0x24	; 36
+ 768:	50 e0       	ldi	r21, 0x00	; 0
+ 76a:	65 e2       	ldi	r22, 0x25	; 37
+ 76c:	70 e0       	ldi	r23, 0x00	; 0
+ 76e:	81 ef       	ldi	r24, 0xF1	; 241
+ 770:	91 e0       	ldi	r25, 0x01	; 1
+ 772:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portC(&PORTC, &DDRC, &PINC);
+ 776:	26 e2       	ldi	r18, 0x26	; 38
+ 778:	30 e0       	ldi	r19, 0x00	; 0
+ 77a:	47 e2       	ldi	r20, 0x27	; 39
+ 77c:	50 e0       	ldi	r21, 0x00	; 0
+ 77e:	68 e2       	ldi	r22, 0x28	; 40
+ 780:	70 e0       	ldi	r23, 0x00	; 0
+ 782:	8b ee       	ldi	r24, 0xEB	; 235
+ 784:	91 e0       	ldi	r25, 0x01	; 1
+ 786:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portD(&PORTD, &DDRD, &PIND);
+ 78a:	29 e2       	ldi	r18, 0x29	; 41
+ 78c:	30 e0       	ldi	r19, 0x00	; 0
+ 78e:	4a e2       	ldi	r20, 0x2A	; 42
+ 790:	50 e0       	ldi	r21, 0x00	; 0
+ 792:	6b e2       	ldi	r22, 0x2B	; 43
+ 794:	70 e0       	ldi	r23, 0x00	; 0
+ 796:	85 ee       	ldi	r24, 0xE5	; 229
+ 798:	91 e0       	ldi	r25, 0x01	; 1
+ 79a:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portE(&PORTE, &DDRE, &PINE);
+ 79e:	2c e2       	ldi	r18, 0x2C	; 44
+ 7a0:	30 e0       	ldi	r19, 0x00	; 0
+ 7a2:	4d e2       	ldi	r20, 0x2D	; 45
+ 7a4:	50 e0       	ldi	r21, 0x00	; 0
+ 7a6:	6e e2       	ldi	r22, 0x2E	; 46
+ 7a8:	70 e0       	ldi	r23, 0x00	; 0
+ 7aa:	8f ed       	ldi	r24, 0xDF	; 223
+ 7ac:	91 e0       	ldi	r25, 0x01	; 1
+ 7ae:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portF(&PORTG, &DDRG, &PINF);
+ 7b2:	2f e2       	ldi	r18, 0x2F	; 47
+ 7b4:	30 e0       	ldi	r19, 0x00	; 0
+ 7b6:	43 e3       	ldi	r20, 0x33	; 51
+ 7b8:	50 e0       	ldi	r21, 0x00	; 0
+ 7ba:	64 e3       	ldi	r22, 0x34	; 52
+ 7bc:	70 e0       	ldi	r23, 0x00	; 0
+ 7be:	89 ed       	ldi	r24, 0xD9	; 217
+ 7c0:	91 e0       	ldi	r25, 0x01	; 1
+ 7c2:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+port hal::portG(&PORTG, &DDRG, &PING);
+ 7c6:	22 e3       	ldi	r18, 0x32	; 50
+ 7c8:	30 e0       	ldi	r19, 0x00	; 0
+ 7ca:	43 e3       	ldi	r20, 0x33	; 51
+ 7cc:	50 e0       	ldi	r21, 0x00	; 0
+ 7ce:	64 e3       	ldi	r22, 0x34	; 52
+ 7d0:	70 e0       	ldi	r23, 0x00	; 0
+ 7d2:	83 ed       	ldi	r24, 0xD3	; 211
+ 7d4:	91 e0       	ldi	r25, 0x01	; 1
+ 7d6:	0e 94 2b 04 	call	0x856	; 0x856 <_ZN4portC1EPVhS1_S1_>
+
+//functions
+public:
+	pin(port *parent, U8 pin_number, bool initial_state, bool Output)
+  {
+    _port = parent;
+ 7da:	ce ec       	ldi	r28, 0xCE	; 206
+ 7dc:	d1 e0       	ldi	r29, 0x01	; 1
+ 7de:	eb ee       	ldi	r30, 0xEB	; 235
+ 7e0:	f1 e0       	ldi	r31, 0x01	; 1
+ 7e2:	f9 83       	std	Y+1, r31	; 0x01
+ 7e4:	e8 83       	st	Y, r30
+    _pin = pin_number;
+ 7e6:	84 e0       	ldi	r24, 0x04	; 4
+ 7e8:	8a 83       	std	Y+2, r24	; 0x02
+    }
+  };
+	~pin() {;}
+
+  void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
+  void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
+ 7ea:	01 90       	ld	r0, Z+
+ 7ec:	f0 81       	ld	r31, Z
+ 7ee:	e0 2d       	mov	r30, r0
+ 7f0:	80 81       	ld	r24, Z
+ 7f2:	80 61       	ori	r24, 0x10	; 16
+ 7f4:	80 83       	st	Z, r24
+ 7f6:	11 e0       	ldi	r17, 0x01	; 1
+ 7f8:	1c 83       	std	Y+4, r17	; 0x04
+
+  void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
+ 7fa:	6a 81       	ldd	r22, Y+2	; 0x02
+ 7fc:	88 81       	ld	r24, Y
+ 7fe:	99 81       	ldd	r25, Y+1	; 0x01
+ 800:	0e 94 43 04 	call	0x886	; 0x886 <_ZN4port6SetPinEh>
+ 804:	1b 83       	std	Y+3, r17	; 0x03
+
+  /* Programming pins? */
+  portF.SetInputs((1 << PF0) | (1 << PF1) | (1 << PF2));
+  
+  portG.SetOutputs((1 << PG0) | (1 << PG1));
+}
+ 806:	df 91       	pop	r29
+ 808:	cf 91       	pop	r28
+ 80a:	1f 91       	pop	r17
+ 80c:	08 95       	ret
+
+0000080e <_GLOBAL__sub_D__ZN3hal5portAE>:
+port hal::portB(&PORTB, &DDRB, &PINB);
+port hal::portC(&PORTC, &DDRC, &PINC);
+port hal::portD(&PORTD, &DDRD, &PIND);
+port hal::portE(&PORTE, &DDRE, &PINE);
+port hal::portF(&PORTG, &DDRG, &PINF);
+port hal::portG(&PORTG, &DDRG, &PING);
+ 80e:	83 ed       	ldi	r24, 0xD3	; 211
+ 810:	91 e0       	ldi	r25, 0x01	; 1
+ 812:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+port hal::portA(&PORTA, &DDRA, &PINA);
+port hal::portB(&PORTB, &DDRB, &PINB);
+port hal::portC(&PORTC, &DDRC, &PINC);
+port hal::portD(&PORTD, &DDRD, &PIND);
+port hal::portE(&PORTE, &DDRE, &PINE);
+port hal::portF(&PORTG, &DDRG, &PINF);
+ 816:	89 ed       	ldi	r24, 0xD9	; 217
+ 818:	91 e0       	ldi	r25, 0x01	; 1
+ 81a:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+port hal::portB(&PORTB, &DDRB, &PINB);
+port hal::portC(&PORTC, &DDRC, &PINC);
+port hal::portD(&PORTD, &DDRD, &PIND);
+port hal::portE(&PORTE, &DDRE, &PINE);
+ 81e:	8f ed       	ldi	r24, 0xDF	; 223
+ 820:	91 e0       	ldi	r25, 0x01	; 1
+ 822:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+#include "../system.h"
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+port hal::portB(&PORTB, &DDRB, &PINB);
+port hal::portC(&PORTC, &DDRC, &PINC);
+port hal::portD(&PORTD, &DDRD, &PIND);
+ 826:	85 ee       	ldi	r24, 0xE5	; 229
+ 828:	91 e0       	ldi	r25, 0x01	; 1
+ 82a:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+
+#include "../system.h"
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+port hal::portB(&PORTB, &DDRB, &PINB);
+port hal::portC(&PORTC, &DDRC, &PINC);
+ 82e:	8b ee       	ldi	r24, 0xEB	; 235
+ 830:	91 e0       	ldi	r25, 0x01	; 1
+ 832:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+
+
+#include "../system.h"
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+port hal::portB(&PORTB, &DDRB, &PINB);
+ 836:	81 ef       	ldi	r24, 0xF1	; 241
+ 838:	91 e0       	ldi	r25, 0x01	; 1
+ 83a:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+*/
+
+
+#include "../system.h"
+
+port hal::portA(&PORTA, &DDRA, &PINA);
+ 83e:	87 ef       	ldi	r24, 0xF7	; 247
+ 840:	91 e0       	ldi	r25, 0x01	; 1
+ 842:	0e 94 33 04 	call	0x866	; 0x866 <_ZN4portD1Ev>
+ 846:	08 95       	ret
+
+00000848 <_ZN6LCD_HW7SetDataEh>:
+
+#include "../system.h"
+
+void LCD_HW::SetData(U8 val)
+{
+  PORTD = pgm_read_byte(BitReverseTable256 + val);
+ 848:	e8 2f       	mov	r30, r24
+ 84a:	f0 e0       	ldi	r31, 0x00	; 0
+ 84c:	ee 5a       	subi	r30, 0xAE	; 174
+ 84e:	fd 4f       	sbci	r31, 0xFD	; 253
+ 850:	e4 91       	lpm	r30, Z
+ 852:	eb b9       	out	0x0b, r30	; 11
+ 854:	08 95       	ret
+
+00000856 <_ZN4portC1EPVhS1_S1_>:
+*/
+
+#include "../system.h"
+
+// default constructor
+port::port(volatile U8 *addr, volatile U8 *ddr_addr, volatile U8 *pin)
+ 856:	fc 01       	movw	r30, r24
+{
+  port_address = addr;
+ 858:	75 83       	std	Z+5, r23	; 0x05
+ 85a:	64 83       	std	Z+4, r22	; 0x04
+  ddr = ddr_addr; 
+ 85c:	51 83       	std	Z+1, r21	; 0x01
+ 85e:	40 83       	st	Z, r20
+  PIN = pin;
+ 860:	33 83       	std	Z+3, r19	; 0x03
+ 862:	22 83       	std	Z+2, r18	; 0x02
+ 864:	08 95       	ret
+
+00000866 <_ZN4portD1Ev>:
+} //port
+
+// default destructor
+port::~port()
+ 866:	08 95       	ret
+
+00000868 <_ZN4port9SetInputsEh>:
+{
+} //~port
+
+void port::SetInputs(U8 pins)
+{
+  *ddr &= ~(pins);
+ 868:	dc 01       	movw	r26, r24
+ 86a:	ed 91       	ld	r30, X+
+ 86c:	fc 91       	ld	r31, X
+ 86e:	80 81       	ld	r24, Z
+ 870:	60 95       	com	r22
+ 872:	68 23       	and	r22, r24
+ 874:	60 83       	st	Z, r22
+ 876:	08 95       	ret
+
+00000878 <_ZN4port10SetOutputsEh>:
+}
+
+void port::SetOutputs(U8 pins)
+{
+  *ddr |= pins;
+ 878:	dc 01       	movw	r26, r24
+ 87a:	ed 91       	ld	r30, X+
+ 87c:	fc 91       	ld	r31, X
+ 87e:	80 81       	ld	r24, Z
+ 880:	68 2b       	or	r22, r24
+ 882:	60 83       	st	Z, r22
+ 884:	08 95       	ret
+
+00000886 <_ZN4port6SetPinEh>:
+}
+
+void port::SetPin(U8 pin)
+{
+  *port_address |= (1<< pin);
+ 886:	dc 01       	movw	r26, r24
+ 888:	14 96       	adiw	r26, 0x04	; 4
+ 88a:	ed 91       	ld	r30, X+
+ 88c:	fc 91       	ld	r31, X
+ 88e:	15 97       	sbiw	r26, 0x05	; 5
+ 890:	20 81       	ld	r18, Z
+ 892:	81 e0       	ldi	r24, 0x01	; 1
+ 894:	90 e0       	ldi	r25, 0x00	; 0
+ 896:	02 c0       	rjmp	.+4      	; 0x89c <_ZN4port6SetPinEh+0x16>
+ 898:	88 0f       	add	r24, r24
+ 89a:	99 1f       	adc	r25, r25
+ 89c:	6a 95       	dec	r22
+ 89e:	e2 f7       	brpl	.-8      	; 0x898 <_ZN4port6SetPinEh+0x12>
+ 8a0:	82 2b       	or	r24, r18
+ 8a2:	80 83       	st	Z, r24
+ 8a4:	08 95       	ret
+
+000008a6 <_ZN4port8ClearPinEh>:
+}
+
+void port::ClearPin(U8 pin)
+{
+  *port_address &= ~(1 << pin);
+ 8a6:	dc 01       	movw	r26, r24
+ 8a8:	14 96       	adiw	r26, 0x04	; 4
+ 8aa:	ed 91       	ld	r30, X+
+ 8ac:	fc 91       	ld	r31, X
+ 8ae:	15 97       	sbiw	r26, 0x05	; 5
+ 8b0:	20 81       	ld	r18, Z
+ 8b2:	81 e0       	ldi	r24, 0x01	; 1
+ 8b4:	90 e0       	ldi	r25, 0x00	; 0
+ 8b6:	02 c0       	rjmp	.+4      	; 0x8bc <_ZN4port8ClearPinEh+0x16>
+ 8b8:	88 0f       	add	r24, r24
+ 8ba:	99 1f       	adc	r25, r25
+ 8bc:	6a 95       	dec	r22
+ 8be:	e2 f7       	brpl	.-8      	; 0x8b8 <_ZN4port8ClearPinEh+0x12>
+ 8c0:	80 95       	com	r24
+ 8c2:	82 23       	and	r24, r18
+ 8c4:	80 83       	st	Z, r24
+ 8c6:	08 95       	ret
+
+000008c8 <_ZN3tc26SetWGME6TC_WGM>:
+{
+  ASSR &= 0x03;
+  if(enable)
+    ASSR |= (1 << EXCLK);
+  if(xtal)
+    ASSR |= (1 << AS2);
+ 8c8:	e0 eb       	ldi	r30, 0xB0	; 176
+ 8ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 8cc:	90 81       	ld	r25, Z
+ 8ce:	97 7b       	andi	r25, 0xB7	; 183
+ 8d0:	90 83       	st	Z, r25
+ 8d2:	90 81       	ld	r25, Z
+ 8d4:	48 2f       	mov	r20, r24
+ 8d6:	41 70       	andi	r20, 0x01	; 1
+ 8d8:	50 e0       	ldi	r21, 0x00	; 0
+ 8da:	44 0f       	add	r20, r20
+ 8dc:	55 1f       	adc	r21, r21
+ 8de:	44 0f       	add	r20, r20
+ 8e0:	55 1f       	adc	r21, r21
+ 8e2:	44 0f       	add	r20, r20
+ 8e4:	55 1f       	adc	r21, r21
+ 8e6:	49 2b       	or	r20, r25
+ 8e8:	81 fb       	bst	r24, 1
+ 8ea:	22 27       	eor	r18, r18
+ 8ec:	20 f9       	bld	r18, 0
+ 8ee:	30 e0       	ldi	r19, 0x00	; 0
+ 8f0:	00 24       	eor	r0, r0
+ 8f2:	36 95       	lsr	r19
+ 8f4:	27 95       	ror	r18
+ 8f6:	07 94       	ror	r0
+ 8f8:	36 95       	lsr	r19
+ 8fa:	27 95       	ror	r18
+ 8fc:	07 94       	ror	r0
+ 8fe:	32 2f       	mov	r19, r18
+ 900:	20 2d       	mov	r18, r0
+ 902:	24 2b       	or	r18, r20
+ 904:	20 83       	st	Z, r18
+ 906:	08 95       	ret
+
+00000908 <_ZN3tc26SetCOME6TC_COM>:
+ 908:	e0 eb       	ldi	r30, 0xB0	; 176
+ 90a:	f0 e0       	ldi	r31, 0x00	; 0
+ 90c:	90 81       	ld	r25, Z
+ 90e:	9f 7c       	andi	r25, 0xCF	; 207
+ 910:	90 83       	st	Z, r25
+ 912:	20 81       	ld	r18, Z
+ 914:	30 e1       	ldi	r19, 0x10	; 16
+ 916:	83 9f       	mul	r24, r19
+ 918:	c0 01       	movw	r24, r0
+ 91a:	11 24       	eor	r1, r1
+ 91c:	82 2b       	or	r24, r18
+ 91e:	80 83       	st	Z, r24
+ 920:	08 95       	ret
+
+00000922 <_ZN3tc211SelectClockE5TC_CS>:
+ 922:	e0 eb       	ldi	r30, 0xB0	; 176
+ 924:	f0 e0       	ldi	r31, 0x00	; 0
+ 926:	90 81       	ld	r25, Z
+ 928:	98 7f       	andi	r25, 0xF8	; 248
+ 92a:	90 83       	st	Z, r25
+ 92c:	90 81       	ld	r25, Z
+ 92e:	89 2b       	or	r24, r25
+ 930:	80 83       	st	Z, r24
+ 932:	08 95       	ret
+
+00000934 <_ZN3tc24initE6TC_WGM6TC_COM5TC_CS>:
+ 934:	cf 93       	push	r28
+ 936:	df 93       	push	r29
+ 938:	d6 2f       	mov	r29, r22
+ 93a:	c4 2f       	mov	r28, r20
+ 93c:	0e 94 64 04 	call	0x8c8	; 0x8c8 <_ZN3tc26SetWGME6TC_WGM>
+ 940:	8d 2f       	mov	r24, r29
+ 942:	0e 94 84 04 	call	0x908	; 0x908 <_ZN3tc26SetCOME6TC_COM>
+ 946:	8c 2f       	mov	r24, r28
+ 948:	0e 94 91 04 	call	0x922	; 0x922 <_ZN3tc211SelectClockE5TC_CS>
+ 94c:	df 91       	pop	r29
+ 94e:	cf 91       	pop	r28
+ 950:	08 95       	ret
+
+00000952 <__vector_4>:
+}
+
+ISR(TIMER2_COMP_vect)
+{
+ 952:	1f 92       	push	r1
+ 954:	0f 92       	push	r0
+ 956:	0f b6       	in	r0, 0x3f	; 63
+ 958:	0f 92       	push	r0
+ 95a:	11 24       	eor	r1, r1
+ 95c:	2f 93       	push	r18
+ 95e:	3f 93       	push	r19
+ 960:	4f 93       	push	r20
+ 962:	5f 93       	push	r21
+ 964:	6f 93       	push	r22
+ 966:	7f 93       	push	r23
+ 968:	8f 93       	push	r24
+ 96a:	9f 93       	push	r25
+ 96c:	af 93       	push	r26
+ 96e:	bf 93       	push	r27
+ 970:	ef 93       	push	r30
+ 972:	ff 93       	push	r31
+  static void SetOutputCompareCallback(void (*fp)(void)) { ocrCallbackSet = true; ocrCallBack = fp; }
+  static void ClearOutputCompareCallback(void) { ocrCallbackSet = false; }
+
+  static void TriggerCompareMatchCallback(void)
+  {
+    if(ocrCallbackSet)
+ 974:	80 91 ff 01 	lds	r24, 0x01FF	; 0x8001ff <_ZN3tc214ocrCallbackSetE>
+ 978:	88 23       	and	r24, r24
+ 97a:	29 f0       	breq	.+10     	; 0x986 <__vector_4+0x34>
+    {
+      ocrCallBack();
+ 97c:	e0 91 fd 01 	lds	r30, 0x01FD	; 0x8001fd <_ZN3tc211ocrCallBackE>
+ 980:	f0 91 fe 01 	lds	r31, 0x01FE	; 0x8001fe <_ZN3tc211ocrCallBackE+0x1>
+ 984:	09 95       	icall
+  tc2::TriggerCompareMatchCallback();
+ 986:	ff 91       	pop	r31
+ 988:	ef 91       	pop	r30
+ 98a:	bf 91       	pop	r27
+ 98c:	af 91       	pop	r26
+ 98e:	9f 91       	pop	r25
+ 990:	8f 91       	pop	r24
+ 992:	7f 91       	pop	r23
+ 994:	6f 91       	pop	r22
+ 996:	5f 91       	pop	r21
+ 998:	4f 91       	pop	r20
+ 99a:	3f 91       	pop	r19
+ 99c:	2f 91       	pop	r18
+ 99e:	0f 90       	pop	r0
+ 9a0:	0f be       	out	0x3f, r0	; 63
+ 9a2:	0f 90       	pop	r0
+ 9a4:	1f 90       	pop	r1
+ 9a6:	18 95       	reti
+
+000009a8 <_GLOBAL__sub_I__ZN3twi12_error_stateE>:
+    _error_state = USI_TWI_UE_DATA_COL;
+    return false;
+  }
+  
+  return true;
+ 9a8:	ef 92       	push	r14
+ 9aa:	ff 92       	push	r15
+ 9ac:	1f 93       	push	r17
+ 9ae:	cf 93       	push	r28
+ 9b0:	df 93       	push	r29
+
+//functions
+public:
+	pin(port *parent, U8 pin_number, bool initial_state, bool Output)
+  {
+    _port = parent;
+ 9b2:	c5 e0       	ldi	r28, 0x05	; 5
+ 9b4:	d2 e0       	ldi	r29, 0x02	; 2
+ 9b6:	0f 2e       	mov	r0, r31
+ 9b8:	ff ed       	ldi	r31, 0xDF	; 223
+ 9ba:	ef 2e       	mov	r14, r31
+ 9bc:	f1 e0       	ldi	r31, 0x01	; 1
+ 9be:	ff 2e       	mov	r15, r31
+ 9c0:	f0 2d       	mov	r31, r0
+ 9c2:	f9 82       	std	Y+1, r15	; 0x01
+ 9c4:	e8 82       	st	Y, r14
+    _pin = pin_number;
+ 9c6:	84 e0       	ldi	r24, 0x04	; 4
+ 9c8:	8a 83       	std	Y+2, r24	; 0x02
+    }
+  };
+	~pin() {;}
+
+  void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
+  void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
+ 9ca:	d7 01       	movw	r26, r14
+ 9cc:	ed 91       	ld	r30, X+
+ 9ce:	fc 91       	ld	r31, X
+ 9d0:	80 81       	ld	r24, Z
+ 9d2:	80 61       	ori	r24, 0x10	; 16
+ 9d4:	80 83       	st	Z, r24
+ 9d6:	11 e0       	ldi	r17, 0x01	; 1
+ 9d8:	1c 83       	std	Y+4, r17	; 0x04
+
+  void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
+ 9da:	6a 81       	ldd	r22, Y+2	; 0x02
+ 9dc:	88 81       	ld	r24, Y
+ 9de:	99 81       	ldd	r25, Y+1	; 0x01
+ 9e0:	0e 94 43 04 	call	0x886	; 0x886 <_ZN4port6SetPinEh>
+ 9e4:	1b 83       	std	Y+3, r17	; 0x03
+
+//functions
+public:
+	pin(port *parent, U8 pin_number, bool initial_state, bool Output)
+  {
+    _port = parent;
+ 9e6:	c0 e0       	ldi	r28, 0x00	; 0
+ 9e8:	d2 e0       	ldi	r29, 0x02	; 2
+ 9ea:	f9 82       	std	Y+1, r15	; 0x01
+ 9ec:	e8 82       	st	Y, r14
+    _pin = pin_number;
+ 9ee:	85 e0       	ldi	r24, 0x05	; 5
+ 9f0:	8a 83       	std	Y+2, r24	; 0x02
+    }
+  };
+	~pin() {;}
+
+  void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
+  void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
+ 9f2:	d7 01       	movw	r26, r14
+ 9f4:	ed 91       	ld	r30, X+
+ 9f6:	fc 91       	ld	r31, X
+ 9f8:	80 81       	ld	r24, Z
+ 9fa:	80 62       	ori	r24, 0x20	; 32
+ 9fc:	80 83       	st	Z, r24
+ 9fe:	1c 83       	std	Y+4, r17	; 0x04
+
+  void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
+ a00:	6a 81       	ldd	r22, Y+2	; 0x02
+ a02:	88 81       	ld	r24, Y
+ a04:	99 81       	ldd	r25, Y+1	; 0x01
+ a06:	0e 94 43 04 	call	0x886	; 0x886 <_ZN4port6SetPinEh>
+ a0a:	1b 83       	std	Y+3, r17	; 0x03
+ a0c:	df 91       	pop	r29
+ a0e:	cf 91       	pop	r28
+ a10:	1f 91       	pop	r17
+ a12:	ff 90       	pop	r15
+ a14:	ef 90       	pop	r14
+ a16:	08 95       	ret
+
+00000a18 <main>:
+
+#include "system.h"
+
+
+int main(void)
+{
+ a18:	cf 93       	push	r28
+ a1a:	df 93       	push	r29
+ a1c:	00 d0       	rcall	.+0      	; 0xa1e <main+0x6>
+ a1e:	1f 92       	push	r1
+ a20:	cd b7       	in	r28, 0x3d	; 61
+ a22:	de b7       	in	r29, 0x3e	; 62
+//  LCD display;
+  LM6029ACW display;
+ a24:	ce 01       	movw	r24, r28
+ a26:	01 96       	adiw	r24, 0x01	; 1
+ a28:	0e 94 e8 01 	call	0x3d0	; 0x3d0 <_ZN9LM6029ACWC1Ev>
+  SystemClock::init();
+ a2c:	0e 94 74 05 	call	0xae8	; 0xae8 <_ZN11SystemClock4initEv>
+
+  hal::board_init();
+ a30:	0e 94 71 03 	call	0x6e2	; 0x6e2 <_ZN3hal10board_initEv>
+
+  //lcd.init();
+  display.init();
+ a34:	ce 01       	movw	r24, r28
+ a36:	01 96       	adiw	r24, 0x01	; 1
+ a38:	0e 94 f2 01 	call	0x3e4	; 0x3e4 <_ZN9LM6029ACW4initEv>
+	~pin() {;}
+
+  void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
+  void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
+
+  void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
+ a3c:	0e ec       	ldi	r16, 0xCE	; 206
+ a3e:	11 e0       	ldi	r17, 0x01	; 1
+ a40:	ff 24       	eor	r15, r15
+ a42:	f3 94       	inc	r15
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ a44:	2f ef       	ldi	r18, 0xFF	; 255
+ a46:	84 e3       	ldi	r24, 0x34	; 52
+ a48:	9c e0       	ldi	r25, 0x0C	; 12
+ a4a:	21 50       	subi	r18, 0x01	; 1
+ a4c:	80 40       	sbci	r24, 0x00	; 0
+ a4e:	90 40       	sbci	r25, 0x00	; 0
+ a50:	e1 f7       	brne	.-8      	; 0xa4a <main+0x32>
+ a52:	00 c0       	rjmp	.+0      	; 0xa54 <main+0x3c>
+ a54:	00 00       	nop
+ a56:	f8 01       	movw	r30, r16
+ a58:	84 81       	ldd	r24, Z+4	; 0x04
+ a5a:	88 23       	and	r24, r24
+ a5c:	39 f0       	breq	.+14     	; 0xa6c <main+0x54>
+ a5e:	62 81       	ldd	r22, Z+2	; 0x02
+ a60:	80 81       	ld	r24, Z
+ a62:	91 81       	ldd	r25, Z+1	; 0x01
+ a64:	0e 94 43 04 	call	0x886	; 0x886 <_ZN4port6SetPinEh>
+ a68:	f8 01       	movw	r30, r16
+ a6a:	f3 82       	std	Z+3, r15	; 0x03
+  {
+    _delay_ms(500);
+    hal::climitLed.Set();
+
+    
+    display.GotoXY(20, 3);               //move cursor to row, col
+ a6c:	43 e0       	ldi	r20, 0x03	; 3
+ a6e:	64 e1       	ldi	r22, 0x14	; 20
+ a70:	ce 01       	movw	r24, r28
+ a72:	01 96       	adiw	r24, 0x01	; 1
+ a74:	0e 94 07 02 	call	0x40e	; 0x40e <_ZN9LM6029ACW6GotoXYEhh>
+    display.ClearScreen(true);                  //clear all the pixels on the display
+ a78:	6f 2d       	mov	r22, r15
+ a7a:	ce 01       	movw	r24, r28
+ a7c:	01 96       	adiw	r24, 0x01	; 1
+ a7e:	0e 94 04 02 	call	0x408	; 0x408 <_ZN9LM6029ACW11ClearScreenEb>
+    display.PutStr("Hello World!", true);  //print text in black pixels
+ a82:	4f 2d       	mov	r20, r15
+ a84:	6e eb       	ldi	r22, 0xBE	; 190
+ a86:	71 e0       	ldi	r23, 0x01	; 1
+ a88:	ce 01       	movw	r24, r28
+ a8a:	01 96       	adiw	r24, 0x01	; 1
+ a8c:	0e 94 77 02 	call	0x4ee	; 0x4ee <_ZN9LM6029ACW6PutStrEPcb>
+ a90:	ff ef       	ldi	r31, 0xFF	; 255
+ a92:	24 e3       	ldi	r18, 0x34	; 52
+ a94:	8c e0       	ldi	r24, 0x0C	; 12
+ a96:	f1 50       	subi	r31, 0x01	; 1
+ a98:	20 40       	sbci	r18, 0x00	; 0
+ a9a:	80 40       	sbci	r24, 0x00	; 0
+ a9c:	e1 f7       	brne	.-8      	; 0xa96 <main+0x7e>
+ a9e:	00 c0       	rjmp	.+0      	; 0xaa0 <main+0x88>
+ aa0:	00 00       	nop
+  void Clear() { if(!_output) return; _port->ClearPin(_pin); state = false; }
+ aa2:	f8 01       	movw	r30, r16
+ aa4:	84 81       	ldd	r24, Z+4	; 0x04
+ aa6:	88 23       	and	r24, r24
+ aa8:	39 f0       	breq	.+14     	; 0xab8 <main+0xa0>
+ aaa:	62 81       	ldd	r22, Z+2	; 0x02
+ aac:	80 81       	ld	r24, Z
+ aae:	91 81       	ldd	r25, Z+1	; 0x01
+ ab0:	0e 94 53 04 	call	0x8a6	; 0x8a6 <_ZN4port8ClearPinEh>
+ ab4:	f8 01       	movw	r30, r16
+ ab6:	13 82       	std	Z+3, r1	; 0x03
+
+    _delay_ms(500);
+    hal::climitLed.Clear();
+
+    
+    display.GotoXY(20, 3);               //move cursor to row, col
+ ab8:	43 e0       	ldi	r20, 0x03	; 3
+ aba:	64 e1       	ldi	r22, 0x14	; 20
+ abc:	ce 01       	movw	r24, r28
+ abe:	01 96       	adiw	r24, 0x01	; 1
+ ac0:	0e 94 07 02 	call	0x40e	; 0x40e <_ZN9LM6029ACW6GotoXYEhh>
+    display.ClearScreen(false);                  //clear all the pixels on the display
+ ac4:	60 e0       	ldi	r22, 0x00	; 0
+ ac6:	ce 01       	movw	r24, r28
+ ac8:	01 96       	adiw	r24, 0x01	; 1
+ aca:	0e 94 04 02 	call	0x408	; 0x408 <_ZN9LM6029ACW11ClearScreenEb>
+    display.PutStr("Hello World!", false);  //print text in black pixels  }
+ ace:	40 e0       	ldi	r20, 0x00	; 0
+ ad0:	6e eb       	ldi	r22, 0xBE	; 190
+ ad2:	71 e0       	ldi	r23, 0x01	; 1
+ ad4:	ce 01       	movw	r24, r28
+ ad6:	01 96       	adiw	r24, 0x01	; 1
+ ad8:	0e 94 77 02 	call	0x4ee	; 0x4ee <_ZN9LM6029ACW6PutStrEPcb>
+ adc:	b3 cf       	rjmp	.-154    	; 0xa44 <main+0x2c>
+
+00000ade <_ZN11SystemClock4tickEv>:
+
+}
+
+void SystemClock::tick(void)
+{
+  timer_list::tick(1);
+ ade:	81 e0       	ldi	r24, 0x01	; 1
+ ae0:	90 e0       	ldi	r25, 0x00	; 0
+ ae2:	0e 94 ac 05 	call	0xb58	; 0xb58 <_ZN10timer_list4tickEj>
+ ae6:	08 95       	ret
+
+00000ae8 <_ZN11SystemClock4initEv>:
+#include "../system.h"
+
+
+void SystemClock::init(void)
+{
+  timer_list::init();
+ ae8:	0e 94 8d 05 	call	0xb1a	; 0xb1a <_ZN10timer_list4initEv>
+
+  /* 125 kHz base */
+  tc2::init(TC_WGM_CTC, TC_COM_OC2A_DISCONNECTED, TC_CS_DIV64);
+ aec:	44 e0       	ldi	r20, 0x04	; 4
+ aee:	60 e0       	ldi	r22, 0x00	; 0
+ af0:	82 e0       	ldi	r24, 0x02	; 2
+ af2:	0e 94 9a 04 	call	0x934	; 0x934 <_ZN3tc24initE6TC_WGM6TC_COM5TC_CS>
+  static void SelectClock(TC_CS clock_select);
+  static void SetWGM(TC_WGM mode);
+  static void SetCOM(TC_COM mode);
+
+  static void SetCount(U8 count) { TCNT2 = count; }
+  static void SetOutputCompareA(U8 val) { OCR2A = val; }
+ af6:	8c e7       	ldi	r24, 0x7C	; 124
+ af8:	80 93 b3 00 	sts	0x00B3, r24	; 0x8000b3 <__TEXT_REGION_LENGTH__+0x7e00b3>
+
+  static void EnableOverflowInterrupt() { TIMSK2 |= 0x01; }
+  static void DisableOverflowInterrupt() { TIMSK2 &= ~0x01; }
+  static void ClearOverflowInterrupt() { TIFR2 &= ~0x01; }
+
+  static void SetOutputCompareCallback(void (*fp)(void)) { ocrCallbackSet = true; ocrCallBack = fp; }
+ afc:	81 e0       	ldi	r24, 0x01	; 1
+ afe:	80 93 ff 01 	sts	0x01FF, r24	; 0x8001ff <_ZN3tc214ocrCallbackSetE>
+ b02:	8f e6       	ldi	r24, 0x6F	; 111
+ b04:	95 e0       	ldi	r25, 0x05	; 5
+ b06:	90 93 fe 01 	sts	0x01FE, r25	; 0x8001fe <_ZN3tc211ocrCallBackE+0x1>
+ b0a:	80 93 fd 01 	sts	0x01FD, r24	; 0x8001fd <_ZN3tc211ocrCallBackE>
+  static void SetCount(U8 count) { TCNT2 = count; }
+  static void SetOutputCompareA(U8 val) { OCR2A = val; }
+
+  static void ExternalClockMode(bool enable, bool xtal);
+
+  static void EnableOutputCompareInterrupt() { TIMSK2 |= 0x02; }
+ b0e:	e0 e7       	ldi	r30, 0x70	; 112
+ b10:	f0 e0       	ldi	r31, 0x00	; 0
+ b12:	80 81       	ld	r24, Z
+ b14:	82 60       	ori	r24, 0x02	; 2
+ b16:	80 83       	st	Z, r24
+ b18:	08 95       	ret
+
+00000b1a <_ZN10timer_list4initEv>:
+  return 0xFF;
+}
+
+void timer_list::DeregisterTimer(U8 id)
+{
+  timers[id] = NULL;
+ b1a:	ea e0       	ldi	r30, 0x0A	; 10
+ b1c:	f2 e0       	ldi	r31, 0x02	; 2
+ b1e:	11 82       	std	Z+1, r1	; 0x01
+ b20:	10 82       	st	Z, r1
+ b22:	13 82       	std	Z+3, r1	; 0x03
+ b24:	12 82       	std	Z+2, r1	; 0x02
+ b26:	08 95       	ret
+
+00000b28 <_ZN5timer4tickEj>:
+{
+  timer_list::DeregisterTimer(_id);
+} //~timer
+
+void timer::tick(U16 ms)
+{
+ b28:	fc 01       	movw	r30, r24
+  if(!_running)
+ b2a:	83 85       	ldd	r24, Z+11	; 0x0b
+ b2c:	88 23       	and	r24, r24
+ b2e:	99 f0       	breq	.+38     	; 0xb56 <_ZN5timer4tickEj+0x2e>
+    return;
+
+  _count += ms;
+ b30:	87 81       	ldd	r24, Z+7	; 0x07
+ b32:	90 85       	ldd	r25, Z+8	; 0x08
+ b34:	86 0f       	add	r24, r22
+ b36:	97 1f       	adc	r25, r23
+ b38:	90 87       	std	Z+8, r25	; 0x08
+ b3a:	87 83       	std	Z+7, r24	; 0x07
+
+  if(_callback_set & !_isr_flag)
+ b3c:	32 81       	ldd	r19, Z+2	; 0x02
+ b3e:	23 81       	ldd	r18, Z+3	; 0x03
+ b40:	23 17       	cp	r18, r19
+ b42:	48 f4       	brcc	.+18     	; 0xb56 <_ZN5timer4tickEj+0x2e>
+  {
+    if(_count >= ms)
+ b44:	86 17       	cp	r24, r22
+ b46:	97 07       	cpc	r25, r23
+ b48:	30 f0       	brcs	.+12     	; 0xb56 <_ZN5timer4tickEj+0x2e>
+    {
+      _isr_flag = true;
+ b4a:	81 e0       	ldi	r24, 0x01	; 1
+ b4c:	83 83       	std	Z+3, r24	; 0x03
+      CallBack();
+ b4e:	04 80       	ldd	r0, Z+4	; 0x04
+ b50:	f5 81       	ldd	r31, Z+5	; 0x05
+ b52:	e0 2d       	mov	r30, r0
+ b54:	09 95       	icall
+ b56:	08 95       	ret
+
+00000b58 <_ZN10timer_list4tickEj>:
+    timers[i] = NULL;
+  }
+}
+
+void timer_list::tick(U16 ms)
+{
+ b58:	cf 93       	push	r28
+ b5a:	df 93       	push	r29
+ b5c:	ec 01       	movw	r28, r24
+  int i = 0;
+
+  for(i = 0 ; i < MAX_TIMERS ; i++)
+  {
+    if(timers[i] != NULL)
+ b5e:	80 91 0a 02 	lds	r24, 0x020A	; 0x80020a <_ZN10timer_list6timersE>
+ b62:	90 91 0b 02 	lds	r25, 0x020B	; 0x80020b <_ZN10timer_list6timersE+0x1>
+ b66:	00 97       	sbiw	r24, 0x00	; 0
+ b68:	19 f0       	breq	.+6      	; 0xb70 <_ZN10timer_list4tickEj+0x18>
+    {
+      timers[i]->tick(ms);
+ b6a:	be 01       	movw	r22, r28
+ b6c:	0e 94 94 05 	call	0xb28	; 0xb28 <_ZN5timer4tickEj>
+{
+  int i = 0;
+
+  for(i = 0 ; i < MAX_TIMERS ; i++)
+  {
+    if(timers[i] != NULL)
+ b70:	80 91 0c 02 	lds	r24, 0x020C	; 0x80020c <_ZN10timer_list6timersE+0x2>
+ b74:	90 91 0d 02 	lds	r25, 0x020D	; 0x80020d <_ZN10timer_list6timersE+0x3>
+ b78:	00 97       	sbiw	r24, 0x00	; 0
+ b7a:	19 f0       	breq	.+6      	; 0xb82 <_ZN10timer_list4tickEj+0x2a>
+    {
+      timers[i]->tick(ms);
+ b7c:	be 01       	movw	r22, r28
+ b7e:	0e 94 94 05 	call	0xb28	; 0xb28 <_ZN5timer4tickEj>
+    }
+  }
+}
+ b82:	df 91       	pop	r29
+ b84:	cf 91       	pop	r28
+ b86:	08 95       	ret
+
+00000b88 <__tablejump2__>:
+ b88:	ee 0f       	add	r30, r30
+ b8a:	ff 1f       	adc	r31, r31
+ b8c:	05 90       	lpm	r0, Z+
+ b8e:	f4 91       	lpm	r31, Z
+ b90:	e0 2d       	mov	r30, r0
+ b92:	09 94       	ijmp
+
+00000b94 <__do_global_dtors>:
+ b94:	11 e0       	ldi	r17, 0x01	; 1
+ b96:	cc ea       	ldi	r28, 0xAC	; 172
+ b98:	d1 e0       	ldi	r29, 0x01	; 1
+ b9a:	04 c0       	rjmp	.+8      	; 0xba4 <__do_global_dtors+0x10>
+ b9c:	fe 01       	movw	r30, r28
+ b9e:	0e 94 c4 05 	call	0xb88	; 0xb88 <__tablejump2__>
+ ba2:	21 96       	adiw	r28, 0x01	; 1
+ ba4:	ce 3a       	cpi	r28, 0xAE	; 174
+ ba6:	d1 07       	cpc	r29, r17
+ ba8:	c9 f7       	brne	.-14     	; 0xb9c <__do_global_dtors+0x8>
+ baa:	f8 94       	cli
+
+00000bac <__stop_program>:
+ bac:	ff cf       	rjmp	.-2      	; 0xbac <__stop_program>

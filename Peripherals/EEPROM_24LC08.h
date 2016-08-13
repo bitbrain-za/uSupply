@@ -17,6 +17,7 @@ public:
 protected:
 private:
   pin *write_protect;
+  static const U8 address = 0xA0;
   
 //functions
 public:
@@ -31,6 +32,9 @@ private:
 
   void WriteProtectEnable(void) { write_protect->Clear(); }
   void WriteProtectDisable(void) { write_protect->Set(); }
+
+  bool Write(U8 *data, U8 length) { return twi::WriteBytes(address, length, data); }
+  bool Read(U8 length, U8 *data) { return twi::ReadBytes(address, length, data); }
 
 };
 

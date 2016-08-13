@@ -39,10 +39,11 @@ typedef enum
 
 class Timer8Bit
 {
+protected:
+
+
 //functions
 public:
-	virtual ~Timer8Bit(){}
-
   virtual U8 Count() = 0;
   virtual U8 CompareVal() = 0;
 
@@ -65,6 +66,8 @@ public:
   virtual void EnableOverflowInterrupt() = 0;
   virtual void DisableOverflowInterrupt() = 0;
   virtual void ClearOverflowInterrupt() = 0;
+
+
 
 }; //Timer8Bit
 

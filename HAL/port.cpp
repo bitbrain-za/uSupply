@@ -8,7 +8,7 @@
 #include "../system.h"
 
 // default constructor
-port::port(U8 addr, U8 ddr_addr, U8 pin)
+port::port(volatile U8 *addr, volatile U8 *ddr_addr, volatile U8 *pin)
 {
   port_address = addr;
   ddr = ddr_addr; 
@@ -22,20 +22,20 @@ port::~port()
 
 void port::SetInputs(U8 pins)
 {
-  ddr &= ~(pins);
+  *ddr &= ~(pins);
 }
 
 void port::SetOutputs(U8 pins)
 {
-  ddr |= pins;
+  *ddr |= pins;
 }
 
 void port::SetPin(U8 pin)
 {
-  port_address |= (1<< pin);
+  *port_address |= (1<< pin);
 }
 
 void port::ClearPin(U8 pin)
 {
-  port_address &= ~(1 << pin);
+  *port_address &= ~(1 << pin);
 }

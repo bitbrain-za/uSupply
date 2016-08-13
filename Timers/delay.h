@@ -19,7 +19,8 @@ private:
 
 //functions
 public:
-  static void delay_us(U16 us) {;}
+  static void init();
+  static void delay_us(U16 us);
   static void delay_ms(U16 ms) {;}
   static void delay_s(U16 seconds) {;}
 protected:

@@ -38,6 +38,33 @@
         </dependencies>
       </framework-data>
     </AsfFrameworkConfig>
+    <avrtool>com.atmel.avrdbg.tool.jtagice3plus</avrtool>
+    <avrtoolserialnumber>J30200005190</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x1E9411</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_jtagicemk3>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagDbgClock>0</JtagDbgClock>
+        </InterfaceProperties>
+        <InterfaceName>JTAG</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.jtagicemk3</ToolType>
+      <ToolNumber>J30200005190</ToolNumber>
+      <ToolName>JTAGICE3</ToolName>
+    </com_atmel_avrdbg_tool_jtagicemk3>
+    <avrtoolinterface>JTAG</avrtoolinterface>
+    <avrtoolinterfaceclock>200000</avrtoolinterfaceclock>
+    <com_atmel_avrdbg_tool_jtagice3plus>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagDbgClock>200000</JtagDbgClock>
+        </InterfaceProperties>
+        <InterfaceName>JTAG</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.jtagice3plus</ToolType>
+      <ToolNumber>J30200005190</ToolNumber>
+      <ToolName>JTAGICE3</ToolName>
+    </com_atmel_avrdbg_tool_jtagice3plus>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -151,6 +178,39 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Application\buttons.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\buttons.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\MessageQueue.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Core\MessageQueue.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\font.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\font.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\fonts\small.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\LM6029ACW.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\LM6029ACW.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\ST7565R.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\ST7565R.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\adc.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -161,6 +221,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\hal.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD_HW.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\LCD_HW.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\pin.h">
@@ -178,6 +244,12 @@
     <Compile Include="HAL\tc0.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\tc1_pwm.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\tc1_pwm.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\tc2.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -191,12 +263,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\twi.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="HMI\LM6029ACW.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="HMI\LM6029ACW.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">
@@ -220,13 +286,13 @@
     <Compile Include="Peripherals\MCP4716A0T.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="PSUControl\CurrentLimit.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="PSUControl\CurrentLimit.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="system.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Timers\delay.cpp">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="Timers\delay.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Timers\PWM.cpp">
@@ -235,13 +301,30 @@
     <Compile Include="Timers\PWM.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Timers\SystemClock.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Timers\SystemClock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Timers\timer.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Timers\timer.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="typedef.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Display\fonts" />
     <Folder Include="HAL" />
     <Folder Include="HMI" />
+    <Folder Include="Core" />
+    <Folder Include="Application" />
+    <Folder Include="Display" />
+    <Folder Include="PSUControl" />
     <Folder Include="Peripherals" />
     <Folder Include="Timers" />
   </ItemGroup>
