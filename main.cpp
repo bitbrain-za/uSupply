@@ -9,38 +9,38 @@
 
 #include "system.h"
 
+RotaryEncoder voltageEncoder(&hal::portA, 4, &hal::portA, 2);
+RotaryEncoder currentEncoder(&hal::portA, 5, &hal::portA, 0);
 
 int main(void)
 {
-//  LCD display;
+  char str[32];
   LM6029ACW display;
   SystemClock::init();
 
   hal::board_init();
-
-  //lcd.init();
   display.init();
 
-
+  display.ClearScreen(false);                  //clear all the pixels on the display
+  currentEncoder.FSM(true);
+  voltageEncoder.FSM(true);
   while (1) 
   {
-    _delay_ms(500);
-    hal::climitLed.Set();
+    currentEncoder.FSM(false);
+    voltageEncoder.FSM(false);
+    if(voltageEncoder.Changed() || currentEncoder.Changed())
+    {
+      display.ClearScreen(false);
+      sprintf(str, "Voltage: %i", voltageEncoder.Value());
+      display.GotoXY(20, 3);
+      display.PutStr(str, false);
 
-    
-    display.GotoXY(20, 3);               //move cursor to row, col
-    display.ClearScreen(true);                  //clear all the pixels on the display
-    display.PutStr("Hello World!", true);  //print text in black pixels
-    
-
-    _delay_ms(500);
-    hal::climitLed.Clear();
-
-    
-    display.GotoXY(20, 3);               //move cursor to row, col
-    display.ClearScreen(false);                  //clear all the pixels on the display
-    display.PutStr("Hello World!", false);  //print text in black pixels  }
-    
+      sprintf(str, "Current: %i", currentEncoder.Value());
+      display.GotoXY(20, 4);
+      display.PutStr(str, false);
+    }
+   
+    _delay_ms(1);
   }
 }
 

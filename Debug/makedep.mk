@@ -4,6 +4,8 @@
 
 Application\buttons.cpp
 
+Application\Display.cpp
+
 Core\MessageQueue.cpp
 
 Display\font.cpp
@@ -27,6 +29,8 @@ HAL\tc1_pwm.cpp
 HAL\tc2.cpp
 
 HAL\twi.cpp
+
+HMI\RotaryEncoder.cpp
 
 main.cpp
 

@@ -26,8 +26,6 @@ ADC_CHANNEL_MUX hal::TemperatureChannel = ADC1;
 
 void hal::board_init(void)
 {
-  portA.SetInputs(0xFF);
-  
   portB.SetOutputs((1 << PB4) | (1 << PB5)); 
   portB.SetInputs(1 << PB6);
 

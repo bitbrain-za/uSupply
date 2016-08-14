@@ -18,6 +18,7 @@ TIMER2 - System Timer
 #define F_CPU 8000000
 
 #include <avr/io.h>
+#include <stdio.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
@@ -51,6 +52,8 @@ TIMER2 - System Timer
 #include "Display/font.h"
 #include "Display/ST7565R.h"
 #include "Display/LM6029ACW.h"
+
+#include "HMI/RotaryEncoder.h"
 
 #include "PSUControl/CurrentLimit.h"
 

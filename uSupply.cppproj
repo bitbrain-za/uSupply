@@ -184,6 +184,12 @@
     <Compile Include="Application\buttons.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Application\Display.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\Display.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Core\MessageQueue.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -263,6 +269,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="HAL\twi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HMI\RotaryEncoder.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HMI\RotaryEncoder.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.cpp">

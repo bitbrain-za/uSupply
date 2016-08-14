@@ -30,23 +30,24 @@ public:
     if(Output)
     {
       set_output();
-      if(initial_state)
-        Set();
-      else
-        Clear();
     }
     else
     {
       set_input();
     }
+
+    if(initial_state)
+      Set();
+    else
+      Clear();
   };
 	~pin() {;}
 
   void set_input()  { (*(_port->ddr) &= ~(1<<_pin)); _output = false; }
   void set_output() { (*(_port->ddr) |= (1<<_pin)); _output = true; }
 
-  void Set() { if(!_output) return; _port->SetPin(_pin); state = true; }
-  void Clear() { if(!_output) return; _port->ClearPin(_pin); state = false; }
+  void Set() { _port->SetPin(_pin); state = true; }
+  void Clear() {_port->ClearPin(_pin); state = false; }
   void Toggle() 
   {
     if(!_output)

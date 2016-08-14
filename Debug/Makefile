@@ -47,6 +47,7 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Application/buttons.cpp \
+../Application/Display.cpp \
 ../Core/MessageQueue.cpp \
 ../Display/font.cpp \
 ../Display/LM6029ACW.cpp \
@@ -59,6 +60,7 @@ C_SRCS +=  \
 ../HAL/tc1_pwm.cpp \
 ../HAL/tc2.cpp \
 ../HAL/twi.cpp \
+../HMI/RotaryEncoder.cpp \
 ../main.cpp \
 ../Peripherals/EEPROM_24LC08.cpp \
 ../Peripherals/INA219.cpp \
@@ -77,6 +79,7 @@ ASM_SRCS +=
 
 OBJS +=  \
 Application/buttons.o \
+Application/Display.o \
 Core/MessageQueue.o \
 Display/font.o \
 Display/LM6029ACW.o \
@@ -89,6 +92,7 @@ HAL/tc0.o \
 HAL/tc1_pwm.o \
 HAL/tc2.o \
 HAL/twi.o \
+HMI/RotaryEncoder.o \
 main.o \
 Peripherals/EEPROM_24LC08.o \
 Peripherals/INA219.o \
@@ -100,6 +104,7 @@ Timers/timer.o
 
 OBJS_AS_ARGS +=  \
 Application/buttons.o \
+Application/Display.o \
 Core/MessageQueue.o \
 Display/font.o \
 Display/LM6029ACW.o \
@@ -112,6 +117,7 @@ HAL/tc0.o \
 HAL/tc1_pwm.o \
 HAL/tc2.o \
 HAL/twi.o \
+HMI/RotaryEncoder.o \
 main.o \
 Peripherals/EEPROM_24LC08.o \
 Peripherals/INA219.o \
@@ -123,6 +129,7 @@ Timers/timer.o
 
 C_DEPS +=  \
 Application/buttons.d \
+Application/Display.d \
 Core/MessageQueue.d \
 Display/font.d \
 Display/LM6029ACW.d \
@@ -135,6 +142,7 @@ HAL/tc0.d \
 HAL/tc1_pwm.d \
 HAL/tc2.d \
 HAL/twi.d \
+HMI/RotaryEncoder.d \
 main.d \
 Peripherals/EEPROM_24LC08.d \
 Peripherals/INA219.d \
@@ -146,6 +154,7 @@ Timers/timer.d
 
 C_DEPS_AS_ARGS +=  \
 Application/buttons.d \
+Application/Display.d \
 Core/MessageQueue.d \
 Display/font.d \
 Display/LM6029ACW.d \
@@ -158,6 +167,7 @@ HAL/tc0.d \
 HAL/tc1_pwm.d \
 HAL/tc2.d \
 HAL/twi.d \
+HMI/RotaryEncoder.d \
 main.d \
 Peripherals/EEPROM_24LC08.d \
 Peripherals/INA219.d \
@@ -224,6 +234,10 @@ LINKER_SCRIPT_DEP+=
 
 
 
+
+
+
+
 Application/%.o: ../Application/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 4.9.2
@@ -246,6 +260,13 @@ Display/%.o: ../Display/%.cpp
 	
 
 HAL/%.o: ../HAL/%.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 4.9.2
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega169a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\gcc\dev\atmega169a" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HMI/%.o: ../HMI/%.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 4.9.2
 	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\include"  -O1 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -mmcu=atmega169a -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.0.106\gcc\dev\atmega169a" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
