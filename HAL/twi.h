@@ -5,9 +5,10 @@
 * Author: Philip
 */
 
-
 #ifndef __TWI_H__
 #define __TWI_H__
+
+#ifdef 0
 
 typedef enum
 {
@@ -64,7 +65,7 @@ private:
   static void counter_overflow_interrupt_disable(void) { USICR &= ~(1 << USIOIE); }
 
   static bool CheckFlag(void) { return ((USISR & 0xF0) != 0x00); }
-  static bool CheckFlag(TWI_FLAGS flag) { return ((USISR & flag) == flag); }
+  static bool CheckFlag(TWI_FLAGS flag) { return ((USISR >> flag) == 0x01); }
   static void ClearFlag(U8 flags) { USISR |= (flags & 0xF0); }
   static void ClearFlag(TWI_FLAGS flag) { USISR |= (1 << flag); }
   static bool CheckAndClearFlag(TWI_FLAGS flag);
@@ -81,6 +82,10 @@ private:
   static bool ACK_received(void);
 
   static bool CheckForBusErrors();
+  static void ReleaseSCL() { SCL.Set(); while(!SCL.Value()); }
+
 }; //twi
+
+#endif
 
 #endif //__TWI_H__

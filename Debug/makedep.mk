@@ -30,6 +30,10 @@ HAL\tc2.cpp
 
 HAL\twi.cpp
 
+HAL\twi_master.cpp
+
+HMI\button.cpp
+
 HMI\RotaryEncoder.cpp
 
 main.cpp

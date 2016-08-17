@@ -271,6 +271,18 @@
     <Compile Include="HAL\twi.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\twi_master.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\twi_master.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HMI\button.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HMI\button.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HMI\RotaryEncoder.cpp">
       <SubType>compile</SubType>
     </Compile>

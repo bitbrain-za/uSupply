@@ -60,6 +60,8 @@ C_SRCS +=  \
 ../HAL/tc1_pwm.cpp \
 ../HAL/tc2.cpp \
 ../HAL/twi.cpp \
+../HAL/twi_master.cpp \
+../HMI/button.cpp \
 ../HMI/RotaryEncoder.cpp \
 ../main.cpp \
 ../Peripherals/EEPROM_24LC08.cpp \
@@ -92,6 +94,8 @@ HAL/tc0.o \
 HAL/tc1_pwm.o \
 HAL/tc2.o \
 HAL/twi.o \
+HAL/twi_master.o \
+HMI/button.o \
 HMI/RotaryEncoder.o \
 main.o \
 Peripherals/EEPROM_24LC08.o \
@@ -117,6 +121,8 @@ HAL/tc0.o \
 HAL/tc1_pwm.o \
 HAL/tc2.o \
 HAL/twi.o \
+HAL/twi_master.o \
+HMI/button.o \
 HMI/RotaryEncoder.o \
 main.o \
 Peripherals/EEPROM_24LC08.o \
@@ -142,6 +148,8 @@ HAL/tc0.d \
 HAL/tc1_pwm.d \
 HAL/tc2.d \
 HAL/twi.d \
+HAL/twi_master.d \
+HMI/button.d \
 HMI/RotaryEncoder.d \
 main.d \
 Peripherals/EEPROM_24LC08.d \
@@ -167,6 +175,8 @@ HAL/tc0.d \
 HAL/tc1_pwm.d \
 HAL/tc2.d \
 HAL/twi.d \
+HAL/twi_master.d \
+HMI/button.d \
 HMI/RotaryEncoder.d \
 main.d \
 Peripherals/EEPROM_24LC08.d \
@@ -191,6 +201,10 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

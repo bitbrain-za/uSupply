@@ -48,6 +48,7 @@ public:
 
   void Set() { _port->SetPin(_pin); state = true; }
   void Clear() {_port->ClearPin(_pin); state = false; }
+
   void Toggle() 
   {
     if(!_output)
@@ -58,6 +59,7 @@ public:
     else 
       Set(); 
   }
+
   bool Value() { return read_pin(); }
   void SetValue(bool val) 
   { 

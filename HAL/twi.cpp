@@ -4,19 +4,20 @@
 * Created: 2016/07/20 10:41:52 AM
 * Author: Philip
 */
-
+#if 0
 #include "../system.h"
 
 #define DUMMY 0xFF
 
 TWI_STATE twi::_error_state;
-pin twi::SCL(&hal::portE, PE4, true, true);
-pin twi::SDA(&hal::portE, PE5, true, true);
+pin twi::SCL(&hal::portE, 4, true, true);
+pin twi::SDA(&hal::portE, 5, true, true);
 
 void twi::inititalise(void)
 {
   SCL.Set();
   SDA.Set();
+
   SCL.set_output();
   SDA.set_output();
 
@@ -40,10 +41,6 @@ bool twi::SetAddress(U8 slave_address, bool ReadNotWrite)
   slave_address &= 0xFE;
   if(ReadNotWrite)
     slave_address |= 0x01;
-
-  SCL.Set();
-  while(!SCL.Value());
-  _delay_us(4);
 
   if(!SendStart())
   {
@@ -223,14 +220,14 @@ U8 twi::TransferBit(U8 b)
 
   do
   {
-    _delay_us(4);              
+    _delay_ms(10);              
     toggleClockPort();
     while(!SCL.Value());
-    _delay_us(4);              
+    _delay_ms(10);              
     toggleClockPort();
   }while(!CheckFlag(TWI_FLAG_COUNTER_OVERFLOW));
   
-  _delay_us(4);
+  _delay_ms(10);
   U8 rx  = USIDR;
   USIDR = 0xFF;
   SDA.set_output();
@@ -243,9 +240,9 @@ bool twi::SendStop(void)
   SDA.Clear();
   SCL.Set();
   while(!SCL.Value());
-  _delay_us(4);               
+  _delay_ms(10);               
   SDA.Set();
-  _delay_us(4);               
+  _delay_ms(10);               
   
   if(!CheckFlag(TWI_FLAG_STOP_DETECTED))
   {
@@ -258,8 +255,13 @@ bool twi::SendStop(void)
 
 bool twi::SendStart(void)
 {
+  SCL.Set();
+
+  while(!SCL.Value());
+  _delay_ms(10);
+
   SDA.Clear();
-  _delay_us(4);                         
+  _delay_ms(10);                         
   SCL.Clear();
   SDA.Set();
 
@@ -268,6 +270,7 @@ bool twi::SendStart(void)
     _error_state = USI_TWI_MISSING_START_CON;  
     return false;
   }
+
   return true;
 }
 
@@ -310,14 +313,14 @@ U8 twi::TransferByte(U8 b)
 
   do
   {
-    _delay_us(4);               
+    _delay_ms(10);               
     toggleClockPort();
     while(!SCL.Value());
-    _delay_us(4);
+    _delay_ms(10);
     toggleClockPort();
   }while(!CheckFlag(TWI_FLAG_COUNTER_OVERFLOW));
   
-  _delay_us(4);                
+  _delay_ms(10);                
   U8 rx  = USIDR;
   USIDR = DUMMY;
   SDA.set_output();
@@ -327,6 +330,8 @@ U8 twi::TransferByte(U8 b)
 
 bool twi::CheckForBusErrors()
 {
+  return true;
+
   if(CheckFlag(TWI_FLAG_START_DETECTED))
   {
     _error_state = USI_TWI_UE_START_CON;
@@ -347,3 +352,5 @@ bool twi::CheckForBusErrors()
   
   return true;
 }
+
+#endif

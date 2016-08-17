@@ -8,6 +8,8 @@
 
 #include "../system.h"
 
+#if 0
+
 // default constructor
 INA219::INA219(BUS_VOLTAGE brng, ADC_SETTING adc_setting, OPERATING_MODE operating_mode)
 {
@@ -67,3 +69,5 @@ S16 INA219::Current()
   ReadRegister(INA219_SHUNT_VOLTAGE, (U8 *)&shunt_register);
   return shunt_register;
 }
+
+#endif
