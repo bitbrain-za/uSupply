@@ -20,25 +20,26 @@ EEPROM_24LC08::~EEPROM_24LC08()
 
 EEPROM_RESULT EEPROM_24LC08::Write(U16 address, U8 *data, U8 length) 
 { 
+  U8 address_upper = DeviceAddress | (U8)((address & 0x0300) >> 7);
+  U8 address_lower = (U8)(address & 0xFF);
+
   if(length == 0)
     return EEPROM_ERROR_PARAMATER;
 
   if((address + length) > MemorySize)
     return EEPROM_BOUNDARY_ERROR;  
     
-  U8 *buffer = (U8 *)malloc(2 + length);
+  U8 *buffer = (U8 *)malloc(1 + length);
   if(buffer == NULL)
     return EEPROM_ERROR_MEMORY;
 
   EEPROM_RESULT res = EEPROM_OKAY;
 
-  buffer[0] = DeviceAddress;
-  buffer[0] |= (U8)((address & 0x03) >> 7);
-  buffer[1] = (U8)(address & 0xFF);
+  buffer[0] = address_lower;
 
-  memcpy(&buffer[2], data, length);
+  memcpy(&buffer[1], data, length);
   WriteProtectDisable();
-  if(!twi::WriteBytes(buffer[0], &buffer[1], length ) > 0)
+  if(!twi::WriteBytes(address_lower, buffer, length + 1 ) > 0)
   {
     res = EEPROM_ERROR_WRITING;
   }
@@ -98,7 +99,7 @@ EEPROM_RESULT EEPROM_24LC08::WriteAndVerify(U16 address, U8 length, U8 *data)
   if(res != EEPROM_OKAY)
     return res;
 
-  _delay_ms(250);
+  _delay_ms(300);
 
   res = Read(address, length, temp);
 
@@ -121,6 +122,19 @@ bool EEPROM_24LC08::Test()
 {
   U8 buffer[10];
   memset(buffer, 0xAA, 10);
+
+  
+  buffer[0] = 0x01;
+  buffer[1] = 0x02;
+  buffer[2] = 0x03;
+  buffer[3] = 0x04;
+  buffer[4] = 0x05;
+  buffer[5] = 0x06;
+  buffer[6] = 0x07;
+  buffer[7] = 0x08;
+  buffer[8] = 0x09;
+  buffer[9] = 0x0a;
+  
 
   if(WriteAndVerify(0x0000, 10, buffer) != EEPROM_OKAY)
     return false;
