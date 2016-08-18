@@ -4,7 +4,7 @@
 * Created: 2016/07/20 10:41:52 AM
 * Author: Philip
 */
-#if 0
+#if 1
 #include "../system.h"
 
 #define DUMMY 0xFF
@@ -12,285 +12,170 @@
 TWI_STATE twi::_error_state;
 pin twi::SCL(&hal::portE, 4, true, true);
 pin twi::SDA(&hal::portE, 5, true, true);
+bool twi::addressMode = false;
+bool twi::masterWriteDataMode = false;
+
+/*********************
+* External Functions *
+**********************/
 
 void twi::inititalise(void)
 {
-  SCL.Set();
   SDA.Set();
+  SCL.Set();
 
   SCL.set_output();
   SDA.set_output();
-
+  
   USIDR = 0xFF;
-
-  USICR = 0x00 |
-          /* TWI Mode */
-          (1 << USIWM1) | (0 << USIWM0) |
-          /* Software strobe as clock source */
-          (1<<USICS1) | (0 << USICS0) | (1 << USICLK) |
+  USICR = (0<<USISIE)|(0<<USIOIE)|                            // Disable Interrupts.
+          (1<<USIWM1)|(0<<USIWM0)|                            // Set USI in Two-wire mode.
+          (1<<USICS1)|(0<<USICS0)|(1<<USICLK)|                // Software storbe as counter clock source
           (0<<USITC);
 
-  counter_overflow_interrupt_disable();
-  start_condition_interrupt_disable();
-
-  ClearFlag(0xF0);
+  /* Clear Flags and reset Counter */
+  USISR = (1<<USISIF)|(1<<USIOIF)|(1<<USIPF)|(1<<USIDC)|(0x0<<USICNT0);
 }
 
-bool twi::SetAddress(U8 slave_address, bool ReadNotWrite)
+bool twi::WriteBytes(U8 slave_address, U8* bytes, U8 length)
 {
-  slave_address &= 0xFE;
-  if(ReadNotWrite)
-    slave_address |= 0x01;
-
-  if(!SendStart())
+  if(!twi::USI_TWI_Start_Transceiver_With_Data(slave_address, bytes, length ) > 0)
   {
-    return false;
-  }
-  SCL.Clear();
-
-  TransferByte(slave_address);
-
-  if(!ACK_received())
-  {
-    _error_state = USI_TWI_NO_ACK_ON_ADDRESS;
     return false;
   }
 
   return true;
 }
 
-bool twi::WriteBytes(U8 slave_address, U8 length, U8 *bytes)
+bool twi::ReadBytes(U8 slave_address, U8 *bytes, U8 length)
 {
-  _error_state = USI_TWI_OKAY;
-  if((bytes + length) > (unsigned char*)RAMEND)
+  slave_address |= 0x01;
+
+  if(!twi::USI_TWI_Start_Transceiver_With_Data( slave_address, bytes, length ) > 0)
   {
-    _error_state = USI_TWI_DATA_OUT_OF_BOUND;
     return false;
   }
-
-  if(length <= 0)
-  {
-    _error_state = USI_TWI_NO_DATA;
-    return false;
-  }
-
-  if(!CheckForBusErrors())
-    return false;
-
-  if(!SetAddress(slave_address, false))
-  {
-    return false;
-  }  
-
-  do
-  {
-    SCL.Clear();
-    TransferByte(*(bytes++));
-
-    if(!ACK_received())
-      return false;
-
-  }while( --length);
-
-  SendStop();
-
   return true;
 }
 
-bool twi::ReadBytes(U8 slave_address, U8 length, U8 *bytes)
+unsigned char twi::USI_TWI_Start_Transceiver_With_Data(U8 address, unsigned char *msg, unsigned char msgSize)
 {
-  _error_state = USI_TWI_OKAY;
+  _error_state = TWI_RESULT_OKAY;
+  addressMode = TRUE;
 
-  if(!CheckForBusErrors())
-    return false;
+  if ( !(address & (1<<TWI_READ_BIT)) )                // The LSB in the address byte determines if is a masterRead or masterWrite operation.
+  {
+    masterWriteDataMode = TRUE;
+  }
 
-  if(!SetAddress(slave_address, true))
-    return false;
+  SendStart();
 
+/*Write address and Read/Write data */
   do
   {
-    SDA.set_input();
-    *(bytes++) = TransferByte(DUMMY);
-
-    if( length == 1)
+    if(addressMode)
     {
-      SendNACK();
+      if(!SetAddress(address, masterWriteDataMode))
+      {
+        _error_state = TWI_RESULT_NO_ACK_ON_ADDRESS;
+        return 0x01;
+      }
+      addressMode = false;
     }
+    else if (masterWriteDataMode)
+    {
+      if(!WriteByte(*(msg++)))
+      {
+        _error_state = TWI_RESULT_NO_ACK_ON_DATA;
+        return 0x01;
+      }
+    }
+    /* Else masterRead cycle*/
     else
     {
-      SendACK();
+      ReadByte(msg++, msgSize == 1);
     }
-  }while( --length);
+  }while( --msgSize) ;                             // Until all data sent/received.
   
-  SendStop();
+  SendStop();                           // Send a STOP condition on the TWI bus.
 
-  return true;
+/* Transmission successfully completed*/
+  return 0x00;
 }
 
-bool twi::WriteBytesToRegister(U8 slave_address, U8 reg, U8 length, U8 *bytes)
-{
-  _error_state = USI_TWI_OKAY;
+/********************
+* Private Functions *
+********************/
 
-  if((bytes + length) > (unsigned char*)RAMEND)
+unsigned char twi::USI_TWI_Master_Transfer(bool eightBits)
+{
+  U8 rx;
+
+  if(eightBits)
   {
-    _error_state = USI_TWI_DATA_OUT_OF_BOUND;
-    return false;
+    eight_bit_mode();
   }
-
-  if(length <= 0)
-  {
-    _error_state = USI_TWI_NO_DATA;
-    return false;
-  }
-
-  if(!CheckForBusErrors())
-    return false;
-
-  if(!SetAddress(slave_address, false))
-  {
-    return false;
-  }  
-
-  SCL.Clear();
-  TransferByte(reg);
-
-  if(!ACK_received())
-    return false;
-
+  else
+    one_bit_mode();
+ 
   do
   {
-    SCL.Clear();
-    TransferByte(*(bytes++));
-
-    if(!ACK_received())
-      return false;
-
-  }while( --length);
-
-  SendStop();
-
-  return true;
-}
-
-bool twi::ReadBytesFromRegister(U8 slave_address, U8 reg, U8 length, U8 *bytes)
-{
-  _error_state = USI_TWI_OKAY;
-
-  if(!CheckForBusErrors())
-    return false;
-
-  if(!SetAddress(slave_address, false))
-  {
-    return false;
-  }  
-
-  SCL.Clear();
-  TransferByte(reg);
-
-  if(!ACK_received())
-    return false;
-
-  if(!SetAddress(slave_address, true))
-    return false;
-
-  do
-  {
-    SDA.set_input();
-    *(bytes++) = TransferByte(DUMMY);
-
-    if( length == 1)
-    {
-      SendNACK();
-    }
-    else
-    {
-      SendACK();
-    }
-  }while( --length);
-  
-  SendStop();
-
-  return true;
-}
-
-U8 twi::TransferBit(U8 b)
-{
-  USIDR = b;
-  one_bit_mode();
-
-  do
-  {
-    _delay_ms(10);              
+    _delay_us( T2_TWI/4 );              
     toggleClockPort();
     while(!SCL.Value());
-    _delay_ms(10);              
+    _delay_us( T4_TWI/4 );              
     toggleClockPort();
-  }while(!CheckFlag(TWI_FLAG_COUNTER_OVERFLOW));
+  }while( !CheckFlag(TWI_FLAG_COUNTER_OVERFLOW) );        // Check for transfer complete.
   
-  _delay_ms(10);
-  U8 rx  = USIDR;
-  USIDR = 0xFF;
+  _delay_us( T2_TWI/4 );                
+  rx  = USIDR;                           // Read out data.
+  USIDR = 0xFF;                            // Release SDA.
   SDA.set_output();
 
-  return rx;
+  return rx;                             // Return the data from the USIDR
 }
 
 bool twi::SendStop(void)
 {
-  SDA.Clear();
-  SCL.Set();
-  while(!SCL.Value());
-  _delay_ms(10);               
-  SDA.Set();
-  _delay_ms(10);               
+  PullPin(&SDA);
+  ReleaseAndWait(&SCL);
+  _delay_us( T4_TWI/4 );
+  ReleasePin(&SDA);
+  _delay_us( T2_TWI/4 );
   
-  if(!CheckFlag(TWI_FLAG_STOP_DETECTED))
+#ifdef SIGNAL_VERIFY
+  if( !(USISR & (1<<USIPF)) )
   {
-    _error_state = USI_TWI_MISSING_STOP_CON;    
+    _error_state = TWI_RESULT_MISSING_STOP_CON;
     return false;
   }
+#endif
 
   return true;
 }
 
-bool twi::SendStart(void)
+void twi::SendStart(void)
 {
-  SCL.Set();
+  /* Release SCL to ensure that (repeated) Start can be performed */
+  ReleaseAndWait(&SCL);
+  _delay_us( T4_TWI/4 );                         // Delay for T4TWI if TWI_FAST_MODE
 
-  while(!SCL.Value());
-  _delay_ms(10);
-
-  SDA.Clear();
-  _delay_ms(10);                         
-  SCL.Clear();
-  SDA.Set();
-
-  if(!CheckFlag(TWI_FLAG_START_DETECTED))
-  {
-    _error_state = USI_TWI_MISSING_START_CON;  
-    return false;
-  }
-
-  return true;
-}
-
-bool twi::CheckAndClearFlag(TWI_FLAGS flag)
-{
-  if(CheckFlag(flag))
-  {
-    ClearFlag(flag);
-    return true;
-  }
-  return false;
+  /* Generate Start Condition */
+  PullPin(&SDA);
+  _delay_us( T4_TWI/4 );
+  PullPin(&SCL);
+  ReleasePin(&SDA);
 }
 
 bool twi::ACK_received(void)
 {
   SDA.set_input();
-
-  if(TransferBit(DUMMY) & 0x01) 
+  if( USI_TWI_Master_Transfer( false ) & (1<<TWI_NACK_BIT) ) 
   {
-    _error_state = USI_TWI_NO_ACK_ON_DATA;
+    if ( addressMode )
+      _error_state = TWI_RESULT_NO_ACK_ON_ADDRESS;
+    else
+      _error_state = TWI_RESULT_NO_ACK_ON_DATA;
     return false;
   }
   return true;
@@ -298,59 +183,62 @@ bool twi::ACK_received(void)
 
 void twi::SendACK()
 {
-  TransferBit(0x00);
+  USIDR = 0x00; 
+  USI_TWI_Master_Transfer( false );   // Generate ACK/NACK.
 }
 
 void twi::SendNACK()
 {
-  TransferBit(0xFF);
+  USIDR = 0xFF; 
+  USI_TWI_Master_Transfer( false );   // Generate ACK/NACK.
 }
 
-U8 twi::TransferByte(U8 b)
+bool twi::SetAddress(U8 slave_address, bool ReadNotWrite)
 {
+  /* Write a byte */
+  PullPin(&SCL);
+  if(ReadNotWrite)
+    slave_address |= 1;
+
+  USIDR = slave_address;
+  USI_TWI_Master_Transfer(true);    // Send 8 bits on bus.
+  
+  /* Clock and verify (N)ACK from slave */
+  if(!ACK_received()) 
+    return false;
+  
+  return true;
+}
+
+bool twi::WriteByte(U8 b)
+{
+  /* Write a byte */
+  PullPin(&SCL);
   USIDR = b;
-  eight_bit_mode();
+  USI_TWI_Master_Transfer( true );    // Send 8 bits on bus.
 
-  do
-  {
-    _delay_ms(10);               
-    toggleClockPort();
-    while(!SCL.Value());
-    _delay_ms(10);
-    toggleClockPort();
-  }while(!CheckFlag(TWI_FLAG_COUNTER_OVERFLOW));
-  
-  _delay_ms(10);                
-  U8 rx  = USIDR;
-  USIDR = DUMMY;
-  SDA.set_output();
+  /* Clock and verify (N)ACK from slave */
+  if(!ACK_received())
+    return false;
 
-  return rx;
+  return true;
 }
 
-bool twi::CheckForBusErrors()
+void twi::ReadByte(U8 *b, bool EndOfTransmission)
 {
-  return true;
+  /* Read a data byte */
+  SDA.set_input();
+  *(b)  = USI_TWI_Master_Transfer( true );
 
-  if(CheckFlag(TWI_FLAG_START_DETECTED))
+  /* Prepare to generate ACK (or NACK in case of End Of Transmission) */
+  if(EndOfTransmission)                            // If transmission of last byte was performed.
   {
-    _error_state = USI_TWI_UE_START_CON;
-    return false;
+    SendNACK();
   }
-
-  if(CheckFlag(TWI_FLAG_STOP_DETECTED))
+  else
   {
-    _error_state = USI_TWI_UE_STOP_CON;
-    return false;
+    SendACK();
   }
-
-  if(CheckFlag(TWI_FLAG_DATA_COLLISION))
-  {
-    _error_state = USI_TWI_UE_DATA_COL;
-    return false;
-  }
-  
-  return true;
 }
 
 #endif

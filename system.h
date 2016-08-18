@@ -34,7 +34,7 @@ TIMER2 - System Timer
 #include "HAL/tc0.h"
 #include "HAL/tc2.h"
 #include "HAL/pin.h"
-//#include "HAL/twi.h"
+#include "HAL/twi.h"
 #include "HAL/twi_master.h"
 #include "HAL/adc.h"
 #include "HAL/LCD_HW.h"

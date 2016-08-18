@@ -38,7 +38,7 @@ EEPROM_RESULT EEPROM_24LC08::Write(U16 address, U8 *data, U8 length)
 
   memcpy(&buffer[2], data, length);
   WriteProtectDisable();
-  if(!twi_master::USI_TWI_Start_Transceiver_With_Data( buffer, 2 ) > 0)
+  if(!twi::WriteBytes(buffer[0], &buffer[1], length ) > 0)
   {
     res = EEPROM_ERROR_WRITING;
   }
@@ -67,14 +67,12 @@ EEPROM_RESULT EEPROM_24LC08::Read(U16 address, U8 length, U8 *data)
   buffer[0] |= (U8)((address & 0x03) >> 7);
   buffer[1] = (U8)(address & 0xFF);
 
-  if(!twi_master::USI_TWI_Start_Transceiver_With_Data( buffer, 2 ) > 0)
+  if(!twi::WriteBytes(buffer[0], &buffer[1], 1 ) > 0)
   {
     res = EEPROM_ERROR_ADDRESS;
   }
 
-  buffer[0] = DeviceAddress | 0x01;
-
-  if(!twi_master::USI_TWI_Start_Transceiver_With_Data( buffer, length ) > 0)
+  if(!twi::ReadBytes( buffer[0], &buffer[1], length ) > 0)
   {
     res = EEPROM_ERROR_READING;
   }
@@ -100,6 +98,8 @@ EEPROM_RESULT EEPROM_24LC08::WriteAndVerify(U16 address, U8 length, U8 *data)
   if(res != EEPROM_OKAY)
     return res;
 
+  _delay_ms(250);
+
   res = Read(address, length, temp);
 
   if(res != EEPROM_OKAY)
@@ -119,10 +119,8 @@ EEPROM_RESULT EEPROM_24LC08::WriteAndVerify(U16 address, U8 length, U8 *data)
 
 bool EEPROM_24LC08::Test()
 {
-  static U8 state = 0;
   U8 buffer[10];
-  U8 temp;
-  memset(buffer, 0x55, 10);
+  memset(buffer, 0xAA, 10);
 
   if(WriteAndVerify(0x0000, 10, buffer) != EEPROM_OKAY)
     return false;

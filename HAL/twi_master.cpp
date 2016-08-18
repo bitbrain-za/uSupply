@@ -8,6 +8,8 @@
 
 #include "../system.h"
 
+#if 0
+
 union USI_TWI_state
 {
   unsigned char errorState;         // Can reuse the TWI_state for error states due to that it will not be need if there exists an error.
@@ -186,3 +188,5 @@ unsigned char twi_master::USI_TWI_Master_Stop( void )
 
   return (TRUE);
 }
+
+#endif

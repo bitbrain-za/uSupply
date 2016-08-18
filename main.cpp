@@ -15,15 +15,13 @@ EEPROM_24LC08 eeprom(&hal::portE, 3);
 
 int main(void)
 {
-  U8 temp;
   char str[32];
   char eeprom_str[32];
   LM6029ACW display;
   SystemClock::init();
 
   hal::board_init();
-//  twi::inititalise();
-  twi_master::USI_TWI_Master_Initialise();
+  twi::inititalise();
   display.init();
 
   display.ClearScreen(false);
