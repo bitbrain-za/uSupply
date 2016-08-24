@@ -1,4 +1,4 @@
-/* 
+/*
 * twi.h
 *
 * Created: 2016/07/20 10:41:52 AM
@@ -34,34 +34,32 @@ typedef enum
 
 class twi
 {
-//variables
-public:
+  //variables
+  public:
   static TWI_STATE ErrorState() { return _error_state; }
-protected:
-private:
-  static bool addressMode;
-  static bool masterWriteDataMode;
+  protected:
+  private:
   static TWI_STATE _error_state;
   static pin SDA;
   static pin SCL;
 
-//functions
-public:
+  //functions
+  public:
   static void inititalise(void);
 
-  static unsigned char USI_TWI_Start_Transceiver_With_Data(U8 address, unsigned char * , unsigned char );
+  static U8 USI_TWI_Start_Transceiver_With_Data(U8 address, U8 *msg , U8 length, bool ReadNotWrite);
 
   static bool WriteBytes(U8 slave_address, U8 *bytes, U8 length);
   static bool ReadBytes(U8 slave_address, U8 *bytes, U8 length);
 
-protected:
-private:
+  protected:
+  private:
   
-  static unsigned char USI_TWI_Master_Transfer( bool );
+  static U8 USI_TWI_Master_Transfer( bool );
 
   static bool SendStop(void);
-  static void SendStart(void);  
-  static bool SetAddress(U8 slave_address, bool ReadNotWrite);
+  static void SendStart(void);
+  static bool SetAddress(U8 slave_address);
 
   static void start_condition_interrupt_enable(void) { USICR |= (1 << USISIE); }
   static void start_condition_interrupt_disable(void) { USICR &= ~(1 << USISIE); }

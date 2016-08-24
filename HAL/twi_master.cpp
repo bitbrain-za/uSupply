@@ -60,7 +60,7 @@ unsigned char twi_master::USI_TWI_Get_State_Info( void )
  Success or error code is returned. Error codes are defined in 
  USI_TWI_Master.h
 ---------------------------------------------------------------*/
-unsigned char twi_master::USI_TWI_Start_Transceiver_With_Data( unsigned char *msg, unsigned char msgSize)
+bool twi_master::USI_TWI_Start_Transceiver_With_Data( unsigned char *msg, unsigned char msgSize)
 {
   unsigned char tempUSISR_8bit = (1<<USISIF)|(1<<USIOIF)|(1<<USIPF)|(1<<USIDC)|      // Prepare register value to: Clear flags, and
                                  (0x0<<USICNT0);                                     // set USI to shift 8 bits i.e. count 16 clock edges.
@@ -105,7 +105,7 @@ unsigned char twi_master::USI_TWI_Start_Transceiver_With_Data( unsigned char *ms
           USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_ADDRESS;
         else
           USI_TWI_state.errorState = USI_TWI_NO_ACK_ON_DATA;
-        return 0x01;
+        return false;
       }
       USI_TWI_state.addressMode = FALSE;            // Only perform address transmission once.
     }
@@ -132,7 +132,7 @@ unsigned char twi_master::USI_TWI_Start_Transceiver_With_Data( unsigned char *ms
   USI_TWI_Master_Stop();                           // Send a STOP condition on the TWI bus.
 
 /* Transmission successfully completed*/
-  return 0x00;
+  return true;
 }
 
 /*---------------------------------------------------------------
@@ -169,7 +169,7 @@ unsigned char twi_master::USI_TWI_Master_Transfer( unsigned char temp )
  Function for generating a TWI Stop Condition. Used to release 
  the TWI bus.
 ---------------------------------------------------------------*/
-unsigned char twi_master::USI_TWI_Master_Stop( void )
+bool twi_master::USI_TWI_Master_Stop( void )
 {
   PORT_USI &= ~(1<<PIN_USI_SDA);           // Pull SDA low.
   PORT_USI |= (1<<PIN_USI_SCL);            // Release SCL.
@@ -182,11 +182,11 @@ unsigned char twi_master::USI_TWI_Master_Stop( void )
   if( !(USISR & (1<<USIPF)) )
   {
     USI_TWI_state.errorState = USI_TWI_MISSING_STOP_CON;    
-    return (FALSE);
+    return false;
   }
 #endif
 
-  return (TRUE);
+  return true;
 }
 
 #endif

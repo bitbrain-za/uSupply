@@ -49,8 +49,8 @@ private:
 	EEPROM_24LC08( const EEPROM_24LC08 &c );
 	EEPROM_24LC08& operator=( const EEPROM_24LC08 &c );
 
-  void WriteProtectEnable(void) { write_protect.Clear(); }
-  void WriteProtectDisable(void) { write_protect.Set(); }
+  void WriteProtectEnable(void) { write_protect.Set(); }
+  void WriteProtectDisable(void) { write_protect.Clear(); }
 
   EEPROM_RESULT SetAddress(U16 address);
 

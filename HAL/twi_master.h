@@ -100,12 +100,12 @@ private:
 //functions
 public:
   static void USI_TWI_Master_Initialise( void );
-  static unsigned char USI_TWI_Start_Transceiver_With_Data( unsigned char * , unsigned char );
+  static bool USI_TWI_Start_Transceiver_With_Data( unsigned char * , unsigned char );
   static unsigned char USI_TWI_Get_State_Info( void );
 protected:
 private:
   static unsigned char USI_TWI_Master_Transfer( unsigned char );
-  static unsigned char USI_TWI_Master_Stop( void );
+  static bool USI_TWI_Master_Stop( void );
 
 }; //twi_master
 

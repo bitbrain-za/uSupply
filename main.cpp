@@ -22,6 +22,7 @@ int main(void)
 
   hal::board_init();
   twi::inititalise();
+  //twi_master::USI_TWI_Master_Initialise();
   display.init();
 
   display.ClearScreen(false);

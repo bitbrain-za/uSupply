@@ -45,3 +45,14 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.d
+*.o
+Debug/Makefile
+Debug/uSupply.srec
+Debug/uSupply.eep
+Debug/uSupply.elf
+Debug/uSupply.lss
+Debug/Makefile
+Debug/uSupply.hex
+Debug/uSupply.map
+Debug/Makefile
