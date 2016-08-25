@@ -9,9 +9,11 @@
 
 #include "system.h"
 
+pin climit(&hal::portB, 4, true, true);
 RotaryEncoder voltageEncoder(&hal::portA, 4, &hal::portA, 2);
 RotaryEncoder currentEncoder(&hal::portA, 5, &hal::portA, 0);
 EEPROM_24LC08 eeprom(&hal::portE, 3);
+MCP4716A0T dac(VREF_VREFPIN, DAC_GAIN_1X);
 
 int main(void)
 {
@@ -19,6 +21,7 @@ int main(void)
   char eeprom_str[32];
   LM6029ACW display;
   SystemClock::init();
+  float voltage = 0;
 
   hal::board_init();
   twi::inititalise();
@@ -29,13 +32,24 @@ int main(void)
   currentEncoder.FSM(true);
   voltageEncoder.FSM(true);
 
-  if(eeprom.Test())
-    sprintf(eeprom_str, "EEPROM: Passed");
-  else
-    sprintf(eeprom_str, "EEPROM: Failed");
+  dac.SetReference(VREF_VREFPIN, 2.048);
+  dac.SetVoltage(2.047);
 
   while (1) 
   {
+    if(voltage < 2.048)
+      voltage += 0.200;
+    else
+      voltage = 0;
+
+    dac.SetVoltage(voltage);
+
+    climit.Clear();
+    _delay_ms(1000);
+    climit.Set();
+    _delay_ms(1000);
+     
+
     currentEncoder.FSM(false);
     voltageEncoder.FSM(false);
     if(voltageEncoder.Changed() || currentEncoder.Changed())

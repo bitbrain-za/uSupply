@@ -8,8 +8,6 @@
 
 #include "../system.h"
 
-#if 0
-
 // default constructor
 INA219::INA219(BUS_VOLTAGE brng, ADC_SETTING adc_setting, OPERATING_MODE operating_mode)
 {
@@ -65,9 +63,32 @@ bool INA219::SetGain(PGA_GAIN pga_gain)
 
 S16 INA219::Current()
 {
-  S16 shunt_register;
-  ReadRegister(INA219_SHUNT_VOLTAGE, (U8 *)&shunt_register);
+  S16 shunt_register = ReadRegister(INA219_SHUNT_VOLTAGE);
   return shunt_register;
 }
 
-#endif
+U16 INA219::ReadRegister(INA219_REGISTER reg)
+{ 
+  U8 buffer[2];
+
+  twi::WriteBytes(DeviceAddress, (U8 *)&reg, 1);
+  twi::ReadBytes(DeviceAddress, buffer, 2);
+
+  U16 val = buffer[0] << 8;
+  val |= buffer[1];
+
+  return val;
+}
+
+bool INA219::WriteRegister(INA219_REGISTER reg, U16 data) 
+{ 
+  if( !((reg == INA219_CONFIG) || (reg == INA219_CALIBRATION)) )
+    return false;
+  
+  U8 buffer[3];
+  buffer[0] = (U8)reg;
+  buffer[1] = ((data >> 8) & 0xFF);
+  buffer[2] = (data & 0xFF);
+
+  return twi::WriteBytes(DeviceAddress, buffer, 3);
+}

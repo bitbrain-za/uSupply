@@ -9,7 +9,6 @@
 #ifndef __INA219_H__
 #define __INA219_H__
 
-#if 0
 typedef enum
 {
   INA219_CONFIG = 0x00,
@@ -91,8 +90,8 @@ private:
 	INA219( const INA219 &c );
 	INA219& operator=( const INA219 &c );
 
-  bool ReadRegister(INA219_REGISTER reg, U8 *buffer) { return twi::ReadBytesFromRegister(DeviceAddress, reg, 2, buffer); }
-  bool WriteRegister(INA219_REGISTER reg, U16 data) { return twi::WriteBytesToRegister(DeviceAddress, reg, 2, (U8 *)&data); }
+  U16 ReadRegister(INA219_REGISTER reg);
+  bool WriteRegister(INA219_REGISTER reg, U16 data);
 
   bool Reset() { return WriteRegister(INA219_CONFIG, 0x8000); }
   bool Configure(BUS_VOLTAGE brng, PGA_GAIN pga_gain, ADC_SETTING adc_setting, OPERATING_MODE operating_mode);
@@ -104,7 +103,5 @@ private:
   S16 Current();
 
 }; //INA219
-
-#endif
 
 #endif //__INA219_H__

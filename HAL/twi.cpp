@@ -4,7 +4,6 @@
 * Created: 2016/07/20 10:41:52 AM
 * Author: Philip
 */
-#if 1
 #include "../system.h"
 
 #define DUMMY 0xFF
@@ -290,5 +289,3 @@ void twi::ReadByte(U8 *b, bool EndOfTransmission)
     SendACK();
   }
 }
-
-#endif

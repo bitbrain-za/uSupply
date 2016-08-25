@@ -8,8 +8,6 @@
 #ifndef __TWI_H__
 #define __TWI_H__
 
-#if 1
-
 typedef enum
 {
   TWI_FLAG_START_DETECTED = USISIF,
@@ -88,7 +86,5 @@ class twi
   static void ReadByte(U8 *b, bool EndOfTransmission);
 
 }; //twi
-
-#endif
 
 #endif //__TWI_H__
