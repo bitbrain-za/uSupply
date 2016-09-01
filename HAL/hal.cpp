@@ -13,7 +13,7 @@ port hal::portB(&PORTB, &DDRB, &PINB);
 port hal::portC(&PORTC, &DDRC, &PINC);
 port hal::portD(&PORTD, &DDRD, &PIND);
 port hal::portE(&PORTE, &DDRE, &PINE);
-port hal::portF(&PORTG, &DDRG, &PINF);
+port hal::portF(&PORTF, &DDRF, &PINF);
 port hal::portG(&PORTG, &DDRG, &PING);
 
 pin hal::climitLed(&hal::portC, 4, true, true);
