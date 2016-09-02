@@ -7,6 +7,18 @@
 
 #include "../system.h"
 
+/*
+Pin | Channel |   Signal
+60  |   ADC1  |   Temperature
+59  |   ADC2  |   Voltage Out
+62  |   VREF  |   2.048V
+*/
+
+#define VOLTAGE_SENSE  ADC2
+#define TEMPERATURE ADC1
+#define VREF 2048
+#define MAX 1024
+
 void adc::init(void)
 {
   /* Power ADC */
@@ -25,7 +37,7 @@ void adc::init(void)
 
   /* 500 kHz */
   PrescalerSelect(DIV16);
-  ChannelSelect(ADC0);
+  ChannelSelect(ADC1);
 }
 
 void adc::ReferenceSelection(ADC_REFRENCE ref)
@@ -77,4 +89,44 @@ U16 adc::DoConversion(ADC_CHANNEL_MUX channel)
   ClearInterruptFlag();
 
   return result;
+}
+
+U16 adc::ReadVoltageOutput_mV()
+{
+  U16 val = DoConversion(VOLTAGE_SENSE);
+
+  /* ADC = Vin*MAX/Vref 
+         = Vin / 2 
+     
+     Vin(mV) = ADC * 2
+         
+      Vout = Vin * 10
+           = ADC * 20 mV
+         */
+
+  /* 10x Voltage divider, MAX/Vref = 1/2 */
+  return val * 20;
+}
+
+S16 adc::ReadTemperature()
+{
+  /* ADC = Vin*MAX/Vref 
+         = Vin / 2 
+     
+     Vin = ADC * 2    
+     
+     Vin = Temp(10mV/Deg) + 500 mV 
+
+     Temp(10mV/deg) = (Vin - 500mV)
+
+
+
+     Temp = ((ADC*2) - 500) / 10
+
+         */
+
+  U16 val = DoConversion(TEMPERATURE);
+  S16 temp = ((2 * val) - 500);
+  return (temp / 10);
+
 }

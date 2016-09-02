@@ -26,6 +26,22 @@ typedef enum
   ADC5 = 0x05,
   ADC6 = 0x06,
   ADC7 = 0x07,
+  DIF_0_1 = 0x10,
+  DIF_1_1 = 0x11,
+  DIF_2_1 = 0x12,
+  DIF_3_1 = 0x13,
+  DIF_4_1 = 0x14,
+  DIF_5_1 = 0x15,
+  DIF_6_1 = 0x16,
+  DIF_7_1 = 0x17,
+  DIF_0_2 = 0x18,
+  DIF_1_2 = 0x19,
+  DIF_2_2 = 0x1A,
+  DIF_3_2 = 0x1B,
+  DIF_4_2 = 0x1C,
+  DIF_5_2 = 0x1D,
+  ADC_VBG = 0x1E,
+  ADC_GND = 0x1F, 
 }ADC_CHANNEL_MUX;
 
 typedef enum
@@ -63,6 +79,9 @@ private:
 public:
   static void init(void);
   static U16 DoConversion(ADC_CHANNEL_MUX channel);
+
+  static U16 ReadVoltageOutput_mV();
+  static S16 ReadTemperature();
 protected:
 private:
   /* ADMUX */
