@@ -59,20 +59,7 @@ void timer_list::DeregisterTimer(U8 id)
 // default constructor
 timer::timer()
 {
-  _id = timer_list::RegisterTimer(this);
-  _callback_set = false;
-  _running = false;
-  _interval = 0;
-  _count = 0;
-} //timer
-
-timer::timer(U16 milliseconds)
-{
-  _id = timer_list::RegisterTimer(this);
-  _callback_set = false;
-  _running = false;
-  _interval = milliseconds;
-  _count = 0;
+  _id = 0xFF;
 } //timer
 
 // default destructor
@@ -80,6 +67,34 @@ timer::~timer()
 {
   timer_list::DeregisterTimer(_id);
 } //~timer
+
+bool timer::init()
+{
+  _id = timer_list::RegisterTimer(this);
+  _callback_set = false;
+  _running = false;
+  _interval = 0;
+  _count = 0;
+
+  if(_id == 0xFF)
+    return false;
+
+  return true;
+}
+
+bool timer::init(U16 ms)
+{
+  _id = timer_list::RegisterTimer(this);
+  _callback_set = false;
+  _running = false;
+  _interval = ms;
+  _count = 0;
+
+  if(_id == 0xFF)
+    return false;
+
+  return true;
+}
 
 void timer::tick(U16 ms)
 {
@@ -106,7 +121,7 @@ void timer::Start()
 void timer::Start(U16 milliseconds)
 {
   _interval = milliseconds;
-  _running = true;
+  Start();
 }
 
 void timer::Restart()

@@ -11,59 +11,71 @@
 
 RotaryEncoder voltageEncoder(&hal::portA, 4, &hal::portA, 2);
 RotaryEncoder currentEncoder(&hal::portA, 5, &hal::portA, 0);
-EEPROM_24LC08 eeprom(&hal::portE, 3);
-MCP4716A0T dac(VREF_VREFPIN, DAC_GAIN_1X);
+VoltageControl voltageControl(ADC2, &voltageEncoder);
+Housekeeping houseKeeper;
 
 int main(void)
 {
   U16 delay_counter = 0;
+  U16 voltage_read = 0;
   char str[32];
-  char eeprom_str[32];
   LM6029ACW display;
   SystemClock::init();
-  float voltage = 0;
+  U16 voltage = 0;
+  timer led_timer;
+  led_timer.init(500);
+  led_timer.Start();
 
   hal::board_init();
   twi::inititalise();
-  //twi_master::USI_TWI_Master_Initialise();
   display.init();
 
   display.ClearScreen(false);
   currentEncoder.FSM(true);
   voltageEncoder.FSM(true);
+  houseKeeper.Run(RESET);
+  voltageControl.Run(RESET);
 
-  dac.SetReference(VREF_VREFPIN, 2.048);
-  dac.SetVoltage(2.047);
+  adc::init();
+
+  sei();
 
   while (1) 
   {
-    if(delay_counter++ >= 1000)
-    {
-      if(voltage < 2.048)
-        voltage += 0.200;
-      else
-        voltage = 0;
+    houseKeeper.Run(NO_RESET);
 
+    if(delay_counter++ >= 5000)
+    {
       delay_counter = 0;
-      dac.SetVoltage(voltage);
-      hal::climitLed.Toggle();
+    }
+
+    if(led_timer.Expired())
+    {
+      led_timer.Restart();
+      //hal::climitLed.Toggle();
     }
 
     currentEncoder.FSM(false);
-    voltageEncoder.FSM(false);
-    if(voltageEncoder.Changed() || currentEncoder.Changed() || (delay_counter == 0))
+    voltageControl.Run(NO_RESET);
+
+    if(voltageControl.Dirty() || currentEncoder.Changed() || ((delay_counter % 500) == 0))
     {
       display.ClearScreen(false);
-      sprintf(str, "Voltage: %i", voltageEncoder.Value());
+
+      voltage = voltageControl.voltage_set();
+      voltage_read = voltageControl.voltage_read();
+
+      //sprintf(str, "Set: %d.%03d V", (voltage/1000), (voltage%1000));
+      //display.GotoXY(20, 2);
+      //display.PutStr(str, false);
+
+      sprintf(str, "Output: %d.%02d V", voltage_read/1000, (voltage_read%1000) / 10);
       display.GotoXY(20, 3);
       display.PutStr(str, false);
 
       sprintf(str, "Current: %i", currentEncoder.Value());
       display.GotoXY(20, 4);
       display.PutStr(str, false);
-
-      display.GotoXY(20, 2);
-//      display.PutStr(eeprom_str, false);
    }
 
     _delay_ms(1);

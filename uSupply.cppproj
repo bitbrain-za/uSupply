@@ -184,10 +184,28 @@
     <Compile Include="Application\buttons.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Application\Config.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\Config.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Application\Display.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Application\Display.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\Housekeeping.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\Housekeeping.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\VoltageControl.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\VoltageControl.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Core\MessageQueue.cpp">

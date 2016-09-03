@@ -80,7 +80,6 @@ public:
   static void init(void);
   static U16 DoConversion(ADC_CHANNEL_MUX channel);
 
-  static U16 ReadVoltageOutput_mV();
   static S16 ReadTemperature();
 protected:
 private:

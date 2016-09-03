@@ -25,6 +25,7 @@ TIMER2 - System Timer
 #include <string.h>
 #include <stdarg.h>
 #include <avr/pgmspace.h>
+#include <math.h>
 
 #include "typedef.h"
 
@@ -59,6 +60,10 @@ TIMER2 - System Timer
 
 #include "PSUControl/CurrentLimit.h"
 
+#include "Application/VoltageControl.h"
+#include "Application/Config.h"
+#include "Application/Housekeeping.h"
+
 #ifdef MAIN_C
   #define extern
 #endif
@@ -82,6 +87,8 @@ const U8 BitReverseTable256[] PROGMEM =
   0x07, 0x87, 0x47, 0xC7, 0x27, 0xA7, 0x67, 0xE7, 0x17, 0x97, 0x57, 0xD7, 0x37, 0xB7, 0x77, 0xF7,
   0x0F, 0x8F, 0x4F, 0xCF, 0x2F, 0xAF, 0x6F, 0xEF, 0x1F, 0x9F, 0x5F, 0xDF, 0x3F, 0xBF, 0x7F, 0xFF
 };
+
+extern Config config;
 
 #ifdef MAIN_C
   #undef extern

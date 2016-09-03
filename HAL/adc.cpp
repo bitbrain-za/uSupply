@@ -91,23 +91,6 @@ U16 adc::DoConversion(ADC_CHANNEL_MUX channel)
   return result;
 }
 
-U16 adc::ReadVoltageOutput_mV()
-{
-  U16 val = DoConversion(VOLTAGE_SENSE);
-
-  /* ADC = Vin*MAX/Vref 
-         = Vin / 2 
-     
-     Vin(mV) = ADC * 2
-         
-      Vout = Vin * 10
-           = ADC * 20 mV
-         */
-
-  /* 10x Voltage divider, MAX/Vref = 1/2 */
-  return val * 20;
-}
-
 S16 adc::ReadTemperature()
 {
   /* ADC = Vin*MAX/Vref 

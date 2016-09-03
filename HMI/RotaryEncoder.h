@@ -16,6 +16,7 @@ class RotaryEncoder
 public:
   S8 Value() { _changed = false; return _value; }
   bool Changed() { return _changed; }
+  void Reset() { _value = 0; }
 protected:
 private:
   pin pinA;

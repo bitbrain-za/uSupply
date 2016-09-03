@@ -20,7 +20,6 @@ void SystemClock::init(void)
   tc2::SetOutputCompareA(124);
   tc2::SetOutputCompareCallback(&tick);
   tc2::EnableOutputCompareInterrupt();
-
 }
 
 void SystemClock::tick(void)

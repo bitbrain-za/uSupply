@@ -37,7 +37,7 @@ protected:
 private:
   const static U8 DeviceAddress = 0xC0;
   U8 config;
-  float vref;
+  U16 vref;
 
 //functions
 public:
@@ -45,8 +45,8 @@ public:
 	~MCP4716A0T();
 
   bool WriteConfig(U8 c);
-  void SetReference(DAC_VREF ref, float value);
-  void SetVoltage(float level);
+  void SetReference(DAC_VREF ref, U16 value);
+  void SetVoltage(U16 level);
 
 protected:
 private:

@@ -9,13 +9,14 @@
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#define MAX_TIMERS 2
+#define MAX_TIMERS 5 
 
 class timer
 {
 //variables
 public:
   U16 Interval;
+  bool Registered() { return (_id != 0xFF); }
 protected:
 private:
   bool _callback_set;
@@ -29,9 +30,10 @@ private:
 //functions
 public:
 	timer();
-	timer(U16 milliseconds);
 	~timer();
 
+  bool init();
+  bool init(U16 milliseconds);
   void Start();
   void Start(U16 milliseconds);
   void Restart();
