@@ -19,7 +19,7 @@ MCP4716A0T::~MCP4716A0T()
 {
 } //~MCP4716A0T
 
-void MCP4716A0T::SetReference(DAC_VREF ref, float value)
+void MCP4716A0T::SetReference(DAC_VREF ref, U16 value)
 {
   config &= ~(0x18);
   config |= ref;
@@ -29,12 +29,9 @@ void MCP4716A0T::SetReference(DAC_VREF ref, float value)
   WriteConfig(config);
 }
 
-void MCP4716A0T::SetVoltage(float level)
+void MCP4716A0T::SetVoltage(U16 level)
 {
-  float val = (level * 1024 / vref);
-  U16 reg = (U16)val;
-
-  WriteVolatileDACRegister(reg);
+  WriteVolatileDACRegister(level / 20);
 }
 
 bool MCP4716A0T::WriteVolatileDACRegister(U16 level)
