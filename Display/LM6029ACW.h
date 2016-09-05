@@ -9,7 +9,9 @@
 #ifndef __LM6029ACW_H__
 #define __LM6029ACW_H__
 
-#if 1
+#define LCD_ROWS 8
+#define LCD_COLUMNS 128
+
 class LM6029ACW
 {
 //variables
@@ -42,7 +44,5 @@ private:
   void DrawChar(unsigned char c, unsigned char x, unsigned char page, unsigned char color);
 
 }; //LM6029ACW
-
-#endif
 
 #endif //__LM6029ACW_H__

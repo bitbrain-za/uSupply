@@ -43,7 +43,6 @@ TIMER2 - System Timer
 
 #include "Core/MessageQueue.h"
 
-
 #include "Timers/SystemClock.h"
 #include "Timers/timer.h"
 
@@ -63,6 +62,8 @@ TIMER2 - System Timer
 #include "Application/VoltageControl.h"
 #include "Application/Config.h"
 #include "Application/Housekeeping.h"
+#include "Application/Desktop.h"
+#include "Application/Display.h"
 
 #ifdef MAIN_C
   #define extern

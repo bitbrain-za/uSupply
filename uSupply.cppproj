@@ -190,6 +190,12 @@
     <Compile Include="Application\Config.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Application\Desktop.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Application\Desktop.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Application\Display.cpp">
       <SubType>compile</SubType>
     </Compile>
@@ -369,6 +375,11 @@
     <Folder Include="PSUControl" />
     <Folder Include="Peripherals" />
     <Folder Include="Timers" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="notes.txt">
+      <SubType>compile</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
 </Project>

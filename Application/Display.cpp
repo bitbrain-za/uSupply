@@ -6,10 +6,10 @@
 */
 
 
-#include "Display.h"
+#include "../system.h"
 
 // default constructor
-Display::Display()
+Display::Display() : commandQueue(1, DISPLAY_MESSAGE_SIZE)
 {
 } //Display
 
@@ -17,3 +17,28 @@ Display::Display()
 Display::~Display()
 {
 } //~Display
+
+typedef enum
+{
+  DISP_INIT,
+}DISPLAY_STATE;
+
+void Display::Run(FSM_CONTROL control)
+{
+  static DISPLAY_STATE state;
+
+  if(control == RESET)
+  {
+    state = DISP_INIT;  
+  }
+
+  switch(state)
+  {
+    case DISP_INIT:
+      commandQueue.Clear();
+      break;
+
+      
+
+  }
+}

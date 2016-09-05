@@ -1,0 +1,27 @@
+/*
+ * notes.txt
+ *
+ * Created: 2016/09/05 1:07:53 PM
+ *  Author: Philip
+ */ 
+
+Desktop Display:
+  1. BIG Voltage
+  2. Current and Current limit
+  3. Toolbar
+  4. Icons? Stability, level, EEPROM access, Short circuit, over current...
+
+Functions:
+  1. Calibrate
+    a. Zero (what?)
+    b. Manual enter offset
+    c. Future: Calibration points
+  2. Timer
+    - Start/Stop/Reset
+  3. Current Measurement
+    - Alternative Desktop?
+  4. Settings
+    a. Step Size
+      (Future, make it dependant on voltage)
+      Coarse/fine?
+

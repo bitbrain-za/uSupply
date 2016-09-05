@@ -35,12 +35,12 @@ void LM6029ACW::ClearScreen(bool Invert)
 
 void LM6029ACW::GotoXY(unsigned char x, unsigned char y)
 {
-  if(x<=20)
+  if(x < LCD_COLUMNS - 1)
     pos_x = x;
   else
     pos_x = 0;
   
-  if(y<=7)
+  if(y < LCD_ROWS)
     pos_y = y;
   else
     pos_y = 0;
@@ -68,7 +68,7 @@ void LM6029ACW::PutChar(unsigned char c, bool invert)
   if((pos_x + length) >= LCD_HW::COLUMNS)
   {
     pos_x = 0;
-    if(pos_y==7)
+    if(pos_y == (LCD_ROWS - 1))
       pos_y = 0;
     else
       pos_y++;
