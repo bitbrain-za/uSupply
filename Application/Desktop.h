@@ -10,24 +10,35 @@
 #define __DESKTOP_H__
 
 
+typedef enum
+{
+  DSKTP_CMD_RESET,
+  DSKTP_CMD_REFRESH,
+}DESKTOP_CMD;
+
 class Desktop
 {
 //variables
 public:
   MessageQueue commandQueue;
+  U16 voltage_read;
+
 protected:
 private:
+  LM6029ACW display;
 
 //functions
 public:
 	Desktop();
 	~Desktop();
 
-  void Run(FSM_CONTROL control);
+  void FSM(FSM_CONTROL control);
 protected:
 private:
 	Desktop( const Desktop &c );
 	Desktop& operator=( const Desktop &c );
+
+  void DisplayDesktop();
 
 }; //Desktop
 

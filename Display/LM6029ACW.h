@@ -22,6 +22,7 @@ private:
   U8 pos_x;
   U8 pos_y;
   static font SmallFont;
+  static font SitkaMed;
 
 //functions
 public:

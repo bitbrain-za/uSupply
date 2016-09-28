@@ -22,6 +22,7 @@ public:
 	font();
 	~font();
 
+  U8 height;
   const U8* FetchChar(char c);
 
 protected:

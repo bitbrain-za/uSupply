@@ -4,7 +4,15 @@
 
 Application\buttons.cpp
 
+Application\Config.cpp
+
+Application\Desktop.cpp
+
 Application\Display.cpp
+
+Application\Housekeeping.cpp
+
+Application\VoltageControl.cpp
 
 Core\MessageQueue.cpp
 

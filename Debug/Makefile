@@ -47,7 +47,11 @@ SUBDIRS :=  \
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
 ../Application/buttons.cpp \
+../Application/Config.cpp \
+../Application/Desktop.cpp \
 ../Application/Display.cpp \
+../Application/Housekeeping.cpp \
+../Application/VoltageControl.cpp \
 ../Core/MessageQueue.cpp \
 ../Display/font.cpp \
 ../Display/LM6029ACW.cpp \
@@ -81,7 +85,11 @@ ASM_SRCS +=
 
 OBJS +=  \
 Application/buttons.o \
+Application/Config.o \
+Application/Desktop.o \
 Application/Display.o \
+Application/Housekeeping.o \
+Application/VoltageControl.o \
 Core/MessageQueue.o \
 Display/font.o \
 Display/LM6029ACW.o \
@@ -108,7 +116,11 @@ Timers/timer.o
 
 OBJS_AS_ARGS +=  \
 Application/buttons.o \
+Application/Config.o \
+Application/Desktop.o \
 Application/Display.o \
+Application/Housekeeping.o \
+Application/VoltageControl.o \
 Core/MessageQueue.o \
 Display/font.o \
 Display/LM6029ACW.o \
@@ -135,7 +147,11 @@ Timers/timer.o
 
 C_DEPS +=  \
 Application/buttons.d \
+Application/Config.d \
+Application/Desktop.d \
 Application/Display.d \
+Application/Housekeeping.d \
+Application/VoltageControl.d \
 Core/MessageQueue.d \
 Display/font.d \
 Display/LM6029ACW.d \
@@ -162,7 +178,11 @@ Timers/timer.d
 
 C_DEPS_AS_ARGS +=  \
 Application/buttons.d \
+Application/Config.d \
+Application/Desktop.d \
 Application/Display.d \
+Application/Housekeeping.d \
+Application/VoltageControl.d \
 Core/MessageQueue.d \
 Display/font.d \
 Display/LM6029ACW.d \
@@ -201,6 +221,14 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
+
+
+
+
+
+
 
 
 

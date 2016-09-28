@@ -6,8 +6,10 @@
 */
 #include "../system.h"
 #include "fonts/small.h"
+#include "fonts/sitka_med.h"
 
 font LM6029ACW::SmallFont;
+font LM6029ACW::SitkaMed;
 
 // default constructor
 LM6029ACW::LM6029ACW()
@@ -26,6 +28,10 @@ void LM6029ACW::init()
   controller.init();
   ClearScreen(false);
   SmallFont.map = small_font;
+  SmallFont.height = 1;
+
+  SitkaMed.map = sitka_med_font;
+  SitkaMed.height = 3;
 }
 
 void LM6029ACW::ClearScreen(bool Invert)
@@ -60,9 +66,10 @@ void LM6029ACW::PutStr(char *str, bool invert)
 
 void LM6029ACW::PutChar(unsigned char c, bool invert)
 {
-  const U8* character = SmallFont.FetchChar(c);
+  const U8* character = SitkaMed.FetchChar(c);
   U8 length = pgm_read_byte(character++);
   int i = 0;
+  int j = 0;
   U8 data = 0;
   
   if((pos_x + length) >= LCD_HW::COLUMNS)
@@ -75,24 +82,28 @@ void LM6029ACW::PutChar(unsigned char c, bool invert)
   }
   else
     pos_x++;
-    
-  controller.SetColumnAddress(pos_x);
-  controller.SetPageAddress(pos_y); 
-  LCD_HW::ChipSelect();
 
-  LCD_HW::DataMode();
-
-  for(i = 0 ; i < length ; i++) 
+  for(j = 0 ; j < SitkaMed.height ; j ++)
   {
-    data = pgm_read_byte(character++);
-    if(invert)
-      data = ~data;
 
-    LCD_HW::SetData(data);
-    LCD_HW::TriggerWrite();
+    controller.SetColumnAddress(pos_x);
+    controller.SetPageAddress(pos_y + j);
+    
+    LCD_HW::ChipSelect();
+    LCD_HW::DataMode();
+
+    for(i = 0 ; i < length ; i++) 
+    {
+      data = pgm_read_byte(character++);
+      if(invert)
+        data = ~data;
+
+      LCD_HW::SetData(data);
+      LCD_HW::TriggerWrite();
+    }
+    LCD_HW::ChipDeselect();
   }
 
-  LCD_HW::ChipDeselect();
 
   pos_x += length;
 }

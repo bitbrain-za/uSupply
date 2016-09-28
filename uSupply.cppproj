@@ -226,6 +226,9 @@
     <Compile Include="Display\font.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Display\fonts\sitka_med.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Display\fonts\small.h">
       <SubType>compile</SubType>
     </Compile>
