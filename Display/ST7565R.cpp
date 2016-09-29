@@ -152,6 +152,31 @@ void ST7565R::Clear(bool Invert)
   }
 }
 
+void ST7565R::ClearLine(U8 line, bool Invert)
+{
+	unsigned char j;
+	
+  SetColumnAddress(0);
+  SetPageAddress(line);
+
+  LCD_HW::ChipSelect();
+  LCD_HW::DataMode();
+
+  for(j = 0 ; (j < LCD_HW::COLUMNS) ; j++)
+  {
+    if(!Invert)
+    {
+      LCD_HW::SetData(0x00);
+    }
+    else
+    {
+      LCD_HW::SetData(0xFF);
+    }
+    LCD_HW::TriggerWrite();
+  }
+  LCD_HW::ChipDeselect();
+}
+
 U8 ST7565R::PutChar(char c)
 {
   return 0;

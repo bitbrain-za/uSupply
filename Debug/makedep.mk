@@ -18,6 +18,8 @@ Core\MessageQueue.cpp
 
 Display\font.cpp
 
+Display\Line.cpp
+
 Display\LM6029ACW.cpp
 
 Display\ST7565R.cpp

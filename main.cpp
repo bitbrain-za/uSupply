@@ -18,10 +18,7 @@ Desktop desktop;
 int main(void)
 {
   U16 delay_counter = 0;
-  U16 voltage_read = 0;
-  char str[32];
   SystemClock::init();
-  U16 voltage = 0;
   timer led_timer;
   led_timer.init(500);
   led_timer.Start();
@@ -56,7 +53,7 @@ int main(void)
 
     if(voltageControl.Dirty())
     {
-      desktop.voltage_read = voltageControl.voltage_read();
+      desktop.voltage(voltageControl.voltage_read());
       desktop.commandQueue.Send(DSKTP_CMD_REFRESH);
    }
 

@@ -54,6 +54,7 @@ C_SRCS +=  \
 ../Application/VoltageControl.cpp \
 ../Core/MessageQueue.cpp \
 ../Display/font.cpp \
+../Display/Line.cpp \
 ../Display/LM6029ACW.cpp \
 ../Display/ST7565R.cpp \
 ../HAL/adc.cpp \
@@ -92,6 +93,7 @@ Application/Housekeeping.o \
 Application/VoltageControl.o \
 Core/MessageQueue.o \
 Display/font.o \
+Display/Line.o \
 Display/LM6029ACW.o \
 Display/ST7565R.o \
 HAL/adc.o \
@@ -123,6 +125,7 @@ Application/Housekeeping.o \
 Application/VoltageControl.o \
 Core/MessageQueue.o \
 Display/font.o \
+Display/Line.o \
 Display/LM6029ACW.o \
 Display/ST7565R.o \
 HAL/adc.o \
@@ -154,6 +157,7 @@ Application/Housekeeping.d \
 Application/VoltageControl.d \
 Core/MessageQueue.d \
 Display/font.d \
+Display/Line.d \
 Display/LM6029ACW.d \
 Display/ST7565R.d \
 HAL/adc.d \
@@ -185,6 +189,7 @@ Application/Housekeeping.d \
 Application/VoltageControl.d \
 Core/MessageQueue.d \
 Display/font.d \
+Display/Line.d \
 Display/LM6029ACW.d \
 Display/ST7565R.d \
 HAL/adc.d \
@@ -221,6 +226,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

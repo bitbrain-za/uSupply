@@ -21,11 +21,17 @@ class Desktop
 //variables
 public:
   MessageQueue commandQueue;
-  U16 voltage_read;
+  void voltage(U16 val);
+  bool disp_limit;
 
 protected:
 private:
+  U16 voltage_read;
+  bool voltage_changed;
+  bool current_changed;
+  bool menu_changed;
   LM6029ACW display;
+
 
 //functions
 public:
@@ -39,6 +45,12 @@ private:
 	Desktop& operator=( const Desktop &c );
 
   void DisplayDesktop();
+  void DrawButton(U8 x, U8 page, U8 width, char *text, FONT_SIZE size, bool invert);
+  void ClearVoltageArea(bool invert);
+  void ClearSecondArea(bool invert);
+  void ClearMenuBar(bool invert);
+
+  void invalidate() {voltage_changed = true; current_changed = true; menu_changed = true; }
 
 }; //Desktop
 

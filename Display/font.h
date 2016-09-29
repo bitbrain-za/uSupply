@@ -24,6 +24,7 @@ public:
 
   U8 height;
   const U8* FetchChar(char c);
+  U8 strwidth(char *str);
 
 protected:
 private:

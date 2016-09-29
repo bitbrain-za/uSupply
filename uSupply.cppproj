@@ -232,10 +232,19 @@
     <Compile Include="Display\fonts\small.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="Display\Line.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\Line.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Display\LM6029ACW.cpp">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Display\LM6029ACW.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Display\Point.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Display\ST7565R.cpp">

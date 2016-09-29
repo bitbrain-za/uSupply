@@ -50,6 +50,8 @@ TIMER2 - System Timer
 #include "Peripherals/INA219.h"
 #include "Peripherals/MCP4716A0T.h"
 
+#include "Display/Point.h"
+#include "Display/Line.h"
 #include "Display/font.h"
 #include "Display/ST7565R.h"
 #include "Display/LM6029ACW.h"
