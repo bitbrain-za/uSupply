@@ -45,7 +45,7 @@ private:
 	Desktop& operator=( const Desktop &c );
 
   void DisplayDesktop();
-  void DrawButton(U8 x, U8 page, U8 width, char *text, FONT_SIZE size, bool invert);
+  void DrawButton(U8 position, char *text, bool invert);
   void ClearVoltageArea(bool invert);
   void ClearSecondArea(bool invert);
   void ClearMenuBar(bool invert);

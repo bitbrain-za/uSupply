@@ -54,8 +54,8 @@ public:
   void SetFont(FONT_SIZE size);
   void drawPoint(Point pt);
   void drawLine(Line line);
-  void drawHorizontalLine(Point start, U8 length, bool invert);
-  void drawVerticalLine(Point start, U8 length, bool invert);
+  void drawHorizontalLine(U8 X, U8 Y, U8 length, bool invert);
+  void drawVerticalLine(U8 X, U8 Y, U8 length, bool invert);
   U8 strwidth(char *str);
 
 protected:

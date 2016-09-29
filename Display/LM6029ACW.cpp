@@ -177,13 +177,13 @@ void LM6029ACW::drawLine(Line line)
 
 }
 
-void LM6029ACW::drawHorizontalLine(Point start, U8 length, bool invert)
+void LM6029ACW::drawHorizontalLine(U8 X, U8 Y, U8 length, bool invert)
 {
-  pos_x = start.X;
-  pos_y = start.Y / 8;
+  pos_x = X;
+  pos_y = Y / 8;
 
   U8 i = 0;
-  U8 data = 0x80 >> (start.Y % 8);
+  U8 data = 0x01 << (Y % 8);
 
   if(invert)
     data = ~data;
@@ -202,22 +202,12 @@ void LM6029ACW::drawHorizontalLine(Point start, U8 length, bool invert)
   LCD_HW::ChipDeselect();
 }
 
-void LM6029ACW::drawVerticalLine(Point start, U8 length, bool invert)
+void LM6029ACW::drawVerticalLine(U8 X, U8 Y, U8 length, bool invert)
 {
-  int j = 0;
+  U8 data = 0xFF;
 
-  U8 start_page = start.Y / 8;
-  U8 end_page = (start.Y + (length - 1)) / 8;
-
-  U8 start_offset = start.Y % 8;
-  U8 end_offset = (start.Y - start_offset + length) % 8;
-  
-  pos_x = start.X;
-  pos_y = start_page; 
-  U8 data = BitReverseTable256[start_offset];
-
-  controller.SetColumnAddress(pos_x);
-  controller.SetPageAddress(pos_y);
+  controller.SetColumnAddress(X);
+  controller.SetPageAddress(Y);
   
   LCD_HW::ChipSelect();
   LCD_HW::DataMode();
@@ -228,42 +218,4 @@ void LM6029ACW::drawVerticalLine(Point start, U8 length, bool invert)
   LCD_HW::SetData(data);
   LCD_HW::TriggerWrite();
   LCD_HW::ChipDeselect();
-
-  if(end_page > (start_page + 1))
-  {
-    data = 0xFF;
-    if(invert)
-      data = ~data;
-    for(j = 0 ; j < (end_page - start_page - 1) ; j ++)
-    {
-      controller.SetColumnAddress(pos_x);
-      controller.SetPageAddress(pos_y + j);
-      
-      LCD_HW::ChipSelect();
-      LCD_HW::DataMode();
-
-      LCD_HW::SetData(data);
-      LCD_HW::TriggerWrite();
-      LCD_HW::ChipDeselect();
-    }
-  }
-  if(end_page > start_page)
-  {
-    data = end_offset;
-
-    controller.SetColumnAddress(pos_x);
-    controller.SetPageAddress(end_page);
-    
-    LCD_HW::ChipSelect();
-    LCD_HW::DataMode();
-
-    if(invert)
-      data = ~data;
-
-    LCD_HW::SetData(data);
-    LCD_HW::TriggerWrite();
-    LCD_HW::ChipDeselect();
-
-  }
- 
 }
