@@ -61,6 +61,7 @@ public:
   bool SetColumnAddress(U8 column_address);
   bool SetContrast(U8 val);
   void Clear(bool Invert);
+  void ClearLine(U8 line, bool Invert);
   U8 PutChar(char c);
 
 protected:
