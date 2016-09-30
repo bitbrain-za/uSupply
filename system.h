@@ -17,6 +17,12 @@ TIMER2 - System Timer
 
 #define F_CPU 8000000
 
+typedef enum
+{
+  SYS_DESKTOP,
+  SYS_MENU,
+}SYSTEM_STATE;
+
 #include <avr/io.h>
 #include <stdio.h>
 #include <util/delay.h>
@@ -92,6 +98,8 @@ const U8 BitReverseTable256[] PROGMEM =
 };
 
 extern Config config;
+
+extern SYSTEM_STATE ex_state;
 
 #ifdef MAIN_C
   #undef extern

@@ -126,35 +126,28 @@ void ST7565R::SendCommand(U8 val)
 
 void ST7565R::Clear(bool Invert)
 {
-	unsigned char i, j;
+	unsigned char i;
 	
 	for(i=0 ; i < LCD_HW::PAGES ; i++)
 	{
-    SetColumnAddress(0);
-    SetPageAddress(i);
-
-    LCD_HW::ChipSelect();
-    LCD_HW::DataMode();
-
-    for(j = 0 ; (j < LCD_HW::COLUMNS) ; j++)
-    {
-      if(!Invert)
-      {
-        LCD_HW::SetData(0x00);
-      }
-      else
-      {
-        LCD_HW::SetData(0xFF);
-      }
-      LCD_HW::TriggerWrite();
-    }
-    LCD_HW::ChipDeselect();
+    ClearLine(i, Invert);
   }
 }
 
 void ST7565R::ClearLine(U8 line, bool Invert)
 {
+  U8 data = (Invert) ? 0xFF : 0x00;
 	unsigned char j;
+
+  if(line == 6)
+  {
+    data ^= 0x80;
+  }
+
+  if((ex_state == SYS_DESKTOP) && (line == 3))
+  {
+    data ^= 0x18;
+  }
 	
   SetColumnAddress(0);
   SetPageAddress(line);
@@ -164,14 +157,11 @@ void ST7565R::ClearLine(U8 line, bool Invert)
 
   for(j = 0 ; (j < LCD_HW::COLUMNS) ; j++)
   {
-    if(!Invert)
-    {
-      LCD_HW::SetData(0x00);
-    }
+    if((line == 7) && ((j % 32) == 0))
+      LCD_HW::SetData(~data);
     else
-    {
-      LCD_HW::SetData(0xFF);
-    }
+      LCD_HW::SetData(data);
+
     LCD_HW::TriggerWrite();
   }
   LCD_HW::ChipDeselect();

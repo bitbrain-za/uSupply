@@ -14,27 +14,30 @@ class CurrentLimit
 {
 //variables
 public:
-  bool Enabled;
-  U16 limit() { return _limit; }
+  static bool Enabled;
+  static U16 limit() { return _limit; }
+  static bool Dirty() { bool temp = _dirty; _dirty = false; return temp; }
 protected:
 private:
-  tc0 tc;
-  U16 _limit;
+  static RotaryEncoder *_encoder;
+  static U16 _limit;
+  static bool _dirty;
+  static U16 StepSize;
+  static U16 max;
+  static U16 min;
+  static S8 calibration_value;
 
 //functions
 public:
-	CurrentLimit();
-	~CurrentLimit();
-
-  void Enable() { SetLimit(_limit); Enabled = true; }
-  void Disable() { SetAverageVoltage(3300); Enabled = false; }
-  void SetLimit(U16 milliamps);
+  static void init(RotaryEncoder *encoder);
+  static void FSM(FSM_CONTROL control);
+  static void Enable() { SetLimit(_limit); Enabled = true; }
+  static void Disable() { SetAverageVoltage(3300); Enabled = false; }
+  static void SetLimit(U16 milliamps);
   
 protected:
 private:
-	CurrentLimit( const CurrentLimit &c );
-	CurrentLimit& operator=( const CurrentLimit &c );
-  void SetAverageVoltage(U16 millivolts);
+  static void SetAverageVoltage(U16 millivolts);
 
 }; //CurrentLimit
 

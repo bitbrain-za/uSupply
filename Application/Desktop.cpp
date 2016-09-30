@@ -14,6 +14,13 @@ typedef enum
   DISP_MENU,
 }DESKTOP_STATE;
 
+typedef enum
+{
+  FUNC_CURRENT_LIM,
+  FUNC_CURRENT_SENSE,
+  FUNC_TIMER,
+}FUNCTIONS;
+
 // default constructor
 Desktop::Desktop() : commandQueue(1, 0)
 {
@@ -105,12 +112,11 @@ void Desktop::DisplayDesktop()
     display.GotoXY(0, 0);
     display.PutStr(str, false, JUST_CENTER);
 
-    display.drawHorizontalLine(0, 28, LCD_COLUMNS, false);
     voltage_changed = false;
   }
   
   /*
-  Current Display
+  Function Area
   */
   if(current_changed)
   {
@@ -118,7 +124,6 @@ void Desktop::DisplayDesktop()
     sprintf(str, "%d.%03d mA", voltage_read/1000, (voltage_read%1000) / 10);
     display.GotoXY(0, 4);
     display.PutStr(str, false, JUST_CENTER);
-    display.drawHorizontalLine(0, 28, LCD_COLUMNS, false);
     current_changed = false;
   }
 
@@ -151,22 +156,17 @@ void Desktop::DisplayDesktop()
 void Desktop::DrawButton(U8 pos, char *text, bool invert)
 {
   U8 width = 32;
-  U8 height = 1;
   U8 x = 32 * pos;
 
   U8 string_length = display.strwidth(text);
   
-  if((string_length + 2) > x)
-    text[width - 2] = '\0';
-
-  if(pos > 0)
+  if((string_length + 2) > width)
   {
-    display.drawVerticalLine(x, 7, 8, invert);
+    text[width - 2] = '\0';
+    string_length = width - 2;
   }
 
-  U8 string_offset = (width - string_length) / 2 + x;
+  U8 string_offset = ((width - string_length) / 2 ) + x;
   display.GotoXY(string_offset, 7);
   display.PutStr(text, invert, JUST_NONE);
-
-//  display.drawHorizontalLine(x, 54, width, invert);
 }

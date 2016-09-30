@@ -18,6 +18,8 @@ Desktop desktop;
 int main(void)
 {
   U16 delay_counter = 0;
+  ex_state = SYS_DESKTOP;
+
   SystemClock::init();
   timer led_timer;
   led_timer.init(500);
@@ -28,6 +30,9 @@ int main(void)
   currentEncoder.FSM(true);
   houseKeeper.Run(RESET);
   voltageControl.Run(RESET);
+  CurrentLimit::init(&currentEncoder);
+  CurrentLimit::FSM(RESET);
+
   desktop.FSM(RESET);
 
   adc::init();
@@ -48,14 +53,14 @@ int main(void)
       led_timer.Restart();
     }
 
-    currentEncoder.FSM(false);
     voltageControl.Run(NO_RESET);
+    CurrentLimit::FSM(NO_RESET);
 
     if(voltageControl.Dirty())
     {
       desktop.voltage(voltageControl.voltage_read());
       desktop.commandQueue.Send(DSKTP_CMD_REFRESH);
-   }
+    }
 
     desktop.FSM(NO_RESET);
     _delay_ms(1);

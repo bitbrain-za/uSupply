@@ -8,18 +8,12 @@
 
 #include "../system.h"
 
-// default constructor
-tc0::tc0(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select)
+void tc0::init(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select)
 {
   SetWGM(waveform_mode);
   SetCOM(compare_mode);
   SelectClock(clock_select);
-} //tc0
-
-// default destructor
-tc0::~tc0()
-{
-} //~tc0
+}
 
 void tc0::SetWGM(TC_WGM mode)
 {

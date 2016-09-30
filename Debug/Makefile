@@ -73,7 +73,6 @@ C_SRCS +=  \
 ../Peripherals/INA219.cpp \
 ../Peripherals/MCP4716A0T.cpp \
 ../PSUControl/CurrentLimit.cpp \
-../Timers/PWM.cpp \
 ../Timers/SystemClock.cpp \
 ../Timers/timer.cpp
 
@@ -112,7 +111,6 @@ Peripherals/EEPROM_24LC08.o \
 Peripherals/INA219.o \
 Peripherals/MCP4716A0T.o \
 PSUControl/CurrentLimit.o \
-Timers/PWM.o \
 Timers/SystemClock.o \
 Timers/timer.o
 
@@ -144,7 +142,6 @@ Peripherals/EEPROM_24LC08.o \
 Peripherals/INA219.o \
 Peripherals/MCP4716A0T.o \
 PSUControl/CurrentLimit.o \
-Timers/PWM.o \
 Timers/SystemClock.o \
 Timers/timer.o
 
@@ -176,7 +173,6 @@ Peripherals/EEPROM_24LC08.d \
 Peripherals/INA219.d \
 Peripherals/MCP4716A0T.d \
 PSUControl/CurrentLimit.d \
-Timers/PWM.d \
 Timers/SystemClock.d \
 Timers/timer.d
 
@@ -208,7 +204,6 @@ Peripherals/EEPROM_24LC08.d \
 Peripherals/INA219.d \
 Peripherals/MCP4716A0T.d \
 PSUControl/CurrentLimit.d \
-Timers/PWM.d \
 Timers/SystemClock.d \
 Timers/timer.d
 
@@ -226,8 +221,6 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
-
-
 
 
 

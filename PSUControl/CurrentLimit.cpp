@@ -10,23 +10,23 @@
 
 #define MAX 0xFF
 
-// default constructor
-CurrentLimit::CurrentLimit() : tc(TC_WGM_PWM_FAST, TC_COM_OC2A_CLEAR, TC_CS_DIV8)
+bool CurrentLimit::Enabled;
+U16 CurrentLimit::_limit;
+
+U16 CurrentLimit::StepSize;
+U16 CurrentLimit::max;
+U16 CurrentLimit::min;
+S8 CurrentLimit::calibration_value;
+bool CurrentLimit::_dirty;
+RotaryEncoder* CurrentLimit::_encoder;
+
+void CurrentLimit::init(RotaryEncoder *encoder)
 {
   Enabled = true;
-
-  tc.SetWGM(TC_WGM_PWM_FAST);
-  tc.SetCOM(TC_COM_OC2A_CLEAR);
-
-  tc.SelectClock(TC_CS_DIV8);
-
+  _encoder = encoder;
+  tc0::init(TC_WGM_PWM_FAST, TC_COM_OC2A_CLEAR, TC_CS_DIV8);
   SetLimit(0);
-} //CurrentLimit
-
-// default destructor
-CurrentLimit::~CurrentLimit()
-{
-} //~CurrentLimit
+}
 
 void CurrentLimit::SetAverageVoltage(U16 millivolts)
 {
@@ -47,7 +47,7 @@ void CurrentLimit::SetAverageVoltage(U16 millivolts)
 
   if(millivolts >= 3300)
   {
-    tc.SetDutyCycle(100);
+    tc0::SetDutyCycle(100);
     return;
   }
 
@@ -56,7 +56,7 @@ void CurrentLimit::SetAverageVoltage(U16 millivolts)
   x /= 3300;
 
   U8 dc = (U8)x;
-  tc.SetDutyCycle(dc);
+  tc0::SetDutyCycle(dc);
 }
 
 void CurrentLimit::SetLimit(U16 milliamps)
@@ -71,4 +71,45 @@ void CurrentLimit::SetLimit(U16 milliamps)
   
   SetAverageVoltage(vout);
   _limit = milliamps;
+}
+
+void CurrentLimit::FSM(FSM_CONTROL control)
+{
+  S16 change;
+  static U16 previous_current;
+
+  if(control == RESET)
+  {
+    _encoder->FSM(true);
+    SetLimit(config.SavedCurrent());
+    return;
+  }
+
+  _encoder->FSM(false);
+
+  if(_encoder->Changed())
+  {
+    _dirty = true;
+    change = StepSize * _encoder->Value();
+    _encoder->Reset();
+
+    if(change > 0)
+    {
+      _limit += change;
+      if(_limit > max)
+        _limit = max;
+    }
+    else
+    {
+      change = -change;
+      if((U16)change > _limit)
+        _limit = min;
+      else
+      {
+        _limit -= change;
+      }
+    }
+    change = 0;
+    SetLimit(_limit);
+  }
 }

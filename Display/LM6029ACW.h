@@ -52,10 +52,6 @@ public:
   void ClearScreen(bool Invert);
   void ClearLine(U8 line, bool invert);
   void SetFont(FONT_SIZE size);
-  void drawPoint(Point pt);
-  void drawLine(Line line);
-  void drawHorizontalLine(U8 X, U8 Y, U8 length, bool invert);
-  void drawVerticalLine(U8 X, U8 Y, U8 length, bool invert);
   U8 strwidth(char *str);
 
 protected:

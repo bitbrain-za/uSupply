@@ -56,8 +56,6 @@ Peripherals\MCP4716A0T.cpp
 
 PSUControl\CurrentLimit.cpp
 
-Timers\PWM.cpp
-
 Timers\SystemClock.cpp
 
 Timers\timer.cpp

@@ -9,6 +9,7 @@
 #include "../system.h"
 
 #define DEFAULT_VOLTAGE 660
+#define DEFAULT_CURRENT 1000
 
 // default constructor
 Config::Config() : eeprom(&hal::portE, 3)
@@ -31,6 +32,7 @@ void Config::Load()
     return;
   }
   eeprom.Read(ADDR_VOLTAGE, 2, (U8 *)&saved_voltage);
+  eeprom.Read(ADDR_CURRENT, 2, (U8 *)&saved_current);
 }
 
 void Config::Save()
@@ -40,6 +42,12 @@ void Config::Save()
     eeprom.WriteAndVerify(ADDR_VOLTAGE, 2, (U8 *)&ram_voltage);
     saved_voltage = ram_voltage;
   }
+
+  if(ram_current != saved_current)
+  {
+    eeprom.WriteAndVerify(ADDR_CURRENT, 2, (U8 *)&ram_current);
+    saved_current = ram_current;
+  }
 }
 
 void Config::Format()
@@ -47,7 +55,10 @@ void Config::Format()
   U16 temp;
 
   temp = DEFAULT_VOLTAGE;
-  eeprom.WriteAndVerify(ADDR_PATTERN, 2, (U8 *)&temp);
+  eeprom.WriteAndVerify(ADDR_VOLTAGE, 2, (U8 *)&temp);
+
+  temp = DEFAULT_CURRENT;
+  eeprom.WriteAndVerify(ADDR_CURRENT, 2, (U8 *)&temp);
 
   temp = 0x66;
   eeprom.WriteAndVerify(ADDR_PATTERN, 2, (U8 *)&temp);

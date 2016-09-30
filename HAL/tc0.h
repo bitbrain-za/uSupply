@@ -10,47 +10,43 @@
 #define __TC0_H__
 
 
-class tc0 : Timer8Bit
+class tc0
 {
 //variables
 public:
-  U8 Count() { return TCNT0; }
-  U8 CompareVal() { return OCR0A; }
+  static U8 Count() { return TCNT0; }
+  static U8 CompareVal() { return OCR0A; }
 
-  bool OverflowInterruptActive() {return ((TIFR0 & 0x02) == 0x02); }
-  bool OutputCompareInterruptActive() {return ((TIFR0 & 0x01) == 0x01); }
+  static bool OverflowInterruptActive() {return ((TIFR0 & 0x02) == 0x02); }
+  static bool OutputCompareInterruptActive() {return ((TIFR0 & 0x01) == 0x01); }
 
 protected:
 private:
 
 //functions
 public:
-  tc0(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select);
-	~tc0();
+  static void init(TC_WGM waveform_mode, TC_COM compare_mode, TC_CS clock_select);
+  static void SelectClock(TC_CS clock_select);
+  static void SetWGM(TC_WGM mode);
+  static void SetCOM(TC_COM mode);
 
-  void SelectClock(TC_CS clock_select);
-  void SetWGM(TC_WGM mode);
-  void SetCOM(TC_COM mode);
+  static void SetCount(U8 count) { TCNT0 = count; }
+  static void SetOutputCompareA(U8 val) { OCR0A = val; }
 
-  void SetCount(U8 count) { TCNT0 = count; }
-  void SetOutputCompareA(U8 val) { OCR0A = val; }
+  static void SetDutyCycle(U8 duty);
 
-  void SetDutyCycle(U8 duty);
+  static void ExternalClockMode(bool enable, bool xtal);
 
-  void ExternalClockMode(bool enable, bool xtal);
+  static void EnableOutputCompareInterrupt() { TIMSK0 |= 0x02; }
+  static void DisableOutputCompareInterrupt() { TIMSK0 &= ~0x02; }
+  static void ClearOutputCompareInterrupt() { TIFR0 &= ~0x02; }
 
-  void EnableOutputCompareInterrupt() { TIMSK0 |= 0x02; }
-  void DisableOutputCompareInterrupt() { TIMSK0 &= ~0x02; }
-  void ClearOutputCompareInterrupt() { TIFR0 &= ~0x02; }
-
-  void EnableOverflowInterrupt() { TIMSK0 |= 0x01; }
-  void DisableOverflowInterrupt() { TIMSK0 &= ~0x01; }
-  void ClearOverflowInterrupt() { TIFR0 &= ~0x01; }
+  static void EnableOverflowInterrupt() { TIMSK0 |= 0x01; }
+  static void DisableOverflowInterrupt() { TIMSK0 &= ~0x01; }
+  static void ClearOverflowInterrupt() { TIFR0 &= ~0x01; }
 
 protected:
 private:
-	tc0( const tc0 &c );
-	tc0& operator=( const tc0 &c );
 
 }; //tc0
 

@@ -8,6 +8,13 @@
 #include "fonts/small.h"
 #include "fonts/sitka_med.h"
 
+/*
+Because of RAM limitations, we're going to hard-code the separators:
+  1 - page 3, width 4px, bits 2-5
+  2 - page 6, width 1px, bits 7
+*/
+
+
 font LM6029ACW::SmallFont;
 font LM6029ACW::SitkaMed;
 
@@ -128,6 +135,17 @@ void LM6029ACW::PutChar(unsigned char c, bool invert)
     for(i = 0 ; i < length ; i++) 
     {
       data = pgm_read_byte(character++);
+
+      /* Low RAM fix */
+      if((pos_y + j) == 6)
+      {
+        data |= 0x80;
+      }
+      if((ex_state == SYS_DESKTOP) && (pos_y + j == 3))
+      {
+        data |= 0x18;
+      }
+
       if(invert)
         data = ~data;
 
@@ -165,57 +183,3 @@ void LM6029ACW::WriteCharCol(U8 v, U8 x, U8 page, U8 colour)
     break;
   }
  }
-
- /* Require a screen buffer, not enough memory for this */
- void LM6029ACW::drawPoint(Point pt)
- {
-
- }
-
-void LM6029ACW::drawLine(Line line)
-{
-
-}
-
-void LM6029ACW::drawHorizontalLine(U8 X, U8 Y, U8 length, bool invert)
-{
-  pos_x = X;
-  pos_y = Y / 8;
-
-  U8 i = 0;
-  U8 data = 0x01 << (Y % 8);
-
-  if(invert)
-    data = ~data;
-
-  controller.SetColumnAddress(pos_x);
-  controller.SetPageAddress(pos_y);
-  
-  LCD_HW::ChipSelect();
-  LCD_HW::DataMode();
-
-  for(i = 0 ; i < length ; i++) 
-  {
-    LCD_HW::SetData(data);
-    LCD_HW::TriggerWrite();
-  }
-  LCD_HW::ChipDeselect();
-}
-
-void LM6029ACW::drawVerticalLine(U8 X, U8 Y, U8 length, bool invert)
-{
-  U8 data = 0xFF;
-
-  controller.SetColumnAddress(X);
-  controller.SetPageAddress(Y);
-  
-  LCD_HW::ChipSelect();
-  LCD_HW::DataMode();
-
-  if(invert)
-    data = ~data;
-
-  LCD_HW::SetData(data);
-  LCD_HW::TriggerWrite();
-  LCD_HW::ChipDeselect();
-}
